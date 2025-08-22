@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "autovolt";
+  default: true;
+  prefersdark: true;
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: #fafdf6;
+  --color-base-300: oklch(96% 0.001 286.375);
+  --color-base-content: oklch(14% 0.005 285.823);
+  --color-primary: #ddd92a;
+  --color-primary-content: oklch(14% 0.005 285.823);
+  --color-secondary: #eeefa8;
+  --color-secondary-content: oklch(14% 0.005 285.823);
+  --color-accent: #eae151;
+  --color-accent-content: oklch(14% 0.005 285.823);
+  --color-neutral: #2d2a32;
+  --color-neutral-content: #fafdf6;
+  --color-info: oklch(68% 0.169 237.323);
+  --color-info-content: #fafdf6;
+  --color-success: oklch(69% 0.17 162.48);
+  --color-success-content: #fafdf6;
+  --color-warning: oklch(79% 0.184 86.047);
+  --color-warning-content: #fafdf6;
+  --color-error: oklch(44% 0.177 26.899);
+  --color-error-content: #fafdf6;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@theme {
+  --font-title: "Sora", sans-serif;
+  --font-body: "Manrope", sans-serif;
+
+  --color-primary-50: #f9fbeb;
+  --color-primary-100: #f3f7ca;
+  --color-primary-200: #ebf098;
+  --color-primary-300: #e4e75d;
+  --color-primary-400: #ddd92a;
+  --color-primary-500: #cec324;
+  --color-primary-600: #b29c1c;
+  --color-primary-700: #8e741a;
+  --color-primary-800: #775c1c;
+  --color-primary-900: #654d1e;
+  --color-primary-950: #3b290d;
+}
+
+@layer base {
+  html {
+    @apply font-title bg-base-200;
+    font-size: 16px;
+  }
+
+  body {
+    @apply bg-base-200;
+  }
+
+  a {
+    @apply font-semibold;
+  }
+}
+
+@utility h1 {
+  @apply text-5xl font-bold;
+}
+
+@utility h2 {
+  @apply text-4xl font-bold;
+}
+
+@utility h3 {
+  @apply text-3xl font-bold;
+}
+
+@utility h4 {
+  @apply text-2xl font-bold;
+}
+
+@utility h5 {
+  @apply text-xl font-bold;
+}
+
+@utility h6 {
+  @apply text-lg font-bold;
+}
+
+@utility body {
+  @apply font-body;
+}
+
+@utility btn {
+  @apply text-base;
+}
+
+@utility menu {
+  @apply text-base;
+}
+
+@utility divider-white {
+
+  &:before,
+  &:after {
+    background-color: var(--color-white);
+  }
+}
+
+@utility validator-hint {
+  @apply mt-0;
+}
+
+.select:disabled {
+  @apply bg-base-300 border-(--input-color);
+}
+
+.pattern {
+  background-color: #fafdf6;
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ddd92a' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
