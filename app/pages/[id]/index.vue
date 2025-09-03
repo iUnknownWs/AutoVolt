@@ -4,15 +4,29 @@
       <ul>
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li><NuxtLink to="/autos-electricos">Autos</NuxtLink></li>
-        <li>{{ car.marca }} {{ car.modelo }} {{ car.version }}</li>
+        <li>
+          <NuxtLink
+            :to="{ name: 'autos-electricos', query: { marca: car.marca } }"
+          >
+            {{ car.marca }}
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            :to="{ name: 'autos-electricos', query: { modelo: car.modelo } }"
+          >
+            {{ car.modelo }}
+          </NuxtLink>
+        </li>
+        <li>{{ car.version }}</li>
       </ul>
     </div>
     <div class="flex gap-6 px-6 pb-6">
       <Carousel v-bind="carouselSettings" class="w-full max-w-4xl rounded-2xl">
-        <Slide class="w-full">
+        <Slide v-for="photo in car.logo_urls" class="w-full">
           <NuxtImg
-            src="/hero.jpg"
-            class="h-full w-full rounded-2xl bg-cover bg-bottom"
+            :src="photo"
+            class="h-full w-full rounded-2xl object-cover"
           />
         </Slide>
         <template #addons>
@@ -80,9 +94,12 @@
             <button class="btn btn-primary flex-1">
               <Icon name="ph:download-simple" />Ficha tecnica
             </button>
-            <button class="btn btn-primary flex-1">
+            <NuxtLink
+              :to="{ name: 'comparador', query: { id: id } }"
+              class="btn btn-primary flex-1"
+            >
               <Icon name="ph:list-plus" />Comparar
-            </button>
+            </NuxtLink>
           </div>
           <NuxtLink
             :to="{ name: 'id-cotizar', params: { id: id } }"

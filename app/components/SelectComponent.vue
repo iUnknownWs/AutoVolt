@@ -1,23 +1,27 @@
 <template>
-  <select
-    v-if="validation"
-    class="select validator min-w-64"
-    v-model="value"
-    required
-    :disabled="disabled"
-    @change="emit('change')"
-  >
-    <option disabled selected :value="null">{{ placeholder }}</option>
-    <option
-      v-for="option in options"
-      :value="object ? option : option[optionValue]"
+  <div v-if="validation">
+    <select
+      class="select validator min-w-64"
+      :class="$attrs.class"
+      v-model="value"
+      required
+      :disabled="disabled"
+      @change="emit('change')"
     >
-      {{ option[optionLabel] }}
-    </option>
-  </select>
+      <option disabled selected :value="null">{{ placeholder }}</option>
+      <option
+        v-for="option in options"
+        :value="object ? option : option[optionValue]"
+      >
+        {{ option[optionLabel] }}
+      </option>
+    </select>
+    <div class="validator-hint">{{ validation }}</div>
+  </div>
   <select
     v-else
     class="select min-w-64"
+    :class="$attrs.class"
     v-model="value"
     :disabled="disabled"
     @change="emit('change')"
@@ -30,7 +34,6 @@
       {{ option[optionLabel] }}
     </option>
   </select>
-  <div v-if="validation" class="validator-hint">{{ validation }}</div>
 </template>
 
 <script lang="ts" setup>

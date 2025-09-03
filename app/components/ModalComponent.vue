@@ -6,10 +6,10 @@
           ✕
         </button>
       </form>
-      <slot />
-      <div v-if="actionLabel" class="modal-action">
+      <slot name="content" />
+      <div class="modal-action">
         <form method="dialog">
-          <button class="btn btn-soft btn-primary">{{ actionLabel }}</button>
+          <slot name="action" />
         </form>
       </div>
     </div>
@@ -20,12 +20,6 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
-  actionLabel: { type: String },
-});
-
 const modal = ref<HTMLDialogElement | null>(null);
 defineExpose({ modal });
 </script>
-
-<style></style>

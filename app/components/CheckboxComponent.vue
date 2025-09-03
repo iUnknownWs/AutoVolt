@@ -24,5 +24,3 @@ defineProps({
 });
 const model = defineModel();
 </script>
-
-<style></style>

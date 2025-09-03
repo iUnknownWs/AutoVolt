@@ -31,5 +31,3 @@ defineProps({
 });
 const value = defineModel();
 </script>
-
-<style></style>

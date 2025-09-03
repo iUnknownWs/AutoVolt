@@ -28,9 +28,13 @@
             <NuxtLink
               :to="{ name: 'autos-electricos', query: model }"
               class="btn btn-primary"
-              >Buscar Modelo</NuxtLink
             >
-            <NuxtLink to="autos-electricos" class="btn btn-primary btn-outline">
+              Buscar Modelo
+            </NuxtLink>
+            <NuxtLink
+              to="/autos-electricos"
+              class="btn btn-primary btn-outline"
+            >
               Explorar todos los autos
             </NuxtLink>
           </div>
@@ -43,7 +47,7 @@
             description="Encuentra todos los autos eléctricos disponibles en Chile, compara marcas, modelos y versiones en un solo lugar."
             icon="ph:info-duotone"
             cta="Explorar Modelos"
-            to="autos-electricos"
+            to="/autos-electricos"
           />
           <HomeInfoCard
             title="Toma decisiones informadas"
@@ -228,7 +232,7 @@
 const { $api } = useNuxtApp();
 const brand = ref(null);
 const model = ref(null);
-import type { DataObject, responseData } from "~/types/api";
+import type { DataObject, ResponseData } from "~/types/api";
 import type { Cars } from "~/types/cars";
 
 const carouselCarsSettings = {
@@ -238,25 +242,25 @@ const carouselCarsSettings = {
 
 const { data: brands } = await useFetch(`car_brands/`, {
   key: "brands",
-  transform: (data: responseData<DataObject>) => data.results,
+  transform: (data: ResponseData<DataObject>) => data.results,
   $fetch: $api,
 });
 
-const { data: popular_cars } = await useFetch(`popular_cars/`, {
+const { data: popular_cars } = await useFetch(`popular_cars`, {
   key: "popular_cars",
-  transform: (data: responseData<DataObject>) => data.results,
+  transform: (data: ResponseData<DataObject>) => data.results,
   $fetch: $api,
 });
 
-const { data: cars } = await useFetch(`cars/search/`, {
+const { data: cars } = await useFetch(`cars/search`, {
   key: "cars",
-  transform: (data: responseData<Cars>) => data.results,
+  transform: (data: ResponseData<Cars>) => data.results,
   $fetch: $api,
 });
 
 const models = ref([] as DataObject[]);
 const getModels = async () => {
-  const data = await $api<responseData<DataObject>>(
+  const data = await $api<ResponseData<DataObject>>(
     `car_models/?marca_id=${brand.value}`,
   );
   models.value = data.results || [];
@@ -266,5 +270,3 @@ watch(brand, () => {
   getModels();
 });
 </script>
-
-<style></style>

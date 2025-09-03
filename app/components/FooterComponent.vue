@@ -1,9 +1,11 @@
 <template>
   <ModalComponent ref="modal">
-    <p class="h6">{{ modalInfo.name }}</p>
-    <p class="body mt-2">
-      {{ modalInfo.message }}
-    </p>
+    <template #content>
+      <p class="h6">{{ modalInfo.name }}</p>
+      <p class="body mt-2">
+        {{ modalInfo.message }}
+      </p>
+    </template>
   </ModalComponent>
   <div class="bg-neutral">
     <div
@@ -18,15 +20,19 @@
           />
         </NuxtLink>
         <div class="flex gap-2">
-          <NuxtLink to="autos-electricos" class="btn btn-ghost btn-sm">
+          <NuxtLink to="/autos-electricos" class="btn btn-ghost btn-sm">
             Autos
           </NuxtLink>
-          <NuxtLink class="btn btn-ghost btn-sm">Carga Residencial</NuxtLink>
+          <NuxtLink to="/carga" class="btn btn-ghost btn-sm">
+            Carga Residencial
+          </NuxtLink>
           <NuxtLink class="btn btn-ghost btn-sm">Guía AutoVolt</NuxtLink>
-          <NuxtLink class="btn btn-ghost btn-sm">Comparador</NuxtLink>
+          <NuxtLink to="/comparador" class="btn btn-ghost btn-sm">
+            Comparador
+          </NuxtLink>
           <NuxtLink class="btn btn-ghost btn-sm">Simulador de Ahorros</NuxtLink>
           <NuxtLink class="btn btn-ghost btn-sm">Tendencias</NuxtLink>
-          <NuxtLink to="contacto" class="btn btn-ghost btn-sm">
+          <NuxtLink to="/contacto" class="btn btn-ghost btn-sm">
             Contacto
           </NuxtLink>
         </div>
@@ -91,7 +97,7 @@
 <script lang="ts" setup>
 const modal = ref<{ modal: HTMLDialogElement | null } | null>(null);
 const modalInfo = reactive({
-  title: "",
+  name: "",
   message: "",
 });
 
@@ -109,5 +115,3 @@ const openCookies = () => {
   modal.value?.modal?.showModal();
 };
 </script>
-
-<style></style>

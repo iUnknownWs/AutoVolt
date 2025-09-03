@@ -1,4 +1,4 @@
-export interface responseData<T> {
+export interface ResponseData<T> {
     count: number;
     next: string | null;
     previous: string | null;

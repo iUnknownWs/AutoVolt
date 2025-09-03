@@ -22,5 +22,3 @@ defineProps({
   carroceria: [String, Number],
 });
 </script>
-
-<style></style>

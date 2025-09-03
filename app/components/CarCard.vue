@@ -2,10 +2,7 @@
   <div
     class="group bg-base-100 group flex aspect-square w-full max-w-[270px] grow-0 cursor-pointer flex-col items-center gap-4 rounded-2xl p-6 shadow-lg"
   >
-    <NuxtImg
-      src="https://greencarscompare.com/upload/resize_cache/iblock/ab2/1000_120_1/408mnlcm54i8fd7i3coqenyhhdqwlu0r.png"
-      class="w-52"
-    />
+    <NuxtImg :src="car.logo_url" class="w-52" />
     <div class="flex flex-col items-center">
       <p
         class="group-hover:text-primary-600 group-active:text-primary-600 text-lg font-bold"
@@ -60,5 +57,3 @@ defineProps({
   },
 });
 </script>
-
-<style></style>

@@ -8,30 +8,37 @@
       </div>
       <div class="flex-none">
         <ul class="menu menu-horizontal items-center px-1">
-          <li><NuxtLink to="autos-electricos">Autos</NuxtLink></li>
-          <li><NuxtLink>Carga Residecial</NuxtLink></li>
+          <li><NuxtLink to="/autos-electricos">Autos</NuxtLink></li>
+          <li><NuxtLink to="/carga">Carga Residecial</NuxtLink></li>
           <li>
             <details>
               <summary class="font-semibold">Recursos</summary>
               <ul class="bg-base-100 z-10 rounded-t-none p-2">
                 <li><NuxtLink>Guía AutoVolt</NuxtLink></li>
-                <li><NuxtLink>Comparador Autos</NuxtLink></li>
-                <li><NuxtLink>Simulador de Ahorros</NuxtLink></li>
+                <li>
+                  <NuxtLink :to="{ name: 'comparador' }">
+                    Comparador Autos
+                  </NuxtLink>
+                </li>
+                <li><NuxtLink>Simulador de Ahorros</NuxtLink></li>
               </ul>
             </details>
           </li>
           <li><NuxtLink>Tendencias</NuxtLink></li>
-          <li class="mr-4">
-            <button class="btn btn-ghost btn-circle">
+          <!-- <li>
+            <RouterLink
+              :to="{ name: 'comparador', query: { carIds } }"
+              class="btn btn-ghost btn-circle"
+            >
               <div class="indicator">
                 <icon name="ph:list-checks" size="28" />
                 <span class="badge badge-sm badge-primary indicator-item">
-                  8
+                  {{ carIds.length }}
                 </span>
               </div>
-            </button>
-          </li>
-          <li>
+            </RouterLink>
+          </li> -->
+          <li class="ml-4">
             <button class="btn btn-primary">Explora con IA</button>
           </li>
         </ul>
@@ -41,5 +48,3 @@
 </template>
 
 <script lang="ts" setup></script>
-
-<style></style>

@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/eslint',
     'vue3-carousel-nuxt',
+    'nuxt-snackbar',
   ],
   runtimeConfig: {
     public: {
@@ -23,5 +24,10 @@ export default defineNuxtConfig({
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL,
       apiKey: process.env.NUXT_PUBLIC_API_KEY,
     }
+  },
+  snackbar: {
+    bottom: true,
+    right: true,
+    duration: 5000
   },
 })
