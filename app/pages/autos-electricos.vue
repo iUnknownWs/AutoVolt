@@ -209,6 +209,10 @@ function clearFilter(key: keyof typeof filters) {
   } else {
     filters[key] = null;
   }
+
+  if (key == "precio_max" || key == "precio_min") {
+    price.value = {};
+  }
 }
 
 watch(price, () => {
@@ -217,7 +221,7 @@ watch(price, () => {
 
 const { data: cars } = await useFetch<ResponseData<Cars>>("cars/search/", {
   params: filters,
-  key: "cars",
+  key: "list-cars",
   $fetch: $api,
 });
 

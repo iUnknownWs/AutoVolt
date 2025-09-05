@@ -20,7 +20,11 @@
                     Comparador Autos
                   </NuxtLink>
                 </li>
-                <li><NuxtLink>Simulador de Ahorros</NuxtLink></li>
+                <li>
+                  <NuxtLink to="/simulador-ahorros">
+                    Simulador de Ahorros
+                  </NuxtLink>
+                </li>
               </ul>
             </details>
           </li>

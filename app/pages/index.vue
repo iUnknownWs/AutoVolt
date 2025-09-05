@@ -109,7 +109,7 @@
         <div class="flex cursor-pointer justify-between gap-4">
           <HomeBodyCard
             v-for="body in masterData.bodies"
-            image="https://greencarscompare.com/upload/resize_cache/iblock/ab2/1000_120_1/408mnlcm54i8fd7i3coqenyhhdqwlu0r.png"
+            :image="body.img"
             :title="body.name"
             :carroceria="body.id as string | number"
           />
@@ -120,7 +120,7 @@
         <div class="flex cursor-pointer justify-between gap-4">
           <HomePriceCard
             v-for="price in masterData.priceRanges"
-            image="/hero.jpg"
+            :image="price.img"
             :title="price.name"
             :query="price.id as { [key: string]: any }"
           />

@@ -1,38 +1,44 @@
 interface dataObject {
   id: string | number | { [key: string]: any },
   name: string,
+  img?: string
 }
 
 const priceRangeOptions: dataObject[] = [
   {
     id: { precio_max: 20000000, precio_min: null, ordering: 'precio_lista' },
     name: "Menos de $20 MM",
+    img: 'https://storage.googleapis.com/mediamvp/Rango%2020mm.avif'
   },
   {
 
     id: { precio_min: 20000000, precio_max: 30000000, ordering: 'precio_lista' },
     name: "$20 - $30 MM",
+    img: 'https://storage.googleapis.com/mediamvp/Rango%2020-30mm.avif'
   },
   {
     id: { precio_min: 30000000, precio_max: 40000000, ordering: 'precio_lista' },
     name: "$30 - $40 MM",
+    img: 'https://storage.googleapis.com/mediamvp/rango%2030-40mm.avif'
   },
   {
     id: { precio_min: 40000000, precio_max: 60000000, ordering: 'precio_lista' },
     name: "$40 - $60 MM",
+    img: 'https://storage.googleapis.com/mediamvp/rango%2040-60mm.avif'
   },
   {
     id: { precio_min: 60000000, precio_max: null, ordering: 'precio_lista' },
     name: "Más de $60 MM",
+    img: 'https://storage.googleapis.com/mediamvp/Rango%2060mm.avif'
   },
 ];
 
 const bodyOptions: dataObject[] = [
-  { id: 'Hatchback', name: 'Hatchback' },
-  { id: 'Sedán', name: 'Sedán' },
-  { id: 'SUV', name: 'SUV' },
-  { id: 'Camioneta', name: 'Camioneta' },
-  { id: 'Deportivo', name: 'Deportivo' },
+  { id: 'Hatchback', name: 'Hatchback', img: 'https://storage.googleapis.com/mediamvp/hatchback.avif' },
+  { id: 'Sedán', name: 'Sedán', img: 'https://storage.googleapis.com/mediamvp/sedan.avif' },
+  { id: 'SUV', name: 'SUV', img: 'https://storage.googleapis.com/mediamvp/SUV.webp' },
+  { id: 'Camioneta', name: 'Camioneta', img: 'https://storage.googleapis.com/mediamvp/Pickup.webp' },
+  { id: 'Deportivo', name: 'Deportivo', img: 'https://storage.googleapis.com/mediamvp/Deportivo.avif' },
 ]
 
 const autoTypeOptions: dataObject[] = [

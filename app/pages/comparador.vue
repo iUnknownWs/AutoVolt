@@ -49,10 +49,12 @@
     </ModalComponent>
     <CardComponent class="mx-6">
       <div class="bg-primary flex items-center justify-between rounded-2xl p-6">
-        <h1 class="h3 leading-10">
-          Selecciona los autos que deseas comparar
-          <Icon name="ph:car-duotone" />
-        </h1>
+        <div class="max-w-72">
+          <h1 class="h3 leading-10">
+            Selecciona los autos que deseas comparar
+            <Icon name="ph:car-duotone" />
+          </h1>
+        </div>
         <div class="flex gap-6">
           <CardComponent
             v-for="car in cars"
@@ -64,7 +66,7 @@
             <p>{{ car.version }}</p>
           </CardComponent>
           <CardComponent
-            v-if="carIds.length < 4"
+            v-if="loading || carIds.length < 4"
             class="flex aspect-square w-60 items-center justify-center"
           >
             <button class="btn btn-primary" @click="openModal">
@@ -72,7 +74,7 @@
             </button>
           </CardComponent>
           <CardComponent
-            v-if="carIds.length < 3"
+            v-if="loading || carIds.length < 3"
             class="flex aspect-square w-60 items-center justify-center"
           >
             <button class="btn btn-primary" @click="openModal">
@@ -80,7 +82,7 @@
             </button>
           </CardComponent>
           <CardComponent
-            v-if="carIds.length < 2"
+            v-if="loading || carIds.length < 2"
             class="flex aspect-square w-60 items-center justify-center"
           >
             <button class="btn btn-primary" @click="openModal">
@@ -88,7 +90,7 @@
             </button>
           </CardComponent>
           <CardComponent
-            v-if="carIds.length < 1"
+            v-if="loading || carIds.length < 1"
             class="flex aspect-square w-60 items-center justify-center"
           >
             <button class="btn btn-primary" @click="openModal">
@@ -225,7 +227,7 @@
               <p class="body">Autonomia Combustible</p>
             </div>
           </div>
-          <div v-for="car in 4" class="flex flex-col gap-2">
+          <div v-for="car in 4" class="texc flex flex-col gap-2 text-center">
             <div>
               <p class="body font-bold">
                 {{ cars[car - 1]?.traccion || "-" }}
@@ -289,32 +291,46 @@
         class="flex flex-col gap-4 p-6"
       >
         <h3 class="h3">Dimensiones & Peso</h3>
-        <div class="grid grid-cols-4 gap-2 text-xl">
-          <div v-for="car in 4" class="flex flex-col gap-2">
+        <div class="grid grid-cols-5 gap-2 text-xl">
+          <div class="flex flex-col gap-2">
             <div>
               <p class="body">Largo</p>
-              <p class="body font-bold">{{ cars[car - 1]?.largo || "-" }} mm</p>
             </div>
             <div>
               <p class="body">Peso Bruto Vehicular</p>
-              <p class="body font-bold">{{ cars[car - 1]?.peso || "-" }} Kg</p>
             </div>
             <div>
               <p class="body">Ancho</p>
-              <p class="body font-bold">{{ cars[car - 1]?.ancho || "-" }} mm</p>
             </div>
             <div>
               <p class="body">Capacidad del maletero</p>
+            </div>
+            <div>
+              <p class="body">Alto</p>
+            </div>
+            <div>
+              <p class="body">Distancia entre ejes</p>
+            </div>
+          </div>
+          <div v-for="car in 4" class="flex flex-col gap-2 text-center">
+            <div>
+              <p class="body font-bold">{{ cars[car - 1]?.largo || "-" }} mm</p>
+            </div>
+            <div>
+              <p class="body font-bold">{{ cars[car - 1]?.peso || "-" }} Kg</p>
+            </div>
+            <div>
+              <p class="body font-bold">{{ cars[car - 1]?.ancho || "-" }} mm</p>
+            </div>
+            <div>
               <p class="body font-bold">
                 {{ cars[car - 1]?.maletero || "-" }} L
               </p>
             </div>
             <div>
-              <p class="body">Alto</p>
               <p class="body font-bold">{{ cars[car - 1]?.alto || "-" }} mm</p>
             </div>
             <div>
-              <p class="body">Distancia entre ejes</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.distancia_entre_ejes || "-" }} mm
               </p>
@@ -327,34 +343,47 @@
         class="flex flex-col gap-4 p-6"
       >
         <h3 class="h3">Eficiencia Eléctrica</h3>
-        <div class="grid grid-cols-4 gap-2 text-xl">
-          <div v-for="car in 4" class="flex flex-col gap-2">
+        <div class="grid grid-cols-5 gap-2 text-xl">
+          <div class="flex flex-col gap-2">
             <div>
               <p class="body">Autonomía Batería (WLTP)</p>
+              <p class="body font-bold"></p>
+            </div>
+            <div>
+              <p class="body">Consumo Diario</p>
+            </div>
+            <div>
+              <p class="body">Cap. Batería (Nominal)</p>
+            </div>
+            <div>
+              <p class="body">Consumo Comparable</p>
+            </div>
+            <div>
+              <p class="body">Consumo Eléctrico</p>
+            </div>
+          </div>
+          <div v-for="car in 4" class="flex flex-col gap-2 text-center">
+            <div>
               <p class="body font-bold">
                 {{ cars[car - 1]?.rango_wltp || "-" }} Km
               </p>
             </div>
             <div>
-              <p class="body">Consumo Diario</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.consumo_diario || "-" }}
               </p>
             </div>
             <div>
-              <p class="body">Capacidad de la Batería (Nominal)</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.bateria_nominal || "-" }} kWh
               </p>
             </div>
             <div>
-              <p class="body">Consumo Comparable</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.consumo_comparable || "-" }}
               </p>
             </div>
             <div>
-              <p class="body">Consumo Eléctrico</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.consumo_electrico || "-" }} Km/kWh
               </p>
@@ -367,52 +396,70 @@
         class="flex flex-col gap-4 p-6"
       >
         <h3 class="h3">Batería & Carga</h3>
-        <div class="grid grid-cols-4 gap-2 text-xl">
-          <div v-for="car in 4" class="flex flex-col gap-2">
+        <div class="grid grid-cols-5 gap-2 text-xl">
+          <div class="flex flex-col gap-2">
             <div>
               <p class="body">Tipo de Batería</p>
+            </div>
+            <div>
+              <p class="body">Tipo de Carga DC</p>
+            </div>
+            <div>
+              <p class="body">Tipo de Carga AC</p>
+            </div>
+            <div>
+              <p class="body">Potencia de Carga DC</p>
+            </div>
+            <div>
+              <p class="body">Potencia de Carga AC</p>
+            </div>
+            <div>
+              <p class="body">Carga DC 20 a 80%</p>
+            </div>
+            <div>
+              <p class="body">Carga AC 20 a 80%</p>
+            </div>
+            <div>
+              <p class="body">Autonomía 80 a 20% de Carga</p>
+            </div>
+          </div>
+          <div v-for="car in 4" class="flex flex-col gap-2 text-center">
+            <div>
               <p class="body font-bold">
                 {{ cars[car - 1]?.tipo_bateria || "-" }}
               </p>
             </div>
             <div>
-              <p class="body">Tipo de Carga DC</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.tipo_carga_dc || "-" }}
               </p>
             </div>
             <div>
-              <p class="body">Tipo de Carga AC</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.tipo_carga_ac || "-" }}
               </p>
             </div>
             <div>
-              <p class="body">Potencia de Carga DC</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.carga_ac || "-" }} kW
               </p>
             </div>
             <div>
-              <p class="body">Potencia de Carga AC</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.carga_ac || "-" }} kW
               </p>
             </div>
             <div>
-              <p class="body">Tiempo de Carga DC 20 a 80%</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }} hrs
               </p>
             </div>
             <div>
-              <p class="body">Tiempo de Carga AC 20 a 80%</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }} hrs
               </p>
             </div>
             <div>
-              <p class="body">Autonomía 80 a 20% de Carga</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.autonomia_80_20_carga || "-" }} Km
               </p>
@@ -422,40 +469,56 @@
       </CardComponent>
       <CardComponent v-if="tab === 'Seguridad'" class="flex flex-col gap-4 p-6">
         <h3 class="h3">Seguridad</h3>
-        <div class="grid grid-cols-4 gap-2 text-xl">
-          <div v-for="car in 4" class="flex flex-col gap-2">
+        <div class="grid grid-cols-5 gap-2 text-xl">
+          <div class="flex flex-col gap-2">
             <div>
               <p class="body">Llantas</p>
+            </div>
+            <div>
+              <p class="body">Calificación Seg. (NCAP)</p>
+            </div>
+            <div>
+              <p class="body">Asientos</p>
+            </div>
+            <div>
+              <p class="body">Garantía</p>
+            </div>
+            <div>
+              <p class="body">Airbags</p>
+            </div>
+            <div>
+              <p class="body">Garantía</p>
+            </div>
+            <div>
+              <p class="body">Producido desde</p>
+            </div>
+          </div>
+          <div v-for="car in 4" class="flex flex-col gap-2 text-center">
+            <div>
               <p class="body font-bold">{{ cars[car - 1]?.llantas || "-" }}</p>
             </div>
             <div>
-              <p class="body">Calificación Seguridad (NCAP)</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.seguridad_ncap || "-" }}
               </p>
             </div>
             <div>
-              <p class="body">Asientos</p>
               <p class="body font-bold">{{ cars[car - 1]?.asientos || "-" }}</p>
             </div>
             <div>
-              <p class="body">Garantía</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.garantia_anos || "-" }} años
               </p>
             </div>
             <div>
-              <p class="body">Airbags</p>
               <p class="body font-bold">{{ cars[car - 1]?.airbags || "-" }}</p>
             </div>
             <div>
-              <p class="body">Garantía</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.garantia_km || "-" }} Km
               </p>
             </div>
             <div>
-              <p class="body">Producido desde</p>
               <p class="body font-bold">
                 {{ cars[car - 1]?.inicio_produccion || "-" }}
               </p>
@@ -495,8 +558,8 @@ const openModal = () => {
 };
 
 const addAuto = () => {
-  if (carParams.model && !carIds.value.includes(carParams.model)) {
-    carIds.value.push(carParams.model);
+  if (carParams.id && !carIds.value.includes(carParams.id)) {
+    carIds.value.push(carParams.id);
   }
 };
 
@@ -525,13 +588,17 @@ const getVersions = async () => {
   versions.value = data.results || [];
 };
 
+const loading = ref(false);
 const cars = ref([] as CarDetails[]);
 const getAutos = async () => {
+  loading.value = true;
+  cars.value = [];
   if (carIds.value.length === 0) return;
   for (const id of carIds.value) {
     const data = await $api<CarDetails>(`cars/${id}/`);
     if (data) cars.value.push(data);
   }
+  loading.value = false;
 };
 
 watch(

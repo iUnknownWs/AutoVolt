@@ -26,17 +26,29 @@
       <div class="mx-auto flex w-fit gap-8">
         <div class="flex flex-col items-center gap-2">
           <p class="h5">Marca</p>
-          <NuxtImg src="/toyota.png" width="80" height="80" alt="Toyota Logo" />
+          <NuxtImg
+            :src="car.car_brand_logo"
+            alt="Toyota Logo"
+            class="h-20 w-20 object-cover"
+          />
           <p class="h5">{{ car?.marca }}</p>
         </div>
         <div class="flex flex-col items-center gap-2">
           <p class="h5">Modelo</p>
-          <NuxtImg src="/toyota.png" width="80" height="80" alt="Toyota Logo" />
+          <NuxtImg
+            :src="car.foto_portada"
+            class="h-20 w-20 object-fill"
+            alt="Toyota Logo"
+          />
           <p class="h5">{{ car?.modelo }}</p>
         </div>
         <div class="flex flex-col items-center gap-2">
           <p class="h5">Version</p>
-          <NuxtImg src="/toyota.png" width="80" height="80" alt="Toyota Logo" />
+          <NuxtImg
+            :src="car.foto_portada"
+            class="h-20 w-20 object-fill"
+            alt="Toyota Logo"
+          />
           <p class="h5">{{ car?.version }}</p>
         </div>
       </div>

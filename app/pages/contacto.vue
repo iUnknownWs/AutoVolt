@@ -18,7 +18,7 @@
       </div>
       <div class="w-full">
         <img
-          src="/hero.jpg"
+          src="https://storage.googleapis.com/mediamvp/contacto.jpg"
           alt="contact-portrait"
           class="h-full w-fit rounded-r-2xl object-cover"
         />
