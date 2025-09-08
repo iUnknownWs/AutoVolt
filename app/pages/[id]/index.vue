@@ -48,7 +48,7 @@
           </Navigation>
         </template>
       </Carousel>
-      <CardComponent class="flex min-w-xl flex-col gap-8 p-6">
+      <CardComponent class="flex min-w-xl flex-col justify-between gap-8 p-6">
         <div class="">
           <h1 class="h1">{{ car.marca }} {{ car.modelo }}</h1>
           <h2 class="h3 text-primary">{{ car.version }}</h2>

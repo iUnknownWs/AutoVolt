@@ -19,6 +19,19 @@
     <div class="validator-hint">{{ validation }}</div>
   </div>
   <select
+    v-else-if="single"
+    class="select min-w-64"
+    :class="$attrs.class"
+    v-model="value"
+    :disabled="disabled"
+    @change="emit('change')"
+  >
+    <option disabled selected :value="null">{{ placeholder }}</option>
+    <option v-for="option in options" :value="option">
+      {{ option }}
+    </option>
+  </select>
+  <select
     v-else
     class="select min-w-64"
     :class="$attrs.class"
@@ -49,6 +62,7 @@ defineProps({
   validation: { type: String },
   disabled: { type: Boolean, default: false },
   object: { type: Boolean, default: false },
+  single: { type: Boolean, default: false },
 });
 const emit = defineEmits(["change"]);
 

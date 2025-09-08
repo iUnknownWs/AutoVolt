@@ -23,12 +23,12 @@
     <div
       class="border-neutral bg-base-100 flex min-w-3xl flex-col gap-6 rounded-2xl border-2 p-12"
     >
-      <div class="mx-auto flex w-fit gap-8">
+      <div v-if="car" class="mx-auto flex w-fit gap-8">
         <div class="flex flex-col items-center gap-2">
           <p class="h5">Marca</p>
           <NuxtImg
             :src="car.car_brand_logo"
-            alt="Toyota Logo"
+            alt="brand logo"
             class="h-20 w-20 object-cover"
           />
           <p class="h5">{{ car?.marca }}</p>
@@ -38,7 +38,7 @@
           <NuxtImg
             :src="car.foto_portada"
             class="h-20 w-20 object-fill"
-            alt="Toyota Logo"
+            alt="car image"
           />
           <p class="h5">{{ car?.modelo }}</p>
         </div>
@@ -47,7 +47,7 @@
           <NuxtImg
             :src="car.foto_portada"
             class="h-20 w-20 object-fill"
-            alt="Toyota Logo"
+            alt="car image"
           />
           <p class="h5">{{ car?.version }}</p>
         </div>
@@ -72,11 +72,13 @@
             class="w-full"
             placeholder="Nombre *"
             validation="Este campo es obligatorio"
+            v-model="payload.nombre"
           />
           <InputComponent
             class="w-full"
             placeholder="Apellido *"
             validation="Este campo es obligatorio"
+            v-model="payload.apellido"
           />
         </div>
         <div class="flex min-w-3xl gap-8">
@@ -85,22 +87,25 @@
             type="email"
             placeholder="Correo Electrónico *"
             validation="Este campo es obligatorio"
+            v-model="payload.email"
           />
           <InputComponent
             class="w-full"
             type="tel"
             placeholder="Teléfono *"
             validation="Este campo es obligatorio"
+            v-model="payload.telefono"
           />
         </div>
         <SelectComponent
           placeholder="¿Cómo prefieres que te contactemos?"
           :options="[
-            { id: 1, name: 'Correo Electrónico' },
-            { id: 2, name: 'Teléfono' },
+            { id: 'Correo Electrónico', name: 'Correo Electrónico' },
+            { id: 'Teléfono', name: 'Teléfono' },
           ]"
           class="w-full"
           validation="Este campo es obligatorio"
+          v-model="payload.modo_contacto"
         />
         <button class="btn-primary btn btn-wide mx-auto">Buscar Ofertas</button>
       </form>
@@ -108,34 +113,31 @@
         <div class="flex gap-6">
           <SelectComponent
             placeholder="Región"
-            :options="[
-              { id: 1, name: 'Precio Oferta' },
-              { id: 2, name: 'Bono TMDP' },
-              { id: 3, name: 'Bono Fin' },
-            ]"
+            :options="regions"
             class="w-full"
             v-model="region"
+            single
+            @change="getCities"
           />
           <SelectComponent
             placeholder="Ciudad"
-            :options="[
-              { id: 1, name: 'Comercializador' },
-              { id: 2, name: 'Precio Oferta' },
-              { id: 3, name: 'Bono TMDP' },
-              { id: 4, name: 'Bono Fin' },
-            ]"
+            :options="cities"
             class="w-full"
             v-model="city"
+            single
           />
-          <button class="btn-primary btn" @click="">Buscar Ofertas</button>
+          <button class="btn-primary btn" @click="getBranches">
+            Buscar Ofertas
+          </button>
         </div>
         <div class="divider m-0"></div>
         <div class="flex flex-col gap-6">
           <CardComponent
+            v-for="branch in branches"
             class="border-neutral flex items-center justify-between gap-6 border-2 p-6"
           >
             <NuxtImg
-              src="/toyota.png"
+              :src="branch.dealership_logo"
               width="80"
               height="80"
               alt="dealer logo"
@@ -143,23 +145,23 @@
             <div class="flex flex-col gap-1">
               <div class="flex flex-col">
                 <p class="h6 text-xs">Comercializador</p>
-                <p class="h6">Pompeyo & Carrasco</p>
+                <p class="h6">{{ branch.dealership_name }}</p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Sucursal</p>
-                <p class="h6">La Dehesa</p>
+                <p class="h6">{{ branch.branch_name }}</p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Dirección</p>
-                <p class="h6">Av. La Dehesa 9500</p>
+                <p class="h6">{{ branch.branch_address }}</p>
               </div>
             </div>
             <div class="flex flex-col">
               <div class="flex flex-col">
                 <p class="h6 text-xs">Precio Lista</p>
-                <p class="h6">$30.000.000</p>
+                <p class="h6">${{ car?.precio_lista }}</p>
               </div>
-              <div class="flex flex-col">
+              <!-- <div class="flex flex-col">
                 <p class="h6 text-xs">Bono TMDP</p>
                 <p class="h6">$30.000.000</p>
               </div>
@@ -170,7 +172,7 @@
               <div class="flex flex-col">
                 <p class="h6 text-xs">Precio Oferta</p>
                 <p class="h6">$30.000.000</p>
-              </div>
+              </div> -->
             </div>
             <button
               class="btn-primary btn btn-xl"
@@ -186,6 +188,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { ResponseData } from "~/types/api";
+import type { Branch } from "~/types/branches";
 import type { CarDetails } from "~/types/cars";
 
 const { $api } = useNuxtApp();
@@ -196,7 +200,21 @@ const id = useRoute().params.id as string;
 const modal = ref<{ modal: HTMLDialogElement } | null>(null);
 
 const snackbar = useSnackbar();
-const appraise = () => {
+const payload = reactive({
+  car_id: id,
+  nombre: "",
+  apellido: "",
+  email: "",
+  telefono: "",
+  modo_contacto: "",
+  comentarios: "",
+});
+
+const appraise = async () => {
+  await $api("/cotizacion/", {
+    method: "POST",
+    body: payload,
+  });
   snackbar.add({
     title: "¡Cotización Enviada!",
     text: "Puedes cotizar otras ofertas o cerrar la pestaña.",
@@ -209,11 +227,35 @@ const { data: car } = await useFetch<CarDetails>(`/cars/${id}`, {
   key: `car-${id}`,
 });
 
+const branches = ref<Branch[]>([]);
 const region = ref(null);
+const cities = ref<string[]>([]);
 const city = ref(null);
 
 const { data: regions } = await useFetch("/branch_regions/", {
   $fetch: $api,
   key: "regions",
 });
+
+const getCities = async () => {
+  if (!region.value) return;
+  const response = await $api<string[]>("/branch_ciudades/", {
+    params: { region: region.value },
+  });
+  cities.value = response;
+};
+
+const loading = ref(false);
+const getBranches = async () => {
+  if (!city.value) return;
+  loading.value = true;
+  const response = await $api<ResponseData<Branch>>(
+    "/branches_by_ciudad_and_carbrand/",
+    {
+      params: { ciudad: city.value, car_brand: car.value?.marca },
+    },
+  );
+  branches.value = response.results;
+  loading.value = false;
+};
 </script>
