@@ -190,60 +190,59 @@
         v-if="tab === 'Motor & Desempeño'"
         class="flex flex-col gap-4 p-6"
       >
-        <h3 class="h3">Motor & Desempeño</h3>
         <div class="grid grid-cols-5 gap-2 text-xl">
-          <p class="body">Tracción</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Tracción</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.traccion || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Potencia del Motor</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Potencia del Motor</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.potencia || "-" }} kW
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Transmisión</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Transmisión</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.transmision || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Potencia del motor</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Potencia del motor</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.potencia_kw || "-" }} HP
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Aceleración 0-100 Km/h</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Aceleración 0-100 Km/h</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.aceleracion || "-" }} s
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Torque del motor</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Torque del motor</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.torque || "-" }} Nm
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Velocidad Maxima</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Velocidad Maxima</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.maxima_velocidad || "-" }} Km/h
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Motor a Combustión</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Motor a Combustión</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.motor_combustion || "-" }} CC/L
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Estanque Combustible</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Estanque Combustible</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.estanque_combustible || "-" }} L
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Consumo Combustible</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Consumo Combustible</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.consumo || "-" }} Km/L
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="body">Autonomia Combustible</p>
-          <p v-for="car in 4" class="body font-bold">
+          <p class="h6">Autonomia Combustible</p>
+          <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.autonomia_combustible || "-" }} Km
           </p>
         </div>
@@ -252,228 +251,183 @@
         v-if="tab === 'Dimensiones & Peso'"
         class="flex flex-col gap-4 p-6"
       >
-        <h3 class="h3">Dimensiones & Peso</h3>
         <div class="grid grid-cols-5 gap-2 text-xl">
-          <div>
-            <p class="body">Largo</p>
-          </div>
-          <div>
-            <p class="body">Peso Bruto Vehicular</p>
-          </div>
-          <div>
-            <p class="body">Ancho</p>
-          </div>
-          <div>
-            <p class="body">Capacidad del maletero</p>
-          </div>
-          <div>
-            <p class="body">Alto</p>
-          </div>
-          <div>
-            <p class="body">Distancia entre ejes</p>
-          </div>
-          <div class="flex flex-col gap-2 text-center">
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.largo || "-" }} mm
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.peso || "-" }} Kg
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.ancho || "-" }} mm
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.maletero || "-" }} L
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.alto || "-" }} mm
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.distancia_entre_ejes || "-" }} mm
-              </p>
-            </div>
-          </div>
+          <p class="h6">Largo</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.largo || "-" }} mm
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Peso Bruto Vehicular</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.peso || "-" }} Kg
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Ancho</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.ancho || "-" }} mm
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Capacidad del maletero</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.maletero || "-" }} L
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Alto</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.alto || "-" }} mm
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Distancia entre ejes</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.distancia_entre_ejes || "-" }} mm
+          </p>
         </div>
       </CardComponent>
       <CardComponent
         v-if="tab === 'Eficiencia Eléctrica'"
         class="flex flex-col gap-4 p-6"
       >
-        <h3 class="h3">Eficiencia Eléctrica</h3>
         <div class="grid grid-cols-5 gap-2 text-xl">
-          <div class="flex flex-col gap-2">
-            <div>
-              <p class="body">Autonomía Batería (WLTP)</p>
-            </div>
-            <div>
-              <p class="body">Consumo Diario</p>
-            </div>
-            <div>
-              <p class="body">Cap. Batería (Nominal)</p>
-            </div>
-            <div>
-              <p class="body">Consumo Comparable</p>
-            </div>
-            <div>
-              <p class="body">Consumo Eléctrico</p>
-            </div>
-          </div>
-          <div v-for="car in 4" class="flex flex-col gap-2 text-center">
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.rango_wltp || "-" }} Km
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.consumo_diario || "-" }}
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.bateria_nominal || "-" }} kWh
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.consumo_comparable || "-" }}
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.consumo_electrico || "-" }} Km/kWh
-              </p>
-            </div>
-          </div>
+          <p class="h6">Autonomía Batería (WLTP)</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.rango_wltp || "-" }} Km
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Consumo Diario</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.consumo_diario || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Cap. Batería (Nominal)</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.bateria_nominal || "-" }} kWh
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Consumo Comparable</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.consumo_comparable || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Consumo Eléctrico</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.consumo_electrico || "-" }} Km/kWh
+          </p>
         </div>
       </CardComponent>
       <CardComponent
         v-if="tab === 'Batería & Carga'"
         class="flex flex-col gap-4 p-6"
       >
-        <h3 class="h3">Batería & Carga</h3>
         <div class="grid grid-cols-5 gap-2 text-xl">
-          <div class="flex flex-col gap-2">
-            <div>
-              <p class="body">Tipo de Batería</p>
-            </div>
-            <div>
-              <p class="body">Tipo de Carga DC</p>
-            </div>
-            <div>
-              <p class="body">Tipo de Carga AC</p>
-            </div>
-            <div>
-              <p class="body">Potencia de Carga DC</p>
-            </div>
-            <div>
-              <p class="body">Potencia de Carga AC</p>
-            </div>
-            <div>
-              <p class="body">Carga DC 20 a 80%</p>
-            </div>
-            <div>
-              <p class="body">Carga AC 20 a 80%</p>
-            </div>
-            <div>
-              <p class="body">Autonomía 80 a 20% de Carga</p>
-            </div>
-          </div>
-          <div v-for="car in 4" class="flex flex-col gap-2 text-center">
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.tipo_bateria || "-" }}
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.tipo_carga_dc || "-" }}
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.tipo_carga_ac || "-" }}
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.carga_ac || "-" }} kW
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.carga_ac || "-" }} kW
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }} hrs
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }} hrs
-              </p>
-            </div>
-            <div>
-              <p v-for="car in 4" class="body font-bold">
-                {{ cars[car - 1]?.autonomia_80_20_carga || "-" }} Km
-              </p>
-            </div>
-          </div>
+          <p class="h6">Tipo de Batería</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.tipo_bateria || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Tipo de Carga DC</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.tipo_carga_dc || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Tipo de Carga AC</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.tipo_carga_ac || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Potencia de Carga DC</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.carga_dc_max || "-" }} kW
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Potencia de Carga AC</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.carga_ac || "-" }} kW
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Carga DC 20 a 80%</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }} hrs
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Carga AC 20 a 80%</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }} hrs
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+
+          <p class="h6">Autonomía 80 a 20% de Carga</p>
+
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.autonomia_80_20_carga || "-" }} Km
+          </p>
         </div>
       </CardComponent>
       <CardComponent v-if="tab === 'Seguridad'" class="flex flex-col gap-4 p-6">
-        <h3 class="h3">Seguridad</h3>
         <div class="grid grid-cols-5 gap-2 text-xl">
-          <p class="body">Llantas</p>
+          <p class="h6">Llantas</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.llantas || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
-          <p class="body">Calificación Seg. (NCAP)</p>
+          <p class="h6">Calificación Seg. (NCAP)</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.seguridad_ncap || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
-          <p class="body">Asientos</p>
+          <p class="h6">Asientos</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.asientos || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
-          <p class="body">Garantía</p>
+          <p class="h6">Garantía</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.garantia_anos || "-" }} años
           </p>
           <div class="divider col-span-5 m-0"></div>
 
-          <p class="body">Airbags</p>
+          <p class="h6">Airbags</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.airbags || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
-          <p class="body">Garantía</p>
+          <p class="h6">Garantía</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.garantia_km || "-" }} Km
           </p>
           <div class="divider col-span-5 m-0"></div>
 
-          <p class="body">Producido desde</p>
+          <p class="h6">Producido desde</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.inicio_produccion || "-" }}
           </p>

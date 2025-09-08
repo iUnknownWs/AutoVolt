@@ -3,7 +3,11 @@
     <div class="navbar bg-base-100 mx-auto max-w-[1440px]">
       <div class="flex-1">
         <NuxtLink to="/">
-          <NuxtImg src="/logo.png" alt="Logo" class="w-56" />
+          <NuxtImg
+            src="https://storage.googleapis.com/mediamvp/Autovolt%20logo%20white%20background%20png.png"
+            alt="Logo"
+            class="w-56"
+          />
         </NuxtLink>
       </div>
       <div class="flex-none">

@@ -55,4 +55,25 @@ const orderList: dataObject[] = [
   { id: '-rango_wltp', name: 'Autonomía mayor a menor' },
 ]
 
-export const masterData = { priceRanges: priceRangeOptions, bodies: bodyOptions, autoTypes: autoTypeOptions, orderList: orderList }
+const cargaInfo = [
+  {
+    id: 0,
+    title: 'Instalación de Cargador Residencial (AC)',
+    description: 'Instalación rápida y segura de tu cargador en casa o edificio, con conexión monofásica y certificada por la SEC.',
+    price: 749000,
+  },
+  {
+    id: 1,
+    title: 'Cargador Residencial más Instalación',
+    description: 'Cargador Wallbox Pulsar Plus 7.4 kW (AC) con instalación incluida, en un solo paquete para casas y edificios.',
+    price: '1549000'
+  },
+  {
+    id: 2,
+    title: 'Kit Solar Residencial',
+    description: 'Genera tu propia energía limpia en casa con nuestro kit solar residencial de 2.5 kWp, diseñado para cubrir el 100% del consumo eléctrico de carga de tu auto.',
+    price: '2990000'
+  }
+]
+
+export const masterData = { priceRanges: priceRangeOptions, bodies: bodyOptions, autoTypes: autoTypeOptions, orderList: orderList, cargaInfo: cargaInfo }

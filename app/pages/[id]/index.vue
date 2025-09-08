@@ -305,7 +305,7 @@
         <CardComponent
           class="flex flex-col items-center justify-center gap-4 p-6"
         >
-          <NuxtLink to="/guia" class="h1"> Guia AutoVolt </NuxtLink>
+          <NuxtLink class="h1"> Guia AutoVolt </NuxtLink>
         </CardComponent>
       </div>
     </div>

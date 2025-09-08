@@ -170,7 +170,6 @@ const filters = reactive({
 });
 
 watch(searchObject, () => {
-  filters.marca = searchObject.value?.marca || null;
   filters.modelo = searchObject.value?.modelo || null;
 });
 
