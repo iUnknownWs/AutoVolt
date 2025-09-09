@@ -204,7 +204,7 @@ const hasFilters = computed(() => {
 
 function clearFilter(key: keyof typeof filters) {
   if (Array.isArray(filters[key])) {
-    filters[key] = [];
+    filters[key].splice(0);
   } else {
     filters[key] = null;
   }

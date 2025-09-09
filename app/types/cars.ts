@@ -2,6 +2,7 @@ export interface Cars {
     id: number;
     marca: string;
     modelo: string;
+    marca_modelo: string;
     version: string;
     tipo_ev: string;
     precio_lista: number;
@@ -14,6 +15,7 @@ export interface Cars {
     consumo_electrico: number | null;
     consumo: number | null;
     created_at: Date;
+    logo_url: null | string;
 }
 
 export interface CarDetails {
