@@ -131,7 +131,7 @@
           </button>
         </div>
         <div class="divider m-0"></div>
-        <div class="flex flex-col gap-6">
+        <div v-if="branches.length" class="flex flex-col gap-6">
           <CardComponent
             v-for="branch in branches"
             class="border-neutral flex items-center justify-between gap-6 border-2 p-6"
@@ -181,6 +181,12 @@
               Cotizar Ahora
             </button>
           </CardComponent>
+        </div>
+        <div v-else-if="loading" class="mx-auto">
+          <LoadingSpinner />
+        </div>
+        <div v-else class="mx-auto">
+          <p class="h5">No se encontraron ofertas</p>
         </div>
       </template>
     </div>

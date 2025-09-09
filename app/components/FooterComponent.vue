@@ -20,7 +20,7 @@
           />
         </NuxtLink>
         <div class="flex gap-2">
-          <NuxtLink to="/autos-electricos" class="btn btn-ghost btn-sm">
+          <NuxtLink to="/autos-electricos/" class="btn btn-ghost btn-sm">
             Autos
           </NuxtLink>
           <NuxtLink to="/carga" class="btn btn-ghost btn-sm">

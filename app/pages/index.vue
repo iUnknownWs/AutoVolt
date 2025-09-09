@@ -32,7 +32,7 @@
               Buscar Modelo
             </NuxtLink>
             <NuxtLink
-              to="/autos-electricos"
+              to="/autos-electricos/"
               class="btn btn-primary btn-outline"
             >
               Explorar todos los autos
@@ -47,7 +47,7 @@
             description="Encuentra todos los autos eléctricos disponibles en Chile, compara marcas, modelos y versiones en un solo lugar."
             icon="ph:info-duotone"
             cta="Explorar Modelos"
-            to="/autos-electricos"
+            to="/autos-electricos/"
           />
           <HomeInfoCard
             title="Toma decisiones informadas"

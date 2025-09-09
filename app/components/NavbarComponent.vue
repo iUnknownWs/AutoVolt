@@ -12,7 +12,7 @@
       </div>
       <div class="flex-none">
         <ul class="menu menu-horizontal items-center px-1">
-          <li><NuxtLink to="/autos-electricos">Autos</NuxtLink></li>
+          <li><NuxtLink to="/autos-electricos/">Autos</NuxtLink></li>
           <li><NuxtLink to="/carga">Carga Residecial</NuxtLink></li>
           <li>
             <details>

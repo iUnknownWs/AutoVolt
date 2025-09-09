@@ -3,7 +3,7 @@
     <div class="breadcrumbs p-6 text-lg">
       <ul>
         <li><NuxtLink to="/">Home</NuxtLink></li>
-        <li><NuxtLink to="/autos-electricos">Autos</NuxtLink></li>
+        <li><NuxtLink to="/autos-electricos/">Autos</NuxtLink></li>
         <li>
           <NuxtLink
             :to="{ name: 'autos-electricos', query: { marca: car.marca } }"
