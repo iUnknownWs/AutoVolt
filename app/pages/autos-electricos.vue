@@ -102,7 +102,7 @@
             />
           </div>
         </div>
-        <div class="mt-4 flex flex-wrap gap-2">
+        <div class="mt-4 flex flex-wrap justify-center gap-2">
           <CarCard v-for="car in cars?.results" :key="car.id" :car="car" />
         </div>
         <div class="join mx-auto mt-6">

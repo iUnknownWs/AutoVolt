@@ -142,7 +142,7 @@
               height="80"
               alt="dealer logo"
             />
-            <div class="flex flex-col gap-1">
+            <div class="flex max-w-52 flex-col gap-1">
               <div class="flex flex-col">
                 <p class="h6 text-xs">Comercializador</p>
                 <p class="h6">{{ branch.dealership_name }}</p>
@@ -161,18 +161,18 @@
                 <p class="h6 text-xs">Precio Lista</p>
                 <p class="h6">${{ car?.precio_lista }}</p>
               </div>
-              <!-- <div class="flex flex-col">
-                <p class="h6 text-xs">Bono TMDP</p>
-                <p class="h6">$30.000.000</p>
+              <div class="flex flex-col">
+                <p class="h6 text-xs">Bono Comercializadora</p>
+                <p class="h6">-</p>
               </div>
               <div class="flex flex-col">
-                <p class="h6 text-xs">Bono Fin</p>
-                <p class="h6">$30.000.000</p>
+                <p class="h6 text-xs">Bono Financiamiento</p>
+                <p class="h6">-</p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Precio Oferta</p>
-                <p class="h6">$30.000.000</p>
-              </div> -->
+                <p class="h6">-</p>
+              </div>
             </div>
             <button
               class="btn-primary btn btn-xl"
@@ -200,7 +200,7 @@ import type { CarDetails } from "~/types/cars";
 
 const { $api } = useNuxtApp();
 
-const step = ref(1);
+const step = ref(2);
 const id = useRoute().params.id as string;
 
 const modal = ref<{ modal: HTMLDialogElement } | null>(null);
@@ -212,7 +212,7 @@ const payload = reactive({
   apellido: "",
   email: "",
   telefono: "",
-  modo_contacto: "",
+  modo_contacto: null,
   comentarios: "",
 });
 

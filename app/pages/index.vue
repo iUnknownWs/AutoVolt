@@ -1,8 +1,8 @@
 <template>
   <div class="mx-auto w-full">
     <HomeHeroComponent />
-    <div class="px-6">
-      <div class="relative h-20 w-full">
+    <div>
+      <div class="relative h-20 w-full px-6">
         <div
           class="from-neutral absolute -top-20 left-1/2 z-10 mx-auto w-max -translate-x-1/2 rounded-lg bg-gradient-to-b to-[#44462E] p-6 shadow-2xl"
         >
@@ -26,7 +26,7 @@
               object
             />
             <NuxtLink
-              :to="{ name: 'autos-electricos', query: model }"
+              :to="{ name: 'autos-electricos', query: model || {} }"
               class="btn btn-primary"
             >
               Buscar Modelo
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="flex h-fit justify-between py-6">
+      <div class="flex h-fit justify-between p-6">
         <div class="flex h-fit flex-col gap-4">
           <HomeInfoCard
             title="Toda la oferta en un solo lugar"
@@ -104,32 +104,35 @@
           </template>
         </Carousel> -->
       </div>
-      <div class="flex flex-col gap-6 py-6">
+      <div class="flex flex-col gap-6 p-6">
         <h2 class="h3">Explora por carrocería</h2>
         <div class="flex cursor-pointer justify-between gap-4">
           <HomeBodyCard
             v-for="body in masterData.bodies"
             :image="body.img"
             :title="body.name"
-            :carroceria="body.id as string | number"
+            :carroceria="body.id"
           />
         </div>
       </div>
-      <div class="flex flex-col gap-6 py-6">
+      <div class="flex flex-col gap-6 p-6">
         <h2 class="h3">Explora por rango de precio (CLP)</h2>
         <div class="flex cursor-pointer justify-between gap-4">
           <HomePriceCard
             v-for="price in masterData.priceRanges"
             :image="price.img"
             :title="price.name"
-            :query="price.id as { [key: string]: any }"
+            :query="price.id"
           />
         </div>
       </div>
-      <div class="flex flex-col py-6">
+      <div class="flex w-full max-w-[calc(100vw-15px)] flex-col p-6">
         <h2 class="h3">Modelos populares en Chile</h2>
-        <Carousel v-bind="carouselCarsSettings" class="h-[768px] w-full">
-          <Slide v-for="car in cars" class="py-5">
+        <Carousel
+          v-bind="carouselCarsSettings"
+          class="w-full overflow-hidden rounded-2xl"
+        >
+          <Slide v-for="car in popular_cars" class="py-5">
             <CarCard :car="car" />
           </Slide>
           <template #addons>
@@ -137,14 +140,14 @@
               <template #prev>
                 <icon
                   name="ph:arrow-circle-left-duotone"
-                  size="48"
+                  size="32"
                   class="text-neutral text-5xl"
                 />
               </template>
               <template #next>
                 <icon
                   name="ph:arrow-circle-right-duotone"
-                  size="48"
+                  size="32"
                   class="text-neutral"
                 />
               </template>
@@ -152,7 +155,7 @@
           </template>
         </Carousel>
       </div>
-      <div class="flex items-center justify-between gap-12 py-12">
+      <div class="flex items-center justify-between gap-12 px-6 py-12">
         <div
           class="h-[568px] w-full rounded-2xl bg-cover bg-bottom"
           :class="`bg-[url(/hero.jpg)]`"
@@ -233,11 +236,11 @@ const { $api } = useNuxtApp();
 const brand = ref(null);
 const model = ref(null);
 import type { DataObject, ResponseData } from "~/types/api";
-import type { Cars } from "~/types/cars";
+import type { CarDetails, Cars } from "~/types/cars";
 
 const carouselCarsSettings = {
   wrapAround: true,
-  itemsToShow: 5,
+  itemsToShow: 4,
 };
 
 const { data: brands } = await useFetch(`car_brands/`, {
@@ -248,7 +251,7 @@ const { data: brands } = await useFetch(`car_brands/`, {
 
 const { data: popular_cars } = await useFetch(`popular_cars`, {
   key: "popular_cars",
-  transform: (data: ResponseData<DataObject>) => data.results,
+  transform: (data: ResponseData<CarDetails>) => data.results,
   $fetch: $api,
 });
 

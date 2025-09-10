@@ -1,10 +1,16 @@
 interface dataObject {
-  id: string | number | { [key: string]: any },
+  id: string | number,
   name: string,
   img?: string
 }
 
-const priceRangeOptions: dataObject[] = [
+interface dataIdObject {
+  id: { [key: string]: any },
+  name: string,
+  img?: string
+}
+
+const priceRangeOptions: dataIdObject[] = [
   {
     id: { precio_max: 20000000, precio_min: null, ordering: 'precio_lista' },
     name: "Menos de $20 MM",

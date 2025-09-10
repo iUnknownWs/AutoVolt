@@ -198,7 +198,7 @@
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Potencia del Motor</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.potencia || "-" }} kW
+            {{ cars[car - 1]?.potencia || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Transmisión</p>
@@ -208,42 +208,42 @@
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Potencia del motor</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.potencia_kw || "-" }} HP
+            {{ cars[car - 1]?.potencia_kw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Aceleración 0-100 Km/h</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.aceleracion || "-" }} s
+            {{ cars[car - 1]?.aceleracion || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Torque del motor</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.torque || "-" }} Nm
+            {{ cars[car - 1]?.torque || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Velocidad Maxima</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.maxima_velocidad || "-" }} Km/h
+            {{ cars[car - 1]?.maxima_velocidad || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Motor a Combustión</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.motor_combustion || "-" }} CC/L
+            {{ cars[car - 1]?.motor_combustion || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Estanque Combustible</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.estanque_combustible || "-" }} L
+            {{ cars[car - 1]?.estanque_combustible || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Consumo Combustible</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.consumo || "-" }} Km/L
+            {{ cars[car - 1]?.consumo || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Autonomia Combustible</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.autonomia_combustible || "-" }} Km
+            {{ cars[car - 1]?.autonomia_combustible || "-" }}
           </p>
         </div>
       </CardComponent>
@@ -254,37 +254,37 @@
         <div class="grid grid-cols-5 gap-2 text-xl">
           <p class="h6">Largo</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.largo || "-" }} mm
+            {{ cars[car - 1]?.largo || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Peso Bruto Vehicular</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.peso || "-" }} Kg
+            {{ cars[car - 1]?.peso || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Ancho</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.ancho || "-" }} mm
+            {{ cars[car - 1]?.ancho || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Capacidad del maletero</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.maletero || "-" }} L
+            {{ cars[car - 1]?.maletero || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Alto</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.alto || "-" }} mm
+            {{ cars[car - 1]?.alto || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Distancia entre ejes</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.distancia_entre_ejes || "-" }} mm
+            {{ cars[car - 1]?.distancia_entre_ejes || "-" }}
           </p>
         </div>
       </CardComponent>
@@ -296,7 +296,7 @@
           <p class="h6">Autonomía Batería (WLTP)</p>
 
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.rango_wltp || "-" }} Km
+            {{ cars[car - 1]?.rango_wltp || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
@@ -310,7 +310,7 @@
           <p class="h6">Cap. Batería (Nominal)</p>
 
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.bateria_nominal || "-" }} kWh
+            {{ cars[car - 1]?.bateria_nominal || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
@@ -324,7 +324,7 @@
           <p class="h6">Consumo Eléctrico</p>
 
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.consumo_electrico || "-" }} Km/kWh
+            {{ cars[car - 1]?.consumo_electrico || "-" }}
           </p>
         </div>
       </CardComponent>
@@ -357,35 +357,35 @@
           <p class="h6">Potencia de Carga DC</p>
 
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.carga_dc_max || "-" }} kW
+            {{ cars[car - 1]?.carga_dc_max || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Potencia de Carga AC</p>
 
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.carga_ac || "-" }} kW
+            {{ cars[car - 1]?.carga_ac || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Carga DC 20 a 80%</p>
 
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }} hrs
+            {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Carga AC 20 a 80%</p>
 
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }} hrs
+            {{ cars[car - 1]?.tiempo_carga_20_80_ac || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
           <p class="h6">Autonomía 80 a 20% de Carga</p>
 
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.autonomia_80_20_carga || "-" }} Km
+            {{ cars[car - 1]?.autonomia_80_20_carga || "-" }}
           </p>
         </div>
       </CardComponent>
@@ -411,7 +411,7 @@
 
           <p class="h6">Garantía</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.garantia_anos || "-" }} años
+            {{ cars[car - 1]?.garantia_anos || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 
@@ -423,7 +423,7 @@
 
           <p class="h6">Garantía</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.garantia_km || "-" }} Km
+            {{ cars[car - 1]?.garantia_km || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
 

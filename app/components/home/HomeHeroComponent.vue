@@ -1,17 +1,17 @@
 <template>
-  <Carousel v-bind="carouselSettings" class="relative h-[768px] w-full">
+  <Carousel v-bind="carouselSettings" class="relative h-[40vw] w-full">
     <Slide>
-      <NuxtImg class="h-[768px] w-full object-cover" src="/hero1.jpg" />
+      <NuxtImg class="h-[40vw] w-full object-cover" src="/hero1.jpg" />
     </Slide>
     <Slide>
-      <NuxtImg class="h-[768px] w-full object-cover" src="/hero2.jpg" />
+      <NuxtImg class="h-[40vw] w-full object-cover" src="/hero2.jpg" />
     </Slide>
     <Slide>
-      <NuxtImg class="h-[768px] w-full object-cover" src="/hero3.jpg" />
+      <NuxtImg class="h-[40vw] w-full object-cover" src="/hero3.jpg" />
     </Slide>
     <template #addons>
       <div class="absolute flex h-full w-full flex-col bg-black/30">
-        <h2 class="h2 w-full pt-30 text-center text-white">
+        <h2 class="h2 w-full pt-12 text-center text-white">
           Tu camino hacia la electromovilidad comienza aquí.
         </h2>
       </div>

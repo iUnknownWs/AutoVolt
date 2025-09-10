@@ -30,7 +30,7 @@
           />
         </Slide>
         <template #addons>
-          <Navigation class="mx-10">
+          <Navigation class="mx-4">
             <template #prev>
               <icon
                 name="ph:arrow-circle-left-duotone"
@@ -91,9 +91,14 @@
         </div>
         <div class="flex w-full flex-col gap-2">
           <div class="flex w-full gap-6">
-            <button class="btn btn-primary flex-1">
+            <a
+              :href="car.ficha_tecnica || ''"
+              class="btn btn-primary flex-1"
+              :disabled="hasTechnicalSheet"
+              target="_blank"
+            >
               <Icon name="ph:download-simple" />Ficha tecnica
-            </button>
+            </a>
             <NuxtLink
               :to="{ name: 'comparador', query: { id: id } }"
               class="btn btn-primary flex-1"
@@ -309,12 +314,12 @@
         </CardComponent>
       </div>
     </div>
-    <div class="flex flex-col gap-6 p-6">
+    <div class="flex max-w-[calc(100vw-15px)] flex-col gap-6 p-6">
       <h2 class="h3">Alternativas Sugeridas (Precio)</h2>
-      <Carousel v-bind="carouselCarsSettings" class="h-[768px] w-full">
-        <!-- <Slide v-for="car in cars" class="py-5">
+      <Carousel v-bind="carouselCarsSettings" class="h-[768px]">
+        <Slide v-for="car in similarCars" class="py-5">
           <CarCard :car="car" />
-        </Slide> -->
+        </Slide>
         <template #addons>
           <Navigation>
             <template #prev>
@@ -340,7 +345,7 @@
 
 <script lang="ts" setup>
 import { NuxtImg } from "#components";
-import type { CarDetails } from "~/types/cars";
+import type { CarDetails, Cars } from "~/types/cars";
 
 const route = useRoute();
 const id = route.params.id as string;
@@ -353,10 +358,36 @@ const carouselSettings = {
 const carouselCarsSettings = {
   wrapAround: true,
   itemsToShow: 5,
+  breakpoints: {
+    1280: {
+      itemsToShow: 4,
+    },
+    1024: {
+      itemsToShow: "auto",
+      gap: 8,
+    },
+    768: {
+      itemsToShow: "auto",
+      gap: 8,
+    },
+    480: {
+      itemsToShow: "auto",
+      gap: 8,
+    },
+  },
 };
 
 const { data: car } = await useFetch<CarDetails>(`cars/${id}/`, {
   $fetch: $api,
   key: `car-${id}`,
+});
+
+const { data: similarCars } = await useFetch<Cars[]>(`/similar_cars/${id}`, {
+  $fetch: $api,
+  key: `similar-cars-${id}`,
+});
+
+const hasTechnicalSheet = computed(() => {
+  return !car.value?.ficha_tecnica;
 });
 </script>
