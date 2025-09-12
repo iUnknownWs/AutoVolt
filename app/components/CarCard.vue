@@ -18,7 +18,7 @@
     </div>
     <div class="flex flex-col gap-1 **:text-sm">
       <div class="flex items-center justify-between gap-6">
-        <p>Precio desde</p>
+        <p>Precio Desde</p>
         <p class="body font-bold">${{ car.precio_lista }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
@@ -26,24 +26,21 @@
         <p class="body font-bold">{{ car.tipo_ev }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <p>Cons. elect.</p>
+        <p>Consumo EV</p>
         <p class="body font-bold">{{ car.consumo_electrico }} Km/kWh</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <p>Cons. comb.</p>
+        <p>Consumo MCI</p>
         <p class="body font-bold">{{ car.consumo }} Km/L</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <p>Autonomia total</p>
+        <p>Autonomía Total</p>
         <p class="body font-bold">{{ car.rango_wltp }} Km</p>
       </div>
     </div>
-    <NuxtLink
-      :to="{ name: 'id', params: { id: car.id } }"
-      class="btn btn-secondary btn-wide"
-    >
+    <button class="btn btn-secondary btn-wide">
       <Icon name="ph:car-duotone" /> Detalles
-    </NuxtLink>
+    </button>
   </NuxtLink>
 </template>
 

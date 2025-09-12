@@ -3,7 +3,7 @@
     <CardComponent
       class="group flex aspect-square w-56 flex-col items-center gap-8"
     >
-      <NuxtImg :src="image" class="h-1/2 w-full rounded-t-2xl" />
+      <NuxtImg :src="image" class="h-1/2 w-full rounded-t-2xl object-cover" />
       <p
         class="group-hover:text-primary-600 group-active:text-primary-600 text-center text-lg font-bold"
       >

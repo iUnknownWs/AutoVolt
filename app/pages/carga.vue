@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen w-full">
     <NuxtImg
-      src="https://storage.googleapis.com/mediamvp/Banner%20Cargador%20Residencial.png"
+      src="https://storage.googleapis.com/mediamvp/Banner%20Cargador%20Residencial%20F"
       class="relative w-full object-cover"
     />
     <div class="flex flex-col gap-12 p-16">

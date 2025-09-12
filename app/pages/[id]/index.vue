@@ -92,9 +92,9 @@
         <div class="flex w-full flex-col gap-2">
           <div class="flex w-full gap-6">
             <a
-              :href="car.ficha_tecnica || ''"
               class="btn btn-primary flex-1"
-              :disabled="hasTechnicalSheet"
+              :class="{ 'btn-disabled': !car?.ficha_tecnica }"
+              :href="car.ficha_tecnica || ''"
               target="_blank"
             >
               <Icon name="ph:download-simple" />Ficha tecnica

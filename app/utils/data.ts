@@ -14,28 +14,28 @@ const priceRangeOptions: dataIdObject[] = [
   {
     id: { precio_max: 20000000, precio_min: null, ordering: 'precio_lista' },
     name: "Menos de $20 MM",
-    img: 'https://storage.googleapis.com/mediamvp/Rango%2020mm.avif'
+    img: 'https://storage.googleapis.com/mediamvp/Rango%2020mm'
   },
   {
 
     id: { precio_min: 20000000, precio_max: 30000000, ordering: 'precio_lista' },
     name: "$20 - $30 MM",
-    img: 'https://storage.googleapis.com/mediamvp/Rango%2020-30mm.avif'
+    img: 'https://storage.googleapis.com/mediamvp/Rango%2020-30mm'
   },
   {
     id: { precio_min: 30000000, precio_max: 40000000, ordering: 'precio_lista' },
     name: "$30 - $40 MM",
-    img: 'https://storage.googleapis.com/mediamvp/rango%2030-40mm.avif'
+    img: 'https://storage.googleapis.com/mediamvp/Rango%2030-40mm'
   },
   {
     id: { precio_min: 40000000, precio_max: 60000000, ordering: 'precio_lista' },
     name: "$40 - $60 MM",
-    img: 'https://storage.googleapis.com/mediamvp/rango%2040-60mm.avif'
+    img: 'https://storage.googleapis.com/mediamvp/Rango%2040-60mm'
   },
   {
     id: { precio_min: 60000000, precio_max: null, ordering: 'precio_lista' },
     name: "Más de $60 MM",
-    img: 'https://storage.googleapis.com/mediamvp/Rango%2060mm.avif'
+    img: 'https://storage.googleapis.com/mediamvp/Rango%2060mm'
   },
 ];
 

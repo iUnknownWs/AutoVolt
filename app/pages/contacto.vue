@@ -9,12 +9,22 @@
         </p>
         <div class="divider m-0"></div>
         <div class="flex gap-2">
-          <InputComponent placeholder="Nombre" />
-          <InputComponent placeholder="Apellido" />
+          <InputComponent placeholder="Nombre" v-model="payload.nombre" />
+          <InputComponent placeholder="Apellido" v-model="payload.apellido" />
         </div>
-        <InputComponent placeholder="Email" class="w-full" />
-        <AreaInput placeholder="Mensaje" class="min-h-40 w-full" />
-        <button class="btn btn-primary w-full">Enviar Mensaje</button>
+        <InputComponent
+          placeholder="Email"
+          class="w-full"
+          v-model="payload.email"
+        />
+        <AreaInput
+          placeholder="Mensaje"
+          class="min-h-40 w-full"
+          v-model="payload.mensaje"
+        />
+        <button class="btn btn-primary w-full" @click="contact">
+          Enviar Mensaje
+        </button>
       </div>
       <div class="w-full">
         <img
@@ -27,4 +37,25 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { $api } = useNuxtApp();
+const snackbar = useSnackbar();
+const payload = reactive({
+  nombre: "",
+  apellido: "",
+  email: "",
+  mensaje: "",
+});
+
+const contact = () => {
+  $api("/formulario_contacto/", {
+    method: "POST",
+    body: payload,
+  });
+  snackbar.add({
+    title: "¡Mensaje Enviado!",
+    text: "Nos pondremos en contacto contigo pronto.",
+    type: "success",
+  });
+};
+</script>

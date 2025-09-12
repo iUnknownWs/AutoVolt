@@ -182,9 +182,7 @@
             </button>
           </CardComponent>
         </div>
-        <div v-else-if="loading" class="mx-auto">
-          <LoadingSpinner />
-        </div>
+        <div v-else-if="loading" class="mx-auto"></div>
         <div v-else class="mx-auto">
           <p class="h5">No se encontraron ofertas</p>
         </div>
@@ -200,7 +198,7 @@ import type { CarDetails } from "~/types/cars";
 
 const { $api } = useNuxtApp();
 
-const step = ref(2);
+const step = ref(1);
 const id = useRoute().params.id as string;
 
 const modal = ref<{ modal: HTMLDialogElement } | null>(null);
@@ -217,7 +215,7 @@ const payload = reactive({
 });
 
 const appraise = async () => {
-  await $api("/cotizacion/", {
+  await $api("/formulario_cotizador/", {
     method: "POST",
     body: payload,
   });
