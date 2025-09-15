@@ -55,19 +55,25 @@
             <Icon name="ph:car-duotone" />
           </h1>
         </div>
-        <div class="flex gap-6">
+        <div class="flex w-full gap-6">
           <CardComponent
             v-for="car in cars"
             :key="car.id"
-            class="flex aspect-square w-60 flex-col items-center justify-center"
+            class="relative flex aspect-square w-full max-w-60 flex-1 flex-col items-center justify-center"
           >
-            <NuxtImg :src="car.foto_portada" class="w-40" />
+            <Icon
+              name="ph:x-bold"
+              class="absolute top-4 right-4 cursor-pointer"
+              size="24"
+              @click="carIds.splice(carIds.indexOf(car.id.toString()), 1)"
+            />
+            <NuxtImg :src="car?.foto_portada || ''" class="w-40 object-cover" />
             <p class="h3 text-center">{{ car.marca }} {{ car.modelo }}</p>
             <p>{{ car.version }}</p>
           </CardComponent>
           <CardComponent
             v-if="loading || carIds.length < 4"
-            class="flex aspect-square w-60 items-center justify-center"
+            class="flex aspect-square w-full max-w-60 flex-1 items-center justify-center"
           >
             <button class="btn btn-primary" @click="openModal">
               <Icon name="ph:plus" /> Añadir Auto
@@ -75,7 +81,7 @@
           </CardComponent>
           <CardComponent
             v-if="loading || carIds.length < 3"
-            class="flex aspect-square w-60 items-center justify-center"
+            class="flex aspect-square w-full max-w-60 flex-1 items-center justify-center"
           >
             <button class="btn btn-primary" @click="openModal">
               <Icon name="ph:plus" /> Añadir Auto
@@ -83,7 +89,7 @@
           </CardComponent>
           <CardComponent
             v-if="loading || carIds.length < 2"
-            class="flex aspect-square w-60 items-center justify-center"
+            class="flex aspect-square w-full max-w-60 flex-1 items-center justify-center"
           >
             <button class="btn btn-primary" @click="openModal">
               <Icon name="ph:plus" /> Añadir Auto
@@ -91,7 +97,7 @@
           </CardComponent>
           <CardComponent
             v-if="loading || carIds.length < 1"
-            class="flex aspect-square w-60 items-center justify-center"
+            class="flex aspect-square w-full max-w-60 flex-1 items-center justify-center"
           >
             <button class="btn btn-primary" @click="openModal">
               <Icon name="ph:plus" /> Añadir Auto
@@ -102,27 +108,27 @@
     </CardComponent>
     <CardComponent class="m-6 p-6">
       <div class="grid grid-cols-5">
-        <p class="h6">Tipo</p>
+        <p class="h6">Tipo EV</p>
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.tipo_ev || "-" }}
         </p>
         <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Carroceria</p>
+        <p class="h6">Carrocería</p>
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.carroceria || "-" }}
         </p>
         <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Precio desde</p>
+        <p class="h6">Precio desde (CLP)</p>
         <p v-for="car in 4" class="body text-center font-semibold">
-          {{ cars[car - 1]?.precio_lista || "-" }}
+          {{ cars[car - 1]?.precio_lista_raw || "-" }}
         </p>
         <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Autonomia Total</p>
+        <p class="h6">Autonomía Total</p>
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.rango_wltp || "-" }}
         </p>
         <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Consumo Electrico</p>
+        <p class="h6">Consumo Eléctrico</p>
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.consumo_electrico || "-" }}
         </p>
@@ -131,6 +137,16 @@
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.consumo || "-" }}
         </p>
+        <div class="divider col-span-5 m-0"></div>
+        <p class="h6">Cotizar</p>
+        <button
+          v-for="car in 4"
+          class="btn btn-primary mx-auto w-fit"
+          @click="appraise(cars[car - 1]?.id ?? 0)"
+          :disabled="!cars[car - 1]"
+        >
+          Cotizar
+        </button>
       </div>
     </CardComponent>
     <div class="p-6">
@@ -140,14 +156,6 @@
           name="compare-tabs"
           aria-label="Motor & Desempeño"
           value="Motor & Desempeño"
-          class="btn btn-neutral checked:btn-primary"
-          v-model="tab"
-        />
-        <input
-          type="radio"
-          name="compare-tabs"
-          aria-label="Dimensiones & Peso"
-          value="Dimensiones & Peso"
           class="btn btn-neutral checked:btn-primary"
           v-model="tab"
         />
@@ -170,7 +178,15 @@
         <input
           type="radio"
           name="compare-tabs"
-          aria-label="Seguridad"
+          aria-label="Dimensiones & Peso"
+          value="Dimensiones & Peso"
+          class="btn btn-neutral checked:btn-primary"
+          v-model="tab"
+        />
+        <input
+          type="radio"
+          name="compare-tabs"
+          aria-label="Seguridad & Otros"
           value="Seguridad"
           class="btn btn-neutral checked:btn-primary"
           v-model="tab"
@@ -191,32 +207,33 @@
         class="flex flex-col gap-4 p-6"
       >
         <div class="grid grid-cols-5 gap-2 text-xl">
+          <p class="h6">Potencia del Motor (kW)</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.potencia_kw || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Potencia del Motor (HP)</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.potencia || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
           <p class="h6">Tracción</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.traccion || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Potencia del Motor</p>
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.potencia || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Transmisión</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.transmision || "-" }}
           </p>
-          <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Potencia del motor</p>
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.potencia_kw || "-" }}
-          </p>
+
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Aceleración 0-100 Km/h</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.aceleracion || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Torque del motor</p>
+          <p class="h6">Torque del Motor</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.torque || "-" }}
           </p>
@@ -241,7 +258,7 @@
             {{ cars[car - 1]?.consumo || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Autonomia Combustible</p>
+          <p class="h6">Autonomía Combustible</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.autonomia_combustible || "-" }}
           </p>
@@ -252,39 +269,34 @@
         class="flex flex-col gap-4 p-6"
       >
         <div class="grid grid-cols-5 gap-2 text-xl">
+          <p class="h6">Peso Vehicular</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.peso || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
           <p class="h6">Largo</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.largo || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Peso Bruto Vehicular</p>
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.peso || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-
           <p class="h6">Ancho</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.ancho || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Capacidad del maletero</p>
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.maletero || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-
           <p class="h6">Alto</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.alto || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
           <p class="h6">Distancia entre ejes</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.distancia_entre_ejes || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Capacidad del Maletero</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.maletero || "-" }}
           </p>
         </div>
       </CardComponent>
@@ -293,38 +305,29 @@
         class="flex flex-col gap-4 p-6"
       >
         <div class="grid grid-cols-5 gap-2 text-xl">
-          <p class="h6">Autonomía Batería (WLTP)</p>
-
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.rango_wltp || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Consumo Diario</p>
-
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.consumo_diario || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Cap. Batería (Nominal)</p>
-
+          <p class="h6">Capacidad Batería</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.bateria_nominal || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Consumo Comparable</p>
-
+          <p class="h6">Autonomía Batería (WLTP)</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.consumo_comparable || "-" }}
+            {{ cars[car - 1]?.rango_wltp || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
           <p class="h6">Consumo Eléctrico</p>
-
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.consumo_electrico || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Consumo Diario (kWh; 35 km)</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.consumo_diario || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Consumo Comparable (kWh; 35 km)</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.consumo_comparable || "-" }}
           </p>
         </div>
       </CardComponent>
@@ -334,56 +337,41 @@
       >
         <div class="grid grid-cols-5 gap-2 text-xl">
           <p class="h6">Tipo de Batería</p>
-
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.tipo_bateria || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Tipo de Carga DC</p>
-
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.tipo_carga_dc || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-
           <p class="h6">Tipo de Carga AC</p>
-
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.tipo_carga_ac || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Potencia de Carga DC</p>
-
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.carga_dc_max || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Potencia de Carga AC</p>
-
+          <p class="h6">Potencia Carga AC</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.carga_ac || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Carga DC 20 a 80%</p>
-
+          <p class="h6">Tipo de Carga DC</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }}
+            {{ cars[car - 1]?.tipo_carga_dc || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Carga AC 20 a 80%</p>
-
+          <p class="h6">Potencia Carga DC</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.carga_dc_max || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Tiempo de Carga 20% a 80% AC</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.tiempo_carga_20_80_ac || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Autonomía 80 a 20% de Carga</p>
-
+          <p class="h6">Tiempo de Carga 20% a 80% DC</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.tiempo_carga_20_80_dc || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Autonomía 80% a 20% de Carga</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.autonomia_80_20_carga || "-" }}
           </p>
@@ -396,37 +384,31 @@
             {{ cars[car - 1]?.llantas || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Calificación Seg. (NCAP)</p>
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.seguridad_ncap || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-
           <p class="h6">Asientos</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.asientos || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
-          <p class="h6">Garantía</p>
-          <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.garantia_anos || "-" }}
-          </p>
-          <div class="divider col-span-5 m-0"></div>
-
           <p class="h6">Airbags</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.airbags || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
+          <p class="h6">Calificación Seg. (NCAP)</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.seguridad_ncap || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Garantía</p>
+          <p v-for="car in 4" class="body text-center font-bold">
+            {{ cars[car - 1]?.garantia_anos || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
           <p class="h6">Garantía</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.garantia_km || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-
           <p class="h6">Producido desde</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.inicio_produccion || "-" }}
@@ -506,6 +488,10 @@ const getAutos = async () => {
     if (data) cars.value.push(data);
   }
   loading.value = false;
+};
+
+const appraise = (id: number) => {
+  navigateTo({ name: "id-cotizar", params: { id: id } });
 };
 
 watch(

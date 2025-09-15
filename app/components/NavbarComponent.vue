@@ -9,26 +9,28 @@
       <div class="flex-none">
         <ul class="menu menu-horizontal items-center px-1">
           <li><NuxtLink to="/autos-electricos/">Autos</NuxtLink></li>
-          <li><NuxtLink to="/carga">Carga Residecial</NuxtLink></li>
+          <li><NuxtLink to="/carga">Carga Residencial</NuxtLink></li>
           <li>
-            <details>
+            <details ref="dropdown">
               <summary class="font-semibold">Recursos</summary>
-              <ul class="bg-base-100 z-10 rounded-t-none p-2">
-                <li><NuxtLink>Guía AutoVolt</NuxtLink></li>
+              <ul class="bg-base-100 z-10 w-56 rounded-t-none p-2">
                 <li>
-                  <NuxtLink :to="{ name: 'comparador' }">
+                  <NuxtLink @click="closePopover">Guía AutoVolt</NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink :to="{ name: 'comparador' }" @click="closePopover">
                     Comparador Autos
                   </NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/simulador-ahorros">
+                  <NuxtLink to="/simulador-ahorros" @click="closePopover">
                     Simulador de Ahorros
                   </NuxtLink>
                 </li>
               </ul>
             </details>
           </li>
-          <li><NuxtLink>Tendencias</NuxtLink></li>
+          <li><NuxtLink to="/tendencias">Tendencias</NuxtLink></li>
           <!-- <li>
             <RouterLink
               :to="{ name: 'comparador', query: { carIds } }"
@@ -51,4 +53,11 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const dropdown = ref(null);
+const closePopover = () => {
+  if (dropdown.value) {
+    (dropdown.value as HTMLElement).removeAttribute("open");
+  }
+};
+</script>

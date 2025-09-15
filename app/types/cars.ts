@@ -6,6 +6,7 @@ export interface Cars {
     version: string;
     tipo_ev: string;
     precio_lista: number;
+    precio_lista_raw: string;
     rango_wltp: number | null;
     bateria_nominal: number | null;
     potencia: number;
@@ -42,6 +43,7 @@ export interface CarDetails {
     tipo_ev: string;
     ficha_tecnica: null;
     precio_lista: number;
+    precio_lista_raw: string;
     rango_wltp: null;
     bateria_nominal: null;
     traccion: null;
@@ -73,7 +75,7 @@ export interface CarDetails {
     inicio_produccion: number;
     popularity: null;
     logo_urls: string[];
-    foto_portada: null;
+    foto_portada: null | string;
     created_at: Date;
     updated_at: Date;
     car_raw: number;

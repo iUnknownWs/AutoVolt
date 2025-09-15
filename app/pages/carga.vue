@@ -4,29 +4,65 @@
       src="https://storage.googleapis.com/mediamvp/Banner%20Cargador%20Residencial%20F"
       class="relative w-full object-cover"
     />
-    <div class="flex flex-col gap-12 p-16">
+    <div class="flex flex-col gap-12 p-4">
       <CardComponent
-        class="mx-auto flex w-full max-w-[1280p] flex-col items-center gap-16 p-12"
+        class="mx-auto flex w-full max-w-[1280p] flex-col items-center gap-16 p-8"
       >
         <h1 class="h3">Servicio de Carga Residencial</h1>
         <div class="flex max-w-[920px] flex-col gap-12">
           <div class="flex gap-16">
-            <div class="flex w-full max-w-60 flex-col gap-3">
-              <InputComponent class="w-full" placeholder="Nombre" />
-              <InputComponent class="w-full" placeholder="Apellido" />
+            <form
+              @submit.prevent="submitForm"
+              class="flex w-full max-w-60 flex-col gap-2"
+            >
+              <InputComponent
+                class="w-full"
+                placeholder="Nombre *"
+                v-model="payload.nombre"
+                validation="El nombre es obligatorio"
+              />
+              <InputComponent
+                class="w-full"
+                placeholder="Apellido *"
+                v-model="payload.apellido"
+                validation="El apellido es obligatorio"
+              />
               <InputComponent
                 class="w-full"
                 type="email"
-                placeholder="Correo Electronico"
+                placeholder="Correo Electronico *"
+                v-model="payload.email"
+                validation="El correo electronico es obligatorio"
               />
               <InputComponent
                 class="w-full"
                 type="tel"
-                placeholder="Telefono"
+                placeholder="Telefono *"
+                v-model="payload.telefono"
+                validation="El telefono es obligatorio"
               />
-              <InputComponent class="w-full" placeholder="Tipo de Residecia" />
-              <InputComponent class="w-full" placeholder="Dirección" />
-            </div>
+              <SelectComponent
+                placeholder="Tipo de Residencia *"
+                :options="[
+                  { id: 'Casa', name: 'Casa' },
+                  { id: 'Edificio', name: 'Edificio' },
+                ]"
+                v-model="payload.tipo_residencia"
+                validation="El tipo de residencia es obligatorio"
+              />
+              <SelectComponent
+                placeholder="Ciudad *"
+                :options="[{ id: 'Santiago', name: 'Santiago' }]"
+                v-model="payload.direccion"
+                validation="La ciudad es obligatoria"
+              />
+              <button type="button" class="btn btn-lg btn-neutral mt-4">
+                Descargar Instructivo
+              </button>
+              <button class="btn btn-lg btn-primary">
+                Solicitar Cotizacion
+              </button>
+            </form>
             <div class="w-full">
               <div class="flex flex-col gap-4">
                 <label
@@ -50,25 +86,17 @@
                     <div class="divider divider-vertical"></div>
                   </div>
                   <div
-                    class="border-neutral flex flex-col items-center justify-center border-l px-6"
+                    class="border-neutral flex min-w-40 flex-col items-center justify-center border-l px-6"
                   >
                     <p class="h6">${{ carga.price }}</p>
                     <p class="h6">CLP</p>
                   </div>
                 </label>
               </div>
-              <div class="mt-12 flex justify-center gap-6">
-                <button class="btn btn-lg btn-neutral">
-                  Descargar Instructivo
-                </button>
-                <button class="btn btn-lg btn-primary">
-                  Solicitar Cotizacion
-                </button>
-              </div>
             </div>
           </div>
           <div v-if="cargaSelected == 0" class="w-full">
-            <p class="h5 w-full">
+            <p class="h5 w-full underline">
               Descripción de la Instalación de Cargador Residencial
             </p>
             <p class="body mt-2 text-lg">
@@ -79,14 +107,14 @@
               Así podrás cargar tu vehículo eléctrico con tranquilidad y
               comodidad desde tu casa.
             </p>
-            <ul class="mt-2 ml-2 list-inside list-disc">
+            <ul class="body mt-2 ml-2 list-inside list-disc text-lg">
               <li>Plazo Aproximado:</li>
               <li>Incluye:</li>
               <li>Preguntas frecuentes:</li>
             </ul>
           </div>
           <div v-if="cargaSelected == 1" class="w-full">
-            <p class="h5 w-full">
+            <p class="h5 w-full underline">
               Descripción del Cargador Residencial más Instalación
             </p>
             <p class="body mt-2 text-lg">
@@ -97,14 +125,16 @@
               rendimiento de tu equipo. Carga más rápido y con toda la seguridad
               necesaria.
             </p>
-            <ul class="my-2 ml-2 list-inside list-disc">
+            <ul class="body my-2 ml-2 list-inside list-disc text-lg">
               <li>Plazo Aproximado:</li>
               <li>Incluye:</li>
               <li>Preguntas frecuentes:</li>
             </ul>
           </div>
           <div v-if="cargaSelected == 2" class="w-full">
-            <p class="h5 w-full">Descripción del Kit Solar Residencial</p>
+            <p class="h5 w-full underline">
+              Descripción del Kit Solar Residencial
+            </p>
             <p class="body mt-2 text-lg">
               Con nuestro kit solar residencial de 2.5 kWp podrás producir
               energía renovable directamente en tu hogar. Incluye paneles
@@ -113,7 +143,7 @@
               eléctrico, ahorrar en tu factura de luz y contribuir activamente a
               un futuro más sostenible.
             </p>
-            <ul class="my-2 ml-2 list-inside list-disc">
+            <ul class="body my-2 ml-2 list-inside list-disc text-lg">
               <li>Plazo Aproximado:</li>
               <li>Incluye:</li>
               <li>
@@ -144,5 +174,42 @@
 </template>
 
 <script lang="ts" setup>
+const { $api } = useNuxtApp();
+
+const snackbar = useSnackbar();
+
 const cargaSelected = ref(0);
+const payload = reactive({
+  nombre: "",
+  apellido: "",
+  email: "",
+  telefono: "",
+  tipo_residencia: null,
+  direccion: null,
+  tipo_servicio: "",
+  comentarios: "",
+});
+
+const submitForm = async () => {
+  if (payload.tipo_residencia === null || payload.direccion === null) {
+    snackbar.add({
+      title: "Error",
+      text: "Por favor rellena los campos Tipo de Residencia y Ciudad.",
+      type: "error",
+    });
+    return;
+  }
+  payload.tipo_servicio =
+    masterData.cargaInfo.find((carga) => carga.id === cargaSelected.value)
+      ?.title || "";
+  await $api("formulario_cotizador_carga_residencial/", {
+    method: "POST",
+    body: payload,
+  });
+  snackbar.add({
+    title: "¡Cotización Enviada!",
+    text: "Puedes cotizar otras ofertas o cerrar la pestaña.",
+    type: "success",
+  });
+};
 </script>

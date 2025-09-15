@@ -9,22 +9,44 @@
     <div class="flex w-full gap-6 p-6">
       <div class="flex w-fit max-w-64 flex-col gap-6">
         <p class="h4">Filtros</p>
-        <div v-if="hasFilters" class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2">
           <template v-for="(filter, key) in filters">
             <div
-              v-if="
-                (key !== 'ordering' &&
-                  key !== 'page' &&
-                  filter !== null &&
-                  filter !== '' &&
-                  (typeof filter === 'string' || typeof filter === 'number')) ||
-                (Array.isArray(filter) && filter.length != 0)
-              "
+              v-if="(key == 'marca' || key == 'modelo') && filter"
               class="badge badge-neutral cursor-pointer"
               @click="clearFilter(key)"
             >
               {{ filter }} <Icon name="ph:x-bold" />
             </div>
+            <div
+              v-if="key == 'precio_min' && filter"
+              class="badge badge-neutral cursor-pointer"
+              @click="clearFilter(key)"
+            >
+              Más de {{ filter }} <Icon name="ph:x-bold" />
+            </div>
+            <div
+              v-if="key == 'precio_max' && filter"
+              class="badge badge-neutral cursor-pointer"
+              @click="clearFilter(key)"
+            >
+              Menos de {{ filter }} <Icon name="ph:x-bold" />
+            </div>
+            <template
+              v-if="
+                (key == 'carroceria' || key == 'tipo_ev') &&
+                Array.isArray(filter) &&
+                filter.length > 0
+              "
+            >
+              <div
+                v-for="filter in filters[key]"
+                class="badge badge-neutral cursor-pointer"
+                @click="filters[key].splice(filters[key].indexOf(filter), 1)"
+              >
+                {{ filter }} <Icon name="ph:x-bold" />
+              </div>
+            </template>
           </template>
         </div>
         <SearchSelect
@@ -79,15 +101,23 @@
           />
         </div>
         <div class="flex flex-col gap-2">
-          <span class="h6">Tipo de Auto</span>
-          <CheckboxComponent
+          <span class="h6">Tipo EV</span>
+          <label
             v-for="option in masterData.autoTypes"
-            name="body"
-            class="radio-neutral"
-            :placeholder="option.name"
-            :value="option.id"
-            v-model="filters.tipo_ev"
-          />
+            class="label text-neutral leading-4 font-semibold"
+          >
+            <input
+              class="checkbox checkbox-neutral"
+              type="checkbox"
+              name="body"
+              :value="option.id"
+              v-model="filters.tipo_ev"
+            />
+            <p>
+              {{ option.id }} <br />
+              <span class="text-xs">{{ option.name }}</span>
+            </p>
+          </label>
         </div>
       </div>
       <div class="flex w-full flex-col">
@@ -102,7 +132,7 @@
             />
           </div>
         </div>
-        <div class="mt-4 flex flex-wrap justify-center gap-2">
+        <div class="mt-4 flex flex-wrap justify-center gap-4">
           <CarCard v-for="car in cars?.results" :key="car.id" :car="car" />
         </div>
         <div class="join mx-auto mt-6">
@@ -169,9 +199,20 @@ const filters = reactive({
   page: 1 as number,
 });
 
-watch(searchObject, () => {
-  filters.modelo = searchObject.value?.modelo || null;
+const { data: cars } = await useFetch<ResponseData<Cars>>("cars/search/", {
+  params: filters,
+  key: "list-cars",
+  $fetch: $api,
 });
+
+const { data: searchResult } = await useFetch<ResponseData<Cars>>(
+  "search_box",
+  {
+    query: { q: search },
+    key: "search_cars",
+    $fetch: $api,
+  },
+);
 
 const navigateCars = (direction: "next" | "previous") => {
   if (direction === "next" && cars?.value?.next) {
@@ -192,16 +233,6 @@ if (query.marca && brands.value) {
   getModels();
 }
 
-const hasFilters = computed(() => {
-  return Object.values(filters).some(
-    (value) =>
-      (value !== null &&
-        value !== "" &&
-        (typeof value === "string" || typeof value === "number")) ||
-      (Array.isArray(value) && value.length > 0),
-  );
-});
-
 function clearFilter(key: keyof typeof filters) {
   if (Array.isArray(filters[key])) {
     filters[key].splice(0);
@@ -218,18 +249,11 @@ watch(price, () => {
   Object.assign(filters, price.value);
 });
 
-const { data: cars } = await useFetch<ResponseData<Cars>>("cars/search/", {
-  params: filters,
-  key: "list-cars",
-  $fetch: $api,
+watch(searchObject, () => {
+  filters.modelo = searchObject.value?.modelo || null;
 });
 
-const { data: searchResult } = await useFetch<ResponseData<Cars>>(
-  "search_box",
-  {
-    query: { q: search },
-    key: "search_cars",
-    $fetch: $api,
-  },
-);
+watch(filters, () => {
+  filters.page = 1;
+});
 </script>

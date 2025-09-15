@@ -2,23 +2,23 @@
   <div class="px-6 py-12">
     <CardComponent class="mx-auto flex w-full max-w-4xl">
       <div class="flex max-w-md shrink-0 flex-col gap-6 p-4">
-        <h1 class="h1">Contactanos</h1>
+        <h1 class="h1">Contáctanos</h1>
         <p class="body">
-          Si tienes alguna pregunta, te podemos ayudar, solo envianos un mesaje
-          y te responderemos en la brevedad posible
+          ¿Tienes dudas o necesitas ayuda? Escríbenos y te responderemos lo
+          antes posible
         </p>
         <div class="divider m-0"></div>
         <div class="flex gap-2">
-          <InputComponent placeholder="Nombre" v-model="payload.nombre" />
-          <InputComponent placeholder="Apellido" v-model="payload.apellido" />
+          <InputComponent placeholder="Nombre *" v-model="payload.nombre" />
+          <InputComponent placeholder="Apellido *" v-model="payload.apellido" />
         </div>
         <InputComponent
-          placeholder="Email"
+          placeholder="Email *"
           class="w-full"
           v-model="payload.email"
         />
         <AreaInput
-          placeholder="Mensaje"
+          placeholder="Mensaje *"
           class="min-h-40 w-full"
           v-model="payload.mensaje"
         />
@@ -53,8 +53,8 @@ const contact = () => {
     body: payload,
   });
   snackbar.add({
-    title: "¡Mensaje Enviado!",
-    text: "Nos pondremos en contacto contigo pronto.",
+    title: "Tu formulario de contacto ha sido enviado",
+    text: "Te contactaremos a la mayor brevedad posible.",
     type: "success",
   });
 };

@@ -4,7 +4,7 @@
     <div>
       <div class="relative h-20 w-full px-6">
         <div
-          class="from-neutral absolute -top-20 left-1/2 z-10 mx-auto w-max -translate-x-1/2 rounded-lg bg-gradient-to-b to-[#44462E] p-6 shadow-2xl"
+          class="from-neutral absolute inset-x-0 -top-20 z-10 mx-auto w-max rounded-lg bg-gradient-to-b to-[#44462E] p-6 shadow-2xl"
         >
           <p class="text-neutral-content text-2xl font-bold">
             Autos Eléctricos & Híbridos
@@ -40,8 +40,8 @@
           </div>
         </div>
       </div>
-      <div class="flex h-fit justify-between p-6">
-        <div class="flex h-fit flex-col gap-4">
+      <div class="flex h-fit justify-between gap-6 p-6">
+        <div class="flex flex-col gap-4">
           <HomeInfoCard
             title="Toda la oferta en un solo lugar"
             description="Encuentra todos los autos eléctricos disponibles en Chile, compara marcas, modelos y versiones en un solo lugar."
@@ -60,49 +60,13 @@
             description="Instala tu cargador residencial de forma segura y rápida, con expertos certificados y asesoría profesional para tu hogar o edificio."
             icon="ph:info-duotone"
             cta="Cotiza tu cargador"
+            to="/carga/"
           />
         </div>
         <NuxtImg
-          class="h-[655px] w-full max-w-4xl rounded-2xl bg-cover bg-bottom"
-          src="/infopic.jpg"
+          class="w-full max-w-4xl rounded-2xl bg-cover bg-bottom"
+          src="https://storage.googleapis.com/mediamvp/Informativo%201%20F.png"
         />
-        <!-- <Carousel
-          v-bind="carouselSettings"
-          class="w-full max-w-4xl rounded-2xl"
-        >
-          <Slide v-for="item in testGallery" class="w-full">
-            <div
-              class="h-[568px] w-full rounded-2xl bg-cover bg-bottom"
-              :class="`bg-[url(${item.image})]`"
-            >
-              <div
-                class="flex h-full w-full justify-center rounded-2xl bg-black/30 py-28"
-              >
-                <p class="h2 text-center text-wrap text-white">
-                  {{ item.message }}
-                </p>
-              </div>
-            </div>
-          </Slide>
-          <template #addons>
-            <Navigation class="mx-10">
-              <template #prev>
-                <icon
-                  name="ph:arrow-circle-left-duotone"
-                  size="48"
-                  class="text-base-100 text-5xl"
-                />
-              </template>
-              <template #next>
-                <icon
-                  name="ph:arrow-circle-right-duotone"
-                  size="48"
-                  class="text-base-100"
-                />
-              </template>
-            </Navigation>
-          </template>
-        </Carousel> -->
       </div>
       <div class="flex flex-col gap-6 p-6">
         <h2 class="h3">Explora por carrocería</h2>
@@ -251,12 +215,6 @@ const { data: brands } = await useFetch(`car_brands/`, {
 
 const { data: popular_cars } = await useFetch(`popular_cars`, {
   key: "popular_cars",
-  transform: (data: ResponseData<CarDetails>) => data.results,
-  $fetch: $api,
-});
-
-const { data: cars } = await useFetch(`cars/search`, {
-  key: "cars",
   transform: (data: ResponseData<Cars>) => data.results,
   $fetch: $api,
 });

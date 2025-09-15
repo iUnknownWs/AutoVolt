@@ -23,21 +23,21 @@
     <div
       class="border-neutral bg-base-100 flex min-w-3xl flex-col gap-6 rounded-2xl border-2 p-12"
     >
-      <div v-if="car" class="mx-auto flex w-fit gap-8">
+      <div v-if="car" class="mx-auto flex w-fit gap-16">
         <div class="flex flex-col items-center gap-2">
           <p class="h5">Marca</p>
           <NuxtImg
             :src="car.car_brand_logo"
             alt="brand logo"
-            class="h-20 w-20 object-cover"
+            class="h-20 object-cover"
           />
           <p class="h5">{{ car?.marca }}</p>
         </div>
         <div class="flex flex-col items-center gap-2">
           <p class="h5">Modelo</p>
           <NuxtImg
-            :src="car.foto_portada"
-            class="h-20 w-20 object-fill"
+            :src="car?.foto_portada || ''"
+            class="h-20 object-cover"
             alt="car image"
           />
           <p class="h5">{{ car?.modelo }}</p>
@@ -45,8 +45,8 @@
         <div class="flex flex-col items-center gap-2">
           <p class="h5">Version</p>
           <NuxtImg
-            :src="car.foto_portada"
-            class="h-20 w-20 object-fill"
+            :src="car?.foto_portada || ''"
+            class="h-20 object-cover"
             alt="car image"
           />
           <p class="h5">{{ car?.version }}</p>
@@ -113,14 +113,14 @@
         <div class="flex gap-6">
           <SelectComponent
             placeholder="Región"
-            :options="regions"
+            :options="regions || []"
             class="w-full"
             v-model="region"
             single
-            @change="getCities"
+            @change="getCommunities"
           />
           <SelectComponent
-            placeholder="Ciudad"
+            placeholder="Comuna"
             :options="cities"
             class="w-full"
             v-model="city"
@@ -159,7 +159,7 @@
             <div class="flex flex-col">
               <div class="flex flex-col">
                 <p class="h6 text-xs">Precio Lista</p>
-                <p class="h6">${{ car?.precio_lista }}</p>
+                <p class="h6">{{ car?.precio_lista_raw }}</p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Bono Comercializadora</p>
@@ -175,8 +175,16 @@
               </div>
             </div>
             <button
+              v-if="appraisedList.includes(branch.id)"
+              class="btn-success btn btn-xl"
+              @click="openModal(branch)"
+            >
+              ✓ Cotizado
+            </button>
+            <button
+              v-else
               class="btn-primary btn btn-xl"
-              @click="modal?.modal.showModal()"
+              @click="openModal(branch)"
             >
               Cotizar Ahora
             </button>
@@ -192,7 +200,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ResponseData } from "~/types/api";
+import type { DataObject, ResponseData } from "~/types/api";
 import type { Branch } from "~/types/branches";
 import type { CarDetails } from "~/types/cars";
 
@@ -202,6 +210,18 @@ const step = ref(1);
 const id = useRoute().params.id as string;
 
 const modal = ref<{ modal: HTMLDialogElement } | null>(null);
+const openModal = (branch: Branch) => {
+  if (appraisedList.value.includes(branch.id)) {
+    snackbar.add({
+      title: "¡Ya has cotizado este auto!",
+      text: "Puedes cotizar otras ofertas",
+      type: "warning",
+    });
+    return;
+  }
+  actualBranch.value = branch.id;
+  modal.value?.modal.showModal();
+};
 
 const snackbar = useSnackbar();
 const payload = reactive({
@@ -214,11 +234,15 @@ const payload = reactive({
   comentarios: "",
 });
 
+const actualBranch = ref<number | null>(null);
+const appraisedList = ref<number[]>([]);
 const appraise = async () => {
   await $api("/formulario_cotizador/", {
     method: "POST",
     body: payload,
   });
+  appraisedList.value.push(actualBranch.value as number);
+  actualBranch.value = null;
   snackbar.add({
     title: "¡Cotización Enviada!",
     text: "Puedes cotizar otras ofertas o cerrar la pestaña.",
@@ -236,7 +260,7 @@ const region = ref(null);
 const cities = ref<string[]>([]);
 const city = ref(null);
 
-const { data: regions } = await useFetch("/branch_regions/", {
+const { data: regions } = await useFetch<string[]>("/branch_regions/", {
   $fetch: $api,
   key: "regions",
 });
@@ -249,14 +273,25 @@ const getCities = async () => {
   cities.value = response;
 };
 
+const getCommunities = async () => {
+  if (!region.value) return;
+  const response = await $api<ResponseData<string>>(
+    "/comunas_by_region_and_carbrand/",
+    {
+      params: { region: region.value, car_brand: car.value?.marca },
+    },
+  );
+  cities.value = response.results;
+};
+
 const loading = ref(false);
 const getBranches = async () => {
   if (!city.value) return;
   loading.value = true;
   const response = await $api<ResponseData<Branch>>(
-    "/branches_by_ciudad_and_carbrand/",
+    "/branches_by_comuna_and_carbrand/",
     {
-      params: { ciudad: city.value, car_brand: car.value?.marca },
+      params: { comuna: city.value, car_brand: car.value?.marca },
     },
   );
   branches.value = response.results;

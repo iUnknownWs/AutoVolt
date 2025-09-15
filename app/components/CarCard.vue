@@ -18,8 +18,8 @@
     </div>
     <div class="flex flex-col gap-1 **:text-sm">
       <div class="flex items-center justify-between gap-6">
-        <p>Precio Desde</p>
-        <p class="body font-bold">${{ car.precio_lista }}</p>
+        <p>Precio Desde (CLP)</p>
+        <p class="body font-bold">{{ car.precio_lista_raw }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
         <p>Tipo EV</p>
@@ -27,15 +27,15 @@
       </div>
       <div class="flex items-center justify-between gap-6">
         <p>Consumo EV</p>
-        <p class="body font-bold">{{ car.consumo_electrico }} Km/kWh</p>
+        <p class="body font-bold">{{ car.consumo_electrico }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
         <p>Consumo MCI</p>
-        <p class="body font-bold">{{ car.consumo }} Km/L</p>
+        <p class="body font-bold">{{ car.consumo }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
         <p>Autonomía Total</p>
-        <p class="body font-bold">{{ car.rango_wltp }} Km</p>
+        <p class="body font-bold">{{ car.rango_wltp }}</p>
       </div>
     </div>
     <button class="btn btn-secondary btn-wide">

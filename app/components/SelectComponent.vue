@@ -1,7 +1,7 @@
 <template>
   <div v-if="validation">
     <select
-      class="select validator min-w-64"
+      class="select validator min-w-56"
       :class="$attrs.class"
       v-model="value"
       required
@@ -11,16 +11,26 @@
       <option disabled selected :value="null">{{ placeholder }}</option>
       <option
         v-for="option in options"
-        :value="object ? option : option[optionValue]"
+        :value="
+          object
+            ? option
+            : typeof option === 'object' && option !== null
+              ? option[optionValue]
+              : option
+        "
       >
-        {{ option[optionLabel] }}
+        {{
+          typeof option === "object" && option !== null
+            ? option[optionLabel]
+            : option
+        }}
       </option>
     </select>
     <div class="validator-hint">{{ validation }}</div>
   </div>
   <select
     v-else-if="single"
-    class="select min-w-64"
+    class="select min-w-56"
     :class="$attrs.class"
     v-model="value"
     :disabled="disabled"
@@ -33,7 +43,7 @@
   </select>
   <select
     v-else
-    class="select min-w-64"
+    class="select min-w-56"
     :class="$attrs.class"
     v-model="value"
     :disabled="disabled"
@@ -42,9 +52,19 @@
     <option disabled selected :value="null">{{ placeholder }}</option>
     <option
       v-for="option in options"
-      :value="object ? option : option[optionValue]"
+      :value="
+        object
+          ? option
+          : typeof option === 'object' && option !== null
+            ? option[optionValue]
+            : option
+      "
     >
-      {{ option[optionLabel] }}
+      {{
+        typeof option === "object" && option !== null
+          ? option[optionLabel]
+          : option
+      }}
     </option>
   </select>
 </template>
@@ -56,7 +76,10 @@ interface OptionObject {
 
 defineProps({
   placeholder: { type: String, required: true },
-  options: { type: Array as PropType<OptionObject[]>, required: true },
+  options: {
+    type: Array as PropType<OptionObject[] | string[]>,
+    required: true,
+  },
   optionValue: { type: String, default: "id" },
   optionLabel: { type: String, default: "name" },
   validation: { type: String },

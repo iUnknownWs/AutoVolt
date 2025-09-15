@@ -48,10 +48,12 @@ const bodyOptions: dataObject[] = [
 ]
 
 const autoTypeOptions: dataObject[] = [
-  { id: 'BEV', name: 'BEV' },
-  { id: 'PHEV', name: 'PHEV' },
-  { id: 'MHEV', name: 'MHEV' },
-  { id: 'HEV', name: 'HEV' },
+  {
+    id: 'BEV', name: 'Electrico 100%'
+  },
+  { id: 'PHEV', name: 'Hibrido Enchufable' },
+  { id: 'HEV', name: 'Hibrido No Enchufable' },
+  { id: 'MHEV', name: 'Micro-hibrido No Enchufable' },
 ]
 
 const orderList: dataObject[] = [
@@ -66,19 +68,19 @@ const cargaInfo = [
     id: 0,
     title: 'Instalación de Cargador Residencial (AC)',
     description: 'Instalación rápida y segura de tu cargador en casa o edificio, con conexión monofásica y certificada por la SEC.',
-    price: 749000,
+    price: '749.000',
   },
   {
     id: 1,
     title: 'Cargador Residencial más Instalación',
     description: 'Cargador Wallbox Pulsar Plus 7.4 kW (AC) con instalación incluida, en un solo paquete para casas y edificios.',
-    price: '1549000'
+    price: '1.549.000'
   },
   {
     id: 2,
     title: 'Kit Solar Residencial',
     description: 'Genera tu propia energía limpia en casa con nuestro kit solar residencial de 2.5 kWp, diseñado para cubrir el 100% del consumo eléctrico de carga de tu auto.',
-    price: '2990000'
+    price: '2.990.000'
   }
 ]
 

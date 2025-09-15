@@ -33,7 +33,9 @@
           <NuxtLink to="/simulador-ahorros" class="btn btn-ghost btn-sm">
             Simulador de Ahorros
           </NuxtLink>
-          <NuxtLink class="btn btn-ghost btn-sm">Tendencias</NuxtLink>
+          <NuxtLink to="/tendencias" class="btn btn-ghost btn-sm"
+            >Tendencias</NuxtLink
+          >
           <NuxtLink to="/contacto" class="btn btn-ghost btn-sm">
             Contacto
           </NuxtLink>
