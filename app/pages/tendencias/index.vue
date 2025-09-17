@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen p-8">
+  <div class="min-h-screen p-6">
     <div class="breadcrumbs pb-6 text-lg">
       <ul>
         <li><NuxtLink to="/">Home</NuxtLink></li>
