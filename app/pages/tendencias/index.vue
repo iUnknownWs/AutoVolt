@@ -54,8 +54,7 @@
               height="100"
             />
             <div class="flex flex-col gap-1 p-4 text-sm">
-              <p class="h6">Descripción de la tendencia 1</p>
-              <p class="body">Detalles adicionales sobre la tendencia 1</p>
+              <p class="h6 leading-5">Descripción de la tendencia 1</p>
             </div>
           </CardComponent>
         </div>

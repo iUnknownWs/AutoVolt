@@ -48,13 +48,12 @@
                   { id: 'Edificio', name: 'Edificio' },
                 ]"
                 v-model="payload.tipo_residencia"
-                validation="El tipo de residencia es obligatorio"
               />
               <SelectComponent
+                class="mt-2"
                 placeholder="Ciudad *"
                 :options="[{ id: 'Santiago', name: 'Santiago' }]"
                 v-model="payload.direccion"
-                validation="La ciudad es obligatoria"
               />
               <button type="button" class="btn btn-lg btn-neutral mt-4">
                 Descargar Instructivo

@@ -35,14 +35,14 @@
               <icon
                 name="ph:arrow-circle-left-duotone"
                 size="48"
-                class="text-base-100 shrink-0"
+                class="text-primary shrink-0"
               />
             </template>
             <template #next>
               <icon
                 name="ph:arrow-circle-right-duotone"
                 size="48"
-                class="text-base-100 shrink-0"
+                class="text-primary shrink-0"
               />
             </template>
           </Navigation>
@@ -99,20 +99,24 @@
               :href="car.ficha_tecnica || ''"
               target="_blank"
             >
-              <Icon name="ph:download-simple" />Ficha tecnica
+              <Icon name="ph:download-simple" />
+              Ficha tecnica
             </a>
             <NuxtLink
               :to="{ name: 'comparador', query: { id: id } }"
+              target="_blank"
               class="btn btn-primary flex-1"
             >
-              <Icon name="ph:list-plus" />Comparar
+              <Icon name="ph:list-plus" />
+              Comparar
             </NuxtLink>
           </div>
           <NuxtLink
             :to="{ name: 'id-cotizar', params: { id: id } }"
             class="btn btn-primary w-full"
           >
-            <Icon name="ph:currency-circle-dollar-duotone" />Ver ofertas
+            <Icon name="ph:currency-circle-dollar-duotone" />
+            Buscar Ofertas
           </NuxtLink>
         </div>
       </CardComponent>
@@ -122,10 +126,9 @@
         <h3 class="h3">Especificaciones</h3>
         <p class="body mt-2 text-xl font-medium">
           AutoVolt recopila información de vehículos desde fabricantes,
-          concesionarios y fuentes públicas en línea. Si bien pueden existir
-          diferencias menores, realizamos nuestro mayor esfuerzo por validar los
-          datos a partir de múltiples fuentes para ofrecerte la mejor calidad y
-          confiabilidad posible.
+          concesionarios y fuentes públicas. Si bien pueden existir diferencias
+          menores, hacemos nuestro mayor esfuerzo por validar los datos con
+          múltiples fuentes para ofrecer la mejor calidad y confiabilidad.
         </p>
       </CardComponent>
     </div>
@@ -139,44 +142,44 @@
               <p class="body font-bold">{{ car.traccion }}</p>
             </div>
             <div>
-              <p class="body">Potencia del Motor (kW)</p>
-              <p class="body font-bold">{{ car.potencia_kw }}</p>
+              <p class="body">Torque del Motor</p>
+              <p class="body font-bold">{{ car.torque }}</p>
             </div>
             <div>
               <p class="body">Transmisión</p>
               <p class="body font-bold">{{ car.transmision }}</p>
             </div>
             <div>
-              <p class="body">Potencia del Motor (HP)</p>
-              <p class="body font-bold">{{ car.potencia }}</p>
+              <p class="body">Motor a Combustión</p>
+              <p class="body font-bold">{{ car.motor_combustion }}</p>
             </div>
             <div>
               <p class="body">Aceleración 0-100 Km/h</p>
               <p class="body font-bold">{{ car.aceleracion }}</p>
             </div>
             <div>
-              <p class="body">Torque del Motor</p>
-              <p class="body font-bold">{{ car.torque }}</p>
+              <p class="body">Estanque Combustible</p>
+              <p class="body font-bold">{{ car.estanque_combustible }}</p>
             </div>
             <div>
               <p class="body">Velocidad Maxima</p>
               <p class="body font-bold">{{ car.maxima_velocidad }}</p>
             </div>
             <div>
-              <p class="body">Motor a Combustión</p>
-              <p class="body font-bold">{{ car.motor_combustion }}</p>
-            </div>
-            <div>
-              <p class="body">Estanque Combustible</p>
-              <p class="body font-bold">{{ car.estanque_combustible }}</p>
-            </div>
-            <div>
               <p class="body">Consumo Combustible</p>
               <p class="body font-bold">{{ car.consumo }}</p>
             </div>
             <div>
+              <p class="body">Potencia del Motor (kW)</p>
+              <p class="body font-bold">{{ car.potencia_kw }}</p>
+            </div>
+            <div>
               <p class="body">Autonomia Combustible</p>
               <p class="body font-bold">{{ car.autonomia_combustible }}</p>
+            </div>
+            <div>
+              <p class="body">Potencia del Motor (HP)</p>
+              <p class="body font-bold">{{ car.potencia }}</p>
             </div>
           </div>
         </CardComponent>
@@ -263,28 +266,28 @@
               <p class="body font-bold">{{ car.carga_ac }}</p>
             </div>
             <div>
-              <p class="body">Tiempo de Carga DC 20% a 80%</p>
+              <p class="body">Tiempo Carga DC 20% > 80%</p>
               <p class="body font-bold">{{ car.tiempo_carga_20_80_dc }}</p>
             </div>
             <div>
-              <p class="body">Tiempo de Carga AC 20% a 80%</p>
+              <p class="body">Tiempo Carga AC 20% > 80%</p>
               <p class="body font-bold">{{ car.tiempo_carga_20_80_ac }}</p>
             </div>
             <div>
-              <p class="body">Autonomía 80% a 20% de Carga</p>
+              <p class="body">Autonomía Carga 80% > 20%</p>
               <p class="body font-bold">{{ car.autonomia_80_20_carga }}</p>
             </div>
           </div>
         </CardComponent>
         <CardComponent class="flex flex-col gap-4 p-6">
-          <h3 class="h3">Seguridad y Otros</h3>
+          <h3 class="h3">Seguridad & Otros</h3>
           <div class="grid grid-cols-2 gap-2 text-xl">
             <div>
               <p class="body">Llantas</p>
               <p class="body font-bold">{{ car.llantas }}</p>
             </div>
             <div>
-              <p class="body">Calificación Seguridad (NCAP)</p>
+              <p class="body">Calif. Seguridad (NCAP)</p>
               <p class="body font-bold">{{ car.seguridad_ncap }}</p>
             </div>
             <div>
@@ -317,25 +320,57 @@
       </div>
     </div>
     <div class="flex max-w-[calc(100vw-15px)] flex-col gap-6 p-6">
+      <h2 class="h3">Videos Reseñas</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <iframe
+          src="https://www.youtube.com/embed/_ZdsmLgCVdU?si=Fqs589GPJfPw_F5q"
+          class="aspect-video w-full rounded-xl"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <iframe
+          src="https://www.youtube.com/embed/_ZdsmLgCVdU?si=Fqs589GPJfPw_F5q"
+          class="aspect-video w-full rounded-xl"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <iframe
+          src="https://www.youtube.com/embed/_ZdsmLgCVdU?si=Fqs589GPJfPw_F5q"
+          class="aspect-video w-full rounded-xl"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    <div class="flex max-w-[calc(100vw-15px)] flex-col gap-6 p-6">
       <h2 class="h3">Alternativas Sugeridas (Precio)</h2>
       <Carousel v-bind="carouselCarsSettings" class="h-[768px]">
         <Slide v-for="car in similarCars" class="py-5">
           <CarCard :car="car" />
         </Slide>
         <template #addons>
-          <Navigation>
+          <Navigation class="inset-y-[10%]!">
             <template #prev>
               <icon
                 name="ph:arrow-circle-left-duotone"
                 size="48"
-                class="text-neutral text-5xl"
+                class="text-primary"
               />
             </template>
             <template #next>
               <icon
                 name="ph:arrow-circle-right-duotone"
                 size="48"
-                class="text-neutral"
+                class="text-primary"
               />
             </template>
           </Navigation>

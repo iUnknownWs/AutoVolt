@@ -35,36 +35,36 @@
               to="/autos-electricos/"
               class="btn btn-primary btn-outline"
             >
-              Explorar todos los autos
+              Explorar todos los modelos
             </NuxtLink>
           </div>
         </div>
       </div>
-      <div class="flex h-fit justify-between gap-6 p-6">
-        <div class="flex flex-col gap-4">
+      <div class="flex h-full justify-evenly gap-6 p-6">
+        <div class="flex h-full min-w-96 flex-col gap-4">
           <HomeInfoCard
             title="Toda la oferta en un solo lugar"
-            description="Encuentra todos los autos eléctricos disponibles en Chile, compara marcas, modelos y versiones en un solo lugar."
+            description="Encuentra todos los autos eléctricos e híbridos disponibles en Chile, compara marcas, modelos, versiones y ofertas en un solo lugar."
             icon="ph:info-duotone"
             cta="Explorar Modelos"
             to="/autos-electricos/"
           />
           <HomeInfoCard
             title="Toma decisiones informadas"
-            description="Accede a guías, comparaciones y datos confiables para elegir el auto eléctrico que mejor se adapta a tus necesidades."
+            description="Accede a guías, simuladores de ahorro y comparadores para encontrar el auto eléctrico que mejor se ajusta a tus necesidades."
             icon="ph:info-duotone"
             cta="Guía AutoVolt"
           />
           <HomeInfoCard
             title="Cargador Residencial"
-            description="Instala tu cargador residencial de forma segura y rápida, con expertos certificados y asesoría profesional para tu hogar o edificio."
+            description="Instalamos tu cargador residencial de forma segura y rápida, con expertos certificados y asesoría profesional para tu hogar o edificio.3"
             icon="ph:info-duotone"
             cta="Cotiza tu cargador"
             to="/carga/"
           />
         </div>
         <NuxtImg
-          class="w-full max-w-4xl rounded-2xl bg-cover bg-bottom"
+          class="h-fit max-h-[656px] w-fit rounded-2xl"
           src="https://storage.googleapis.com/mediamvp/Informativo%201%20F.png"
         />
       </div>
@@ -100,19 +100,19 @@
             <CarCard :car="car" />
           </Slide>
           <template #addons>
-            <Navigation>
+            <Navigation class="inset-y-[10%]!">
               <template #prev>
                 <icon
                   name="ph:arrow-circle-left-duotone"
                   size="32"
-                  class="text-neutral text-5xl"
+                  class="text-primary"
                 />
               </template>
               <template #next>
                 <icon
                   name="ph:arrow-circle-right-duotone"
                   size="32"
-                  class="text-neutral"
+                  class="text-primary"
                 />
               </template>
             </Navigation>

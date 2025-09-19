@@ -2,13 +2,11 @@
   <div class="flex min-h-screen w-full flex-col items-center p-6">
     <ModalComponent ref="modal">
       <template #content>
-        <p class="h6">Confirmar Cotización</p>
+        <p class="h6">Confirmar Solicitud</p>
         <p class="body mt-2">
-          Al continuar, tu solicitud será enviada por correo con copia a la
-          comercializadora seleccionada, quien te enviará el detalle de la
-          cotización. <br />
-          Tus datos se utilizarán únicamente para este proceso y no se
-          almacenarán con fines publicitarios ni de comunicación masiva.
+          Al continuar, tu solicitud será enviada por correo al concesionario
+          elegido, quien te contactará directamente con el detalle de la
+          cotización.
         </p>
       </template>
       <template #action>
@@ -43,7 +41,7 @@
           <p class="h5">{{ car?.modelo }}</p>
         </div>
         <div class="flex flex-col items-center gap-2">
-          <p class="h5">Version</p>
+          <p class="h5">Versión</p>
           <NuxtImg
             :src="car?.foto_portada || ''"
             class="h-20 object-cover"
@@ -60,10 +58,9 @@
         <div class="max-w-3xl">
           <p class="h6">Formulario de Contacto</p>
           <p class="body mt-2">
-            Llena este formulario para ver todas las ofertas del auto que
-            seleccionaste. Una vez elijas la que más te convenga, te conectamos
-            directamente con el comercializador para que puedas seguir con el
-            proceso de cotización.
+            Completa el formulario para ver las ofertas del auto que
+            seleccionaste. Una vez elijas la más conveniente, te conectamos con
+            el comercializador para seguir con la cotización.
           </p>
         </div>
         <div class="divider m-0"></div>
@@ -102,6 +99,31 @@
           :options="[
             { id: 'Correo Electrónico', name: 'Correo Electrónico' },
             { id: 'Teléfono', name: 'Teléfono' },
+            { id: 'WhatsApp', name: 'WhatsApp' },
+          ]"
+          class="w-full"
+          validation="Este campo es obligatorio"
+          v-model="payload.modo_contacto"
+        />
+        <SelectComponent
+          placeholder="¿Cuándo tienes pensado comprar tu próximo vehículo?"
+          :options="[
+            {
+              id: 'Estoy listo para comprar, buscando la mejor opción',
+              name: 'Estoy listo para comprar, buscando la mejor opción',
+            },
+            {
+              id: 'Planeo comprar en 1-3 meses',
+              name: 'Planeo comprar en 1-3 meses',
+            },
+            {
+              id: 'Quiero comprar en los próximos 6 meses',
+              name: 'Quiero comprar en los próximos 6 meses',
+            },
+            {
+              id: 'Estoy comparando opciones, sin apuro (6+ meses)',
+              name: 'Estoy comparando opciones, sin apuro (6+ meses)',
+            },
           ]"
           class="w-full"
           validation="Este campo es obligatorio"
@@ -192,7 +214,10 @@
         </div>
         <div v-else-if="loading" class="mx-auto"></div>
         <div v-else class="mx-auto">
-          <p class="h5">No se encontraron ofertas</p>
+          <p class="h5">
+            Selecciona tu región y ciudad, luego haz clic en "Buscar Ofertas"
+            para ver todas las opciones disponibles.
+          </p>
         </div>
       </template>
     </div>

@@ -12,7 +12,13 @@
         <div class="flex flex-wrap gap-2">
           <template v-for="(filter, key) in filters">
             <div
-              v-if="(key == 'marca' || key == 'modelo') && filter"
+              v-if="
+                (key == 'marca' ||
+                  key == 'modelo' ||
+                  key == 'tipo_ev' ||
+                  key == 'carroceria') &&
+                filter
+              "
               class="badge badge-neutral cursor-pointer"
               @click="clearFilter(key)"
             >
@@ -32,21 +38,6 @@
             >
               Menos de {{ filter }} <Icon name="ph:x-bold" />
             </div>
-            <template
-              v-if="
-                (key == 'carroceria' || key == 'tipo_ev') &&
-                Array.isArray(filter) &&
-                filter.length > 0
-              "
-            >
-              <div
-                v-for="filter in filters[key]"
-                class="badge badge-neutral cursor-pointer"
-                @click="filters[key].splice(filters[key].indexOf(filter), 1)"
-              >
-                {{ filter }} <Icon name="ph:x-bold" />
-              </div>
-            </template>
           </template>
         </div>
         <SearchSelect
@@ -91,10 +82,10 @@
         </div>
         <div class="flex flex-col gap-2">
           <span class="h6">Carrocería</span>
-          <CheckboxComponent
+          <RadioComponent
             v-for="option in masterData.bodies"
-            name="body"
             class="radio-neutral"
+            name="body"
             :placeholder="option.name"
             :value="option.id"
             v-model="filters.carroceria"
@@ -107,9 +98,9 @@
             class="label text-neutral leading-4 font-semibold"
           >
             <input
-              class="checkbox checkbox-neutral"
-              type="checkbox"
-              name="body"
+              class="radio radio-neutral"
+              type="radio"
+              name="ev_type"
               :value="option.id"
               v-model="filters.tipo_ev"
             />
@@ -132,7 +123,7 @@
             />
           </div>
         </div>
-        <div class="mt-4 flex flex-wrap justify-center gap-4">
+        <div class="mt-4 flex h-full flex-wrap justify-center gap-4">
           <CarCard v-for="car in cars?.results" :key="car.id" :car="car" />
         </div>
         <div class="join mx-auto mt-6">
@@ -192,8 +183,8 @@ const filters = reactive({
   ordering: "precio_lista" as string | null,
   marca: query?.marca || (null as string | null),
   modelo: query?.modelo || (null as string | null),
-  carroceria: [] as Array<string | number>,
-  tipo_ev: [] as Array<string | number>,
+  carroceria: null as string | null,
+  tipo_ev: null as string | null,
   precio_min: query?.precio_min || (null as number | null),
   precio_max: query?.precio_max || (null as number | null),
   page: 1 as number,
@@ -224,7 +215,7 @@ const navigateCars = (direction: "next" | "previous") => {
 };
 
 if (query.carroceria) {
-  filters.carroceria.push(query.carroceria as string | number);
+  filters.carroceria = query.carroceria as string;
 }
 
 if (query.marca && brands.value) {
@@ -234,14 +225,19 @@ if (query.marca && brands.value) {
 }
 
 function clearFilter(key: keyof typeof filters) {
-  if (Array.isArray(filters[key])) {
-    filters[key].splice(0);
-  } else {
+  if (
+    key === "ordering" ||
+    key === "marca" ||
+    key === "modelo" ||
+    key === "carroceria" ||
+    key === "tipo_ev"
+  ) {
     filters[key] = null;
-  }
-
-  if (key == "precio_max" || key == "precio_min") {
+  } else if (key === "precio_min" || key === "precio_max") {
+    filters[key] = null;
     price.value = {};
+  } else if (key === "page") {
+    filters[key] = 1;
   }
 }
 
@@ -251,6 +247,7 @@ watch(price, () => {
 
 watch(searchObject, () => {
   filters.modelo = searchObject.value?.modelo || null;
+  filters.marca = searchObject.value?.marca || null;
 });
 
 watch(filters, () => {

@@ -20,14 +20,14 @@
           <icon
             name="ph:arrow-circle-left-duotone"
             size="48"
-            class="text-base-100 text-5xl"
+            class="text-primary"
           />
         </template>
         <template #next>
           <icon
             name="ph:arrow-circle-right-duotone"
             size="48"
-            class="text-base-100"
+            class="text-primary"
           />
         </template>
       </Navigation>
