@@ -35,7 +35,7 @@
       </CardComponent>
       <CardComponent class="w-full px-10 py-8">
         <p class="h5 mb-2">Ahorro en Combustible</p>
-        <div class="flex">
+        <div class="flex gap-12">
           <div class="flex w-full flex-col items-center gap-4">
             <p class="h6 text-center">
               Si te cambiaras a
@@ -49,6 +49,7 @@
               </span>
               en combustible.
             </p>
+            <BarComponent />
           </div>
           <div class="body max-w-lg">
             <p class="mb-2">
@@ -75,7 +76,7 @@
       </CardComponent>
       <CardComponent class="w-full px-10 py-8">
         <p class="h5 mb-2">Incentivos Gubernamentales & Mantenimiento</p>
-        <div class="flex">
+        <div class="flex gap-12">
           <div class="body max-w-lg">
             <p class="mb-2">
               Además del ahorro en combustible, los autos eléctricos ofrecen
@@ -112,6 +113,7 @@
               </span>
               en combustible.
             </p>
+            <BarComponent />
           </div>
         </div>
       </CardComponent>
@@ -140,6 +142,7 @@
 </template>
 
 <script lang="ts" setup>
+import BarComponent from "~/components/BarComponent.vue";
 import type { DataObject, ResponseData } from "~/types/api";
 import type { Cars } from "~/types/cars";
 
