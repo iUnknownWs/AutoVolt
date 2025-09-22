@@ -18,7 +18,10 @@
       </p>
     </div>
     <div class="flex gap-8 p-6">
-      <div class="w-full max-w-5xl"></div>
+      <div
+        class="markdown-body w-full max-w-5xl"
+        v-html="compiledMarkdown"
+      ></div>
       <div class="flex-1">
         <div class="flex flex-col gap-4">
           <p class="h4">Populares</p>
@@ -43,4 +46,16 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import MarkdownIt from "markdown-it";
+import { computed } from "vue";
+
+const { $api } = useNuxtApp();
+const { data } = await useFetch("tendencias/", {
+  $fetch: $api,
+});
+const md = new MarkdownIt();
+const compiledMarkdown = computed(() =>
+  md.render(data.value.data.markdown || ""),
+);
+</script>
