@@ -23,7 +23,7 @@
     </div>
     <div class="flex gap-6 px-6 pb-6">
       <Carousel v-bind="carouselSettings" class="w-full max-w-4xl rounded-2xl">
-        <Slide v-for="photo in car.foto_portadas" class="w-full">
+        <Slide v-for="photo in car.logo_urls" class="w-full">
           <NuxtImg
             :src="photo"
             class="h-full w-full rounded-2xl object-cover"
