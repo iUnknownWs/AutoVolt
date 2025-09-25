@@ -11,11 +11,13 @@
       class="flex min-h-[450px] flex-col justify-end bg-[url(/hero.jpg)] bg-cover bg-center p-8 py-6 text-white"
     >
       <h1 class="h2">Tendencia Titulo</h1>
-      <p class="body">
-        Esta es una descripción detallada de la tendencia que está siendo
-        destacada en esta sección. Aquí puedes incluir información relevante y
-        atractiva para los usuarios.
-      </p>
+      <div class="flex items-center gap-4">
+        <p class="body text-primary text-lg font-bold">Willders Carvajal</p>
+        <div class="flex gap-1">
+          <Icon name="ph:calendar" size="24" />
+          <p class="body text-center font-bold">07/03/2000</p>
+        </div>
+      </div>
     </div>
     <div class="flex gap-8 p-6">
       <div
