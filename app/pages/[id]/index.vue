@@ -30,7 +30,7 @@
           />
         </Slide>
         <template #addons>
-          <Navigation class="mx-4">
+          <Navigation class="inset-y-[88%]! mx-4">
             <template #prev>
               <icon
                 name="ph:arrow-circle-left-duotone"
@@ -422,9 +422,5 @@ const { data: car } = await useFetch<CarDetails>(`cars/${id}/`, {
 const { data: similarCars } = await useFetch<Cars[]>(`/similar_cars/${id}`, {
   $fetch: $api,
   key: `similar-cars-${id}`,
-});
-
-const hasTechnicalSheet = computed(() => {
-  return !car.value?.ficha_tecnica;
 });
 </script>

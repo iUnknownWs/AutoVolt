@@ -8,7 +8,7 @@
       </ul>
     </div>
     <div
-      class="flex min-h-[450px] flex-col justify-end bg-[url(/hero.jpg)] bg-cover bg-center p-8 py-6 text-white"
+      class="flex h-[calc(100vh-148px)] flex-col justify-end bg-[url(/hero.jpg)] bg-cover bg-center p-8 py-6 text-white"
     >
       <h1 class="h2">Tendencia Titulo</h1>
       <div class="flex items-center gap-4">
@@ -20,11 +20,8 @@
       </div>
     </div>
     <div class="flex gap-8 p-6">
-      <div
-        class="markdown-body w-full max-w-5xl"
-        v-html="compiledMarkdown"
-      ></div>
-      <div class="flex-1">
+      <div class="markdown-body flex-1" v-html="compiledMarkdown"></div>
+      <div class="max-w-80 flex-1">
         <div class="flex flex-col gap-4">
           <p class="h4">Populares</p>
           <CardComponent class="flex">
@@ -37,9 +34,6 @@
             />
             <div class="flex flex-col gap-2 p-2 text-sm">
               <p class="h6 leading-4">Descripción de la tendencia 1</p>
-              <p class="body leading-4">
-                Detalles adicionales sobre la tendencia 1
-              </p>
             </div>
           </CardComponent>
         </div>

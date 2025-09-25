@@ -7,13 +7,12 @@
       </ul>
     </div>
     <div class="flex gap-8">
-      <div class="w-full max-w-4xl">
+      <div class="flex-1">
         <CardComponent class="mb-6">
           <NuxtImg
             src="/hero.jpg"
-            class="w-full rounded-t-2xl"
+            class="h-80 w-full rounded-t-2xl object-cover"
             alt="Tendencia Principal"
-            height="400"
           />
           <div class="p-6">
             <h2 class="h3 mb-4">Tendencia Principal</h2>
@@ -28,7 +27,7 @@
           <CardComponent class="flex cursor-pointer">
             <NuxtImg
               src="/hero.jpg"
-              class="rounded-l-2xl"
+              class="rounded-l-2xl object-cover"
               alt="Tendencia 1"
               width="120"
               height="100"
@@ -42,13 +41,13 @@
           </CardComponent>
         </div>
       </div>
-      <div class="flex-1">
+      <div class="max-w-80 flex-1">
         <div class="flex flex-col gap-4">
           <p class="h4">Sugeridos</p>
           <CardComponent class="flex">
             <NuxtImg
               src="/hero.jpg"
-              class="rounded-l-2xl"
+              class="rounded-l-2xl object-cover"
               alt="Tendencia 1"
               width="120"
               height="100"
