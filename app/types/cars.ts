@@ -16,7 +16,7 @@ export interface Cars {
     consumo_electrico: number | null;
     consumo: number | null;
     created_at: Date;
-    logo_url: null | string;
+    foto_portada: null | string;
 }
 
 export interface CarDetails {
@@ -74,7 +74,7 @@ export interface CarDetails {
     garantia_km: number;
     inicio_produccion: number;
     popularity: null;
-    logo_urls: string[];
+    foto_portadas: string[];
     foto_portada: null | string;
     created_at: Date;
     updated_at: Date;

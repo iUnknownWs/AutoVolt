@@ -4,8 +4,8 @@
     class="group bg-base-100 group flex aspect-square h-fit w-full max-w-[270px] grow-0 cursor-pointer flex-col items-center gap-4 rounded-2xl p-6 shadow-lg"
   >
     <NuxtImg
-      v-if="car.logo_url"
-      :src="car.logo_url"
+      v-if="car.foto_portada"
+      :src="car.foto_portada"
       class="h-full max-h-40 w-52 object-cover"
     />
     <div class="flex flex-col items-center">
