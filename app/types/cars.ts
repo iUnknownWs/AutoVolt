@@ -74,7 +74,7 @@ export interface CarDetails {
     garantia_km: number;
     inicio_produccion: number;
     popularity: null;
-    foto_portadas: string[];
+    logo_urls: string[];
     foto_portada: null | string;
     created_at: Date;
     updated_at: Date;
