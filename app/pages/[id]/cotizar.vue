@@ -127,7 +127,7 @@
           ]"
           class="w-full"
           validation="Este campo es obligatorio"
-          v-model="payload.modo_contacto"
+          v-model="payload.comentarios"
         />
         <button class="btn-primary btn btn-wide mx-auto">Buscar Ofertas</button>
       </form>
@@ -256,7 +256,7 @@ const payload = reactive({
   email: "",
   telefono: "",
   modo_contacto: null,
-  comentarios: "",
+  comentarios: null,
 });
 
 const actualBranch = ref<number | null>(null);
