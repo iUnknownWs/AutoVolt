@@ -9,13 +9,21 @@
     <div class="flex gap-8 pb-6">
       <div class="flex-1">
         <CardComponent class="mb-6">
-          <NuxtImg
-            src="/hero.jpg"
-            class="h-80 w-full rounded-t-2xl object-cover"
-            alt="Tendencia Principal"
-          />
-          <div class="p-6">
-            <h2 class="h3 mb-4">Tendencia Principal</h2>
+          <div
+            class="flex h-80 w-full cursor-pointer flex-col justify-end rounded-t-2xl bg-[url(/hero.jpg)] bg-cover bg-center object-cover p-8 py-6 text-white"
+          >
+            <h1 class="h2">Tendencia Titulo</h1>
+            <div class="flex items-center gap-4">
+              <p class="body text-primary text-lg font-bold">
+                Willders Carvajal
+              </p>
+              <div class="flex gap-1">
+                <Icon name="ph:calendar" size="24" />
+                <p class="body text-center font-bold">07/03/2000</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
             <p class="body">
               Esta es una descripción detallada de la tendencia principal que
               está siendo destacada en esta sección. Aquí puedes incluir
@@ -27,16 +35,16 @@
           <CardComponent class="flex cursor-pointer">
             <NuxtImg
               src="/hero.jpg"
-              class="rounded-l-2xl object-cover"
+              class="h-32 w-48 rounded-l-2xl object-cover"
               alt="Tendencia 1"
-              width="120"
-              height="100"
             />
             <div class="flex flex-col gap-1 p-4 text-sm">
-              <p class="h5 link link-hover link-primary">
+              <p class="h4 link link-hover link-primary">
                 Descripción de la tendencia 1
               </p>
-              <p class="body">Detalles adicionales sobre la tendencia 1</p>
+              <p class="body text-lg">
+                Detalles adicionales sobre la tendencia 1
+              </p>
             </div>
           </CardComponent>
         </div>
@@ -44,15 +52,15 @@
       <div class="max-w-80 flex-1">
         <div class="flex flex-col gap-4">
           <p class="h4">Sugeridos</p>
-          <CardComponent class="flex">
+          <CardComponent class="flex cursor-pointer">
             <NuxtImg
               src="/hero.jpg"
-              class="rounded-l-2xl object-cover"
-              alt="Tendencia 1"
-              width="120"
-              height="100"
+              class="h-24 w-28 rounded-l-2xl object-cover"
+              alt="Tendencia foto"
             />
-            <div class="flex flex-col gap-1 p-4 text-sm">
+            <div
+              class="flex flex-col items-center justify-center gap-1 p-4 text-sm"
+            >
               <p class="h6 leading-5">Descripción de la tendencia 1</p>
             </div>
           </CardComponent>
