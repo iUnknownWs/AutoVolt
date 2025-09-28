@@ -157,7 +157,7 @@ import type { Cars } from "~/types/cars";
 
 const route = useRoute();
 const query = route.query;
-const brand = ref<DataObject | null>(null);
+const brand = ref<DataObject | "">("");
 
 const { $api } = useNuxtApp();
 const { data: brands } = await useFetch(`car_brands/`, {
@@ -180,9 +180,9 @@ const price = ref({});
 const search = ref("");
 const searchObject = ref<Cars | null>(null);
 const filters = reactive({
-  ordering: "precio_lista" as string | null,
-  marca: query?.marca || (null as string | null),
-  modelo: query?.modelo || (null as string | null),
+  ordering: "precio_lista" as string,
+  marca: query?.marca || ("" as string),
+  modelo: typeof query?.modelo === "string" ? query.modelo : ("" as string),
   carroceria: null as string | null,
   tipo_ev: null as string | null,
   precio_min: query?.precio_min || (null as number | null),
@@ -220,24 +220,24 @@ if (query.carroceria) {
 
 if (query.marca && brands.value) {
   brand.value =
-    brands.value.find((b: DataObject) => b.name === query.marca) || null;
+    brands.value.find((b: DataObject) => b.name === query.marca) || "";
   getModels();
 }
 
 function clearFilter(key: keyof typeof filters) {
-  if (
-    key === "ordering" ||
-    key === "marca" ||
-    key === "modelo" ||
-    key === "carroceria" ||
-    key === "tipo_ev"
-  ) {
-    filters[key] = null;
+  if (key === "ordering" || key === "carroceria" || key === "tipo_ev") {
+    filters[key] = "";
   } else if (key === "precio_min" || key === "precio_max") {
-    filters[key] = null;
+    filters[key] = "";
     price.value = {};
   } else if (key === "page") {
     filters[key] = 1;
+  } else if (key === "marca") {
+    filters[key] = "";
+    brand.value = "";
+    models.value = [];
+  } else if (key === "modelo") {
+    filters[key] = "";
   }
 }
 
@@ -246,8 +246,8 @@ watch(price, () => {
 });
 
 watch(searchObject, () => {
-  filters.modelo = searchObject.value?.modelo || null;
-  filters.marca = searchObject.value?.marca || null;
+  filters.modelo = searchObject.value?.modelo || "";
+  filters.marca = searchObject.value?.marca || "";
 });
 
 watch(filters, () => {

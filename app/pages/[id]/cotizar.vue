@@ -255,8 +255,8 @@ const payload = reactive({
   apellido: "",
   email: "",
   telefono: "",
-  modo_contacto: null,
-  comentarios: null,
+  modo_contacto: "",
+  comentarios: "",
 });
 
 const actualBranch = ref<number | null>(null);
@@ -281,9 +281,9 @@ const { data: car } = await useFetch<CarDetails>(`/cars/${id}`, {
 });
 
 const branches = ref<Branch[]>([]);
-const region = ref(null);
+const region = ref("");
 const cities = ref<string[]>([]);
-const city = ref(null);
+const city = ref("");
 
 const { data: regions } = await useFetch<string[]>("/branch_regions/", {
   $fetch: $api,

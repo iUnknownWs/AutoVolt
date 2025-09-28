@@ -206,7 +206,12 @@
         v-if="tab === 'Motor & Desempeño'"
         class="flex flex-col gap-4 p-6"
       >
-        <div class="grid grid-cols-5 gap-2 text-xl">
+        <div class="grid grid-cols-5 text-xl">
+          <p class="h6">Marca y modelo</p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.marca_modelo || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
           <p class="h6">Potencia del Motor (kW)</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.potencia_kw || "-" }}
@@ -214,7 +219,7 @@
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Potencia del Motor (HP)</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.potencia || "-" }}
+            {{ cars[car - 1]?.potencia_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Tracción</p>
@@ -230,89 +235,119 @@
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Aceleración 0-100 Km/h</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.aceleracion || "-" }}
+            {{ cars[car - 1]?.aceleracion_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Torque del Motor</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.torque || "-" }}
+            {{ cars[car - 1]?.torque_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Velocidad Maxima</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.maxima_velocidad || "-" }}
+            {{ cars[car - 1]?.maxima_velocidad_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Motor a Combustión</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.motor_combustion || "-" }}
+            {{ cars[car - 1]?.motor_combustion_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Estanque Combustible</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.estanque_combustible || "-" }}
+            {{ cars[car - 1]?.estanque_combustible_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Consumo Combustible</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.consumo || "-" }}
+            {{ cars[car - 1]?.consumo_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Autonomía Combustible</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.autonomia_combustible || "-" }}
           </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Cotizar</p>
+          <button
+            v-for="car in 4"
+            class="btn btn-primary mx-auto w-fit"
+            @click="appraise(cars[car - 1]?.id ?? 0)"
+            :disabled="!cars[car - 1]"
+          >
+            Cotizar
+          </button>
         </div>
       </CardComponent>
       <CardComponent
         v-if="tab === 'Dimensiones & Peso'"
         class="flex flex-col gap-4 p-6"
       >
-        <div class="grid grid-cols-5 gap-2 text-xl">
+        <div class="grid grid-cols-5 text-xl">
+          <p class="h6">Marca y modelo</p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.marca_modelo || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
           <p class="h6">Peso Vehicular</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.peso || "-" }}
+            {{ cars[car - 1]?.peso_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Largo</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.largo || "-" }}
+            {{ cars[car - 1]?.largo_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Ancho</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.ancho || "-" }}
+            {{ cars[car - 1]?.ancho_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Alto</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.alto || "-" }}
+            {{ cars[car - 1]?.alto_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Distancia entre ejes</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.distancia_entre_ejes || "-" }}
+            {{ cars[car - 1]?.distancia_entre_ejes_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Capacidad del Maletero</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.maletero || "-" }}
+            {{ cars[car - 1]?.maletero_raw || "-" }}
           </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Cotizar</p>
+          <button
+            v-for="car in 4"
+            class="btn btn-primary mx-auto w-fit"
+            @click="appraise(cars[car - 1]?.id ?? 0)"
+            :disabled="!cars[car - 1]"
+          >
+            Cotizar
+          </button>
         </div>
       </CardComponent>
       <CardComponent
         v-if="tab === 'Eficiencia Eléctrica'"
         class="flex flex-col gap-4 p-6"
       >
-        <div class="grid grid-cols-5 gap-2 text-xl">
+        <div class="grid grid-cols-5 text-xl">
+          <p class="h6">Marca y modelo</p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.marca_modelo || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
           <p class="h6">Capacidad Batería</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.bateria_nominal || "-" }}
+            {{ cars[car - 1]?.bateria_nominal_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Autonomía Batería (WLTP)</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.rango_wltp || "-" }}
+            {{ cars[car - 1]?.rango_wltp_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Consumo Eléctrico</p>
@@ -329,13 +364,28 @@
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.consumo_comparable || "-" }}
           </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Cotizar</p>
+          <button
+            v-for="car in 4"
+            class="btn btn-primary mx-auto w-fit"
+            @click="appraise(cars[car - 1]?.id ?? 0)"
+            :disabled="!cars[car - 1]"
+          >
+            Cotizar
+          </button>
         </div>
       </CardComponent>
       <CardComponent
         v-if="tab === 'Batería & Carga'"
         class="flex flex-col gap-4 p-6"
       >
-        <div class="grid grid-cols-5 gap-2 text-xl">
+        <div class="grid grid-cols-5 text-xl">
+          <p class="h6">Marca y modelo</p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.marca_modelo || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
           <p class="h6">Tipo de Batería</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.tipo_bateria || "-" }}
@@ -348,7 +398,7 @@
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Potencia Carga AC</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.carga_ac || "-" }}
+            {{ cars[car - 1]?.carga_ac_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Tipo de Carga DC</p>
@@ -358,7 +408,7 @@
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Potencia Carga DC</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.carga_dc_max || "-" }}
+            {{ cars[car - 1]?.carga_dc_max_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Tiempo de Carga 20% a 80% AC</p>
@@ -375,44 +425,69 @@
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.autonomia_80_20_carga || "-" }}
           </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Cotizar</p>
+          <button
+            v-for="car in 4"
+            class="btn btn-primary mx-auto w-fit"
+            @click="appraise(cars[car - 1]?.id ?? 0)"
+            :disabled="!cars[car - 1]"
+          >
+            Cotizar
+          </button>
         </div>
       </CardComponent>
       <CardComponent v-if="tab === 'Seguridad'" class="flex flex-col gap-4 p-6">
-        <div class="grid grid-cols-5 gap-2 text-xl">
+        <div class="grid grid-cols-5 text-xl">
+          <p class="h6">Marca y modelo</p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.marca_modelo || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
           <p class="h6">Llantas</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.llantas || "-" }}
+            {{ cars[car - 1]?.llantas_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Asientos</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.asientos || "-" }}
+            {{ cars[car - 1]?.asientos_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Airbags</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.airbags || "-" }}
+            {{ cars[car - 1]?.airbags_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Calificación Seg. (NCAP)</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.seguridad_ncap || "-" }}
+            {{ cars[car - 1]?.seguridad_ncap_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Garantía</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.garantia_anos || "-" }}
+            {{ cars[car - 1]?.garantia_anos_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Garantía</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.garantia_km || "-" }}
+            {{ cars[car - 1]?.garantia_km_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Producido desde</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.inicio_produccion || "-" }}
+            {{ cars[car - 1]?.inicio_produccion_raw || "-" }}
           </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Cotizar</p>
+          <button
+            v-for="car in 4"
+            class="btn btn-primary mx-auto w-fit"
+            @click="appraise(cars[car - 1]?.id ?? 0)"
+            :disabled="!cars[car - 1]"
+          >
+            Cotizar
+          </button>
         </div>
       </CardComponent>
       <CardComponent
@@ -435,14 +510,14 @@ const modal = ref<{ modal: HTMLDialogElement } | null>(null);
 const tab = ref("Motor & Desempeño");
 
 const carParams = reactive({
-  brand: null as DataObject | null,
-  model: null as string | null,
-  id: null as string | null,
+  brand: "" as DataObject | "",
+  model: "" as string,
+  id: "" as string,
 });
 
 const openModal = () => {
-  carParams.brand = null;
-  carParams.model = null;
+  carParams.brand = "";
+  carParams.model = "";
   modal.value?.modal.showModal();
 };
 
@@ -471,6 +546,7 @@ const getModels = async () => {
 const versions = ref([] as Cars[]);
 const getVersions = async () => {
   if (!carParams.model) return;
+  if (!carParams.brand) return;
   const data = await $api<ResponseData<Cars>>("cars/search/", {
     params: { modelo: carParams.model, marca: carParams.brand?.name },
   });

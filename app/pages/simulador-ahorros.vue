@@ -1,6 +1,6 @@
 <template>
-  <div class="h-full py-12">
-    <h1 class="h2 p-8">Simulador de ahorros</h1>
+  <div class="h-full py-10">
+    <h1 class="h2 mb-4 px-8">Simulador de ahorros</h1>
     <div class="flex flex-col gap-6 px-8">
       <CardComponent class="w-fit p-6">
         <p class="h5 mb-2">Seleccione un vehiculo</p>
@@ -147,9 +147,9 @@ import type { DataObject, ResponseData } from "~/types/api";
 import type { Cars } from "~/types/cars";
 
 const carInput = reactive({
-  brand: null as DataObject | null,
-  model: null,
-  id: null,
+  brand: "" as DataObject | "",
+  model: "",
+  id: "",
 });
 
 const { $api } = useNuxtApp();
@@ -171,6 +171,7 @@ const getModels = async () => {
 const versions = ref([] as Cars[]);
 const getVersions = async () => {
   if (!carInput.model) return;
+  if (!carInput.brand) return;
   const data = await $api<ResponseData<Cars>>("cars/search/", {
     params: { modelo: carInput.model, marca: carInput.brand?.name },
   });

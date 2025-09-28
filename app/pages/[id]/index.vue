@@ -86,7 +86,7 @@
             <div>
               <span class="body text-2xl font-medium">Consumo Combustible</span>
               <p class="body text-3xl font-bold">
-                {{ car.consumo }}
+                {{ car.consumo_raw }}
               </p>
             </div>
           </div>
@@ -143,7 +143,7 @@
             </div>
             <div>
               <p class="body">Torque del Motor</p>
-              <p class="body font-bold">{{ car.torque }}</p>
+              <p class="body font-bold">{{ car.torque_raw }}</p>
             </div>
             <div>
               <p class="body">Transmisión</p>
@@ -151,23 +151,23 @@
             </div>
             <div>
               <p class="body">Motor a Combustión</p>
-              <p class="body font-bold">{{ car.motor_combustion }}</p>
+              <p class="body font-bold">{{ car.motor_combustion_raw }}</p>
             </div>
             <div>
               <p class="body">Aceleración 0-100 Km/h</p>
-              <p class="body font-bold">{{ car.aceleracion }}</p>
+              <p class="body font-bold">{{ car.aceleracion_raw }}</p>
             </div>
             <div>
               <p class="body">Estanque Combustible</p>
-              <p class="body font-bold">{{ car.estanque_combustible }}</p>
+              <p class="body font-bold">{{ car.estanque_combustible_raw }}</p>
             </div>
             <div>
               <p class="body">Velocidad Maxima</p>
-              <p class="body font-bold">{{ car.maxima_velocidad }}</p>
+              <p class="body font-bold">{{ car.maxima_velocidad_raw }}</p>
             </div>
             <div>
               <p class="body">Consumo Combustible</p>
-              <p class="body font-bold">{{ car.consumo }}</p>
+              <p class="body font-bold">{{ car.consumo_raw }}</p>
             </div>
             <div>
               <p class="body">Potencia del Motor (kW)</p>
@@ -179,7 +179,7 @@
             </div>
             <div>
               <p class="body">Potencia del Motor (HP)</p>
-              <p class="body font-bold">{{ car.potencia }}</p>
+              <p class="body font-bold">{{ car.potencia_raw }}</p>
             </div>
           </div>
         </CardComponent>
@@ -188,27 +188,27 @@
           <div class="grid grid-cols-2 gap-2 text-xl">
             <div>
               <p class="body">Largo</p>
-              <p class="body font-bold">{{ car.largo }}</p>
+              <p class="body font-bold">{{ car.largo_raw }}</p>
             </div>
             <div>
               <p class="body">Peso Vehicular</p>
-              <p class="body font-bold">{{ car.peso }}</p>
+              <p class="body font-bold">{{ car.peso_raw }}</p>
             </div>
             <div>
               <p class="body">Ancho</p>
-              <p class="body font-bold">{{ car.ancho }}</p>
+              <p class="body font-bold">{{ car.ancho_raw }}</p>
             </div>
             <div>
               <p class="body">Capacidad del Maletero</p>
-              <p class="body font-bold">{{ car.maletero }}</p>
+              <p class="body font-bold">{{ car.maletero_raw }}</p>
             </div>
             <div>
               <p class="body">Alto</p>
-              <p class="body font-bold">{{ car.alto }}</p>
+              <p class="body font-bold">{{ car.alto_raw }}</p>
             </div>
             <div>
               <p class="body">Distancia entre ejes</p>
-              <p class="body font-bold">{{ car.distancia_entre_ejes }}</p>
+              <p class="body font-bold">{{ car.distancia_entre_ejes_raw }}</p>
             </div>
           </div>
         </CardComponent>
@@ -222,7 +222,7 @@
           <div class="grid grid-cols-2 gap-2 text-xl">
             <div>
               <p class="body">Autonomía Batería (WLTP)</p>
-              <p class="body font-bold">{{ car.rango_wltp }}</p>
+              <p class="body font-bold">{{ car.rango_wltp_raw }}</p>
             </div>
             <div>
               <p class="body">Consumo Diario</p>
@@ -230,7 +230,7 @@
             </div>
             <div>
               <p class="body">Capacidad Batería</p>
-              <p class="body font-bold">{{ car.bateria_nominal }}</p>
+              <p class="body font-bold">{{ car.bateria_nominal_raw }}</p>
             </div>
             <div>
               <p class="body">Consumo Comparable</p>
@@ -259,11 +259,11 @@
             </div>
             <div>
               <p class="body">Potencia Carga DC</p>
-              <p class="body font-bold">{{ car.carga_dc_max }}</p>
+              <p class="body font-bold">{{ car.carga_dc_max_raw }}</p>
             </div>
             <div>
               <p class="body">Potencia Carga AC</p>
-              <p class="body font-bold">{{ car.carga_ac }}</p>
+              <p class="body font-bold">{{ car.carga_ac_raw }}</p>
             </div>
             <div>
               <p class="body">Tiempo Carga DC 20% > 80%</p>
@@ -284,31 +284,31 @@
           <div class="grid grid-cols-2 gap-2 text-xl">
             <div>
               <p class="body">Llantas</p>
-              <p class="body font-bold">{{ car.llantas }}</p>
+              <p class="body font-bold">{{ car.llantas_raw }}</p>
             </div>
             <div>
               <p class="body">Calif. Seguridad (NCAP)</p>
-              <p class="body font-bold">{{ car.seguridad_ncap }}</p>
+              <p class="body font-bold">{{ car.seguridad_ncap_raw }}</p>
             </div>
             <div>
               <p class="body">Asientos</p>
-              <p class="body font-bold">{{ car.asientos }}</p>
+              <p class="body font-bold">{{ car.asientos_raw }}</p>
             </div>
             <div>
               <p class="body">Garantía</p>
-              <p class="body font-bold">{{ car.garantia_anos }}</p>
+              <p class="body font-bold">{{ car.garantia_anos_raw }}</p>
             </div>
             <div>
               <p class="body">Airbags</p>
-              <p class="body font-bold">{{ car.airbags }}</p>
+              <p class="body font-bold">{{ car.airbags_raw }}</p>
             </div>
             <div>
               <p class="body">Garantía</p>
-              <p class="body font-bold">{{ car.garantia_km }}</p>
+              <p class="body font-bold">{{ car.garantia_km_raw }}</p>
             </div>
             <div>
               <p class="body">Producido desde</p>
-              <p class="body font-bold">{{ car.inicio_produccion }}</p>
+              <p class="body font-bold">{{ car.inicio_produccion_raw }}</p>
             </div>
           </div>
         </CardComponent>
@@ -381,7 +381,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NuxtImg } from "#components";
 import type { CarDetails, Cars } from "~/types/cars";
 
 const route = useRoute();

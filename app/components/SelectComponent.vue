@@ -8,7 +8,7 @@
       :disabled="disabled"
       @change="emit('change')"
     >
-      <option disabled selected :value="null">{{ placeholder }}</option>
+      <option disabled selected value="">{{ placeholder }}</option>
       <option
         v-for="option in options"
         :value="
@@ -36,7 +36,7 @@
     :disabled="disabled"
     @change="emit('change')"
   >
-    <option disabled selected :value="null">{{ placeholder }}</option>
+    <option disabled selected value="">{{ placeholder }}</option>
     <option v-for="option in options" :value="option">
       {{ option }}
     </option>
@@ -49,7 +49,7 @@
     :disabled="disabled"
     @change="emit('change')"
   >
-    <option disabled selected :value="null">{{ placeholder }}</option>
+    <option disabled selected value="">{{ placeholder }}</option>
     <option
       v-for="option in options"
       :value="
@@ -89,5 +89,5 @@ defineProps({
 });
 const emit = defineEmits(["change"]);
 
-const value = defineModel();
+const value = defineModel({ default: "" });
 </script>

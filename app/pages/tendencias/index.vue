@@ -1,12 +1,12 @@
 <template>
-  <div class="min-h-screen p-6">
-    <div class="breadcrumbs pb-6 text-lg">
+  <div class="min-h-screen px-6">
+    <div class="breadcrumbs py-6 text-lg">
       <ul>
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li>Tendencias</li>
       </ul>
     </div>
-    <div class="flex gap-8">
+    <div class="flex gap-8 pb-6">
       <div class="flex-1">
         <CardComponent class="mb-6">
           <NuxtImg

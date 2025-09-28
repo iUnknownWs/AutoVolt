@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto w-full">
     <HomeHeroComponent />
-    <div>
+    <div class="h-full w-full">
       <div class="relative h-20 w-full px-6">
         <div
           class="from-neutral absolute inset-x-0 -top-20 z-10 mx-auto w-max rounded-lg bg-gradient-to-b to-[#44462E] p-6 shadow-2xl"
@@ -119,9 +119,9 @@
           </template>
         </Carousel>
       </div>
-      <div class="flex items-center justify-between gap-12 px-6 py-12">
+      <div class="flex h-full items-center justify-between gap-12 px-6 py-12">
         <div
-          class="h-[568px] w-full rounded-2xl bg-cover bg-bottom"
+          class="h-[424px] w-full rounded-2xl bg-cover bg-bottom"
           :class="`bg-[url(/hero.jpg)]`"
         >
           <div
@@ -197,8 +197,8 @@
 
 <script lang="ts" setup>
 const { $api } = useNuxtApp();
-const brand = ref(null);
-const model = ref(null);
+const brand = ref("");
+const model = ref("");
 import type { DataObject, ResponseData } from "~/types/api";
 import type { CarDetails, Cars } from "~/types/cars";
 

@@ -183,8 +183,8 @@ const payload = reactive({
   apellido: "",
   email: "",
   telefono: "",
-  tipo_residencia: null,
-  direccion: null,
+  tipo_residencia: "",
+  direccion: "",
   tipo_servicio: "",
   comentarios: "",
 });
