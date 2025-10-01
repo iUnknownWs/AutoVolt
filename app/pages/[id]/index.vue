@@ -320,7 +320,7 @@
       </div>
     </div>
     <div class="flex max-w-[calc(100vw-15px)] flex-col gap-6 p-6">
-      <h2 class="h3">Videos Reseñas</h2>
+      <h2 class="h3">Video Reseñas</h2>
       <div class="grid grid-cols-3 gap-4">
         <iframe
           src="https://www.youtube.com/embed/_ZdsmLgCVdU?si=Fqs589GPJfPw_F5q"

@@ -22,7 +22,7 @@
     </div>
     <div class="flex flex-col gap-1 **:text-sm">
       <div class="flex items-center justify-between gap-6">
-        <p>Precio Desde (CLP)</p>
+        <p>Precio Desde</p>
         <p class="body font-bold">{{ car.precio_lista_raw }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
@@ -30,10 +30,11 @@
         <p class="body font-bold">{{ car.tipo_ev }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <p>
+        <p class="flex items-center gap-1">
           Consumo EV
           <ClientOnly>
             <TooltipComponent
+              class="tooltip-secondary h-3"
               text="Consumo eléctrico del vehículo en kWh/100km"
             >
               <Icon name="ph:info-bold" />

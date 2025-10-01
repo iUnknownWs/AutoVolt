@@ -57,7 +57,7 @@
           />
           <HomeInfoCard
             title="Cargador Residencial"
-            description="Instalamos tu cargador residencial de forma segura y rápida, con expertos certificados y asesoría profesional para tu hogar o edificio.3"
+            description="Instalamos tu cargador residencial de forma segura y rápida, con expertos certificados y asesoría profesional para tu hogar o edificio."
             icon="ph:info-duotone"
             cta="Cotiza tu cargador"
             to="/carga/"
