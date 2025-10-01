@@ -1,5 +1,5 @@
 <template>
-  <div class="tooltip" :data-tip="text">
+  <div class="tooltip font-medium" :data-tip="text">
     <slot />
   </div>
 </template>

@@ -123,17 +123,47 @@
           {{ cars[car - 1]?.precio_lista_raw || "-" }}
         </p>
         <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Autonomía Total</p>
+        <p class="h6">
+          Autonomía Total
+          <ClientOnly>
+            <TooltipComponent
+              class="h-3"
+              text="La autonomía total considera tanto la independencia eléctrica como la de combustible."
+            >
+              <Icon name="ph:info-bold" size="14" />
+            </TooltipComponent>
+          </ClientOnly>
+        </p>
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.rango_wltp || "-" }}
         </p>
         <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Consumo Eléctrico</p>
+        <p class="h6">
+          Consumo Eléctrico
+          <ClientOnly>
+            <TooltipComponent
+              class="h-3"
+              text="Consumo Eléctrico, indicador de la eficiencia del motor eléctrico en el uso de energía principalmente en ciudad."
+            >
+              <Icon name="ph:info-bold" size="14" />
+            </TooltipComponent>
+          </ClientOnly>
+        </p>
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.consumo_electrico || "-" }}
         </p>
         <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Consumo Combustible</p>
+        <p class="h6">
+          Consumo Combustible
+          <ClientOnly>
+            <TooltipComponent
+              class="h-3"
+              text="Consumo del Motor de Combustión Interna (MCI), indicador de la eficiencia en el uso de combustible en condiciones mixtas."
+            >
+              <Icon name="ph:info-bold" size="14" />
+            </TooltipComponent>
+          </ClientOnly>
+        </p>
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.consumo || "-" }}
         </p>
@@ -263,7 +293,17 @@
             {{ cars[car - 1]?.consumo_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Autonomía Combustible</p>
+          <p class="h6">
+            Autonomía Combustible
+            <ClientOnly>
+              <TooltipComponent
+                class="h-3"
+                text="Rango estimado de conducción usando solo combustible, considerando condiciones mixtas de ciudad y carretera."
+              >
+                <Icon name="ph:info-bold" size="14" />
+              </TooltipComponent>
+            </ClientOnly>
+          </p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.autonomia_combustible || "-" }}
           </p>
@@ -345,7 +385,17 @@
             {{ cars[car - 1]?.bateria_nominal_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Autonomía Batería (WLTP)</p>
+          <p class="h6">
+            Autonomía Batería (WLTP)
+            <ClientOnly>
+              <TooltipComponent
+                class="h-3"
+                text="Rango estimado de conducción solo con energía eléctrica, calculado bajo el estándar WLTP."
+              >
+                <Icon name="ph:info-bold" size="14" />
+              </TooltipComponent>
+            </ClientOnly>
+          </p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.rango_wltp_raw || "-" }}
           </p>

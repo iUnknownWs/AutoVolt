@@ -48,7 +48,14 @@
               <span class="text-primary"> [Ahorro] </span>
               en combustible.
             </p>
-            <BarComponent />
+            <BarComponent
+              :values="[30, 60]"
+              :labels="[
+                { label: 'C. Residencial', value: 'calculo' },
+                { label: 'C. Pública', value: 'calculo' },
+                { label: 'Combustible', value: '$6.919.900' },
+              ]"
+            />
           </div>
           <div class="body max-w-lg">
             <p class="h5 mb-2">Ahorro en Combustible</p>
@@ -57,15 +64,15 @@
               siguientes parámetros:
             </p>
             <ul class="ml-2 list-inside list-disc">
-              <li>Kilometraje Anual (35 km/día): <b>12.775 km</b></li>
+              <li>Kilometraje Anual (km/día): <b>12.775</b></li>
               <li>
                 Consumo Eléctrico (km/kWh):
                 <b>consumo eléctrico</b>
               </li>
-              <li>Consumo Promedio Combustible (km/L): <b>12 km/L</b></li>
-              <li>Precio Carga Pública kWh (CLP/kWh): <b>$350 CLP</b></li>
-              <li>Precio Carga Residencial kWh (CLP/kWh): <b>$200 CLP</b></li>
-              <li>Precio Combustible (CLP/L): <b>$1300 CLP</b></li>
+              <li>Consumo Promedio Combustible (km/L): <b>12</b></li>
+              <li>Precio Carga Pública kWh (CLP): <b>$350 </b></li>
+              <li>Precio Carga Residencial kWh (CLP): <b>$200</b></li>
+              <li>Precio Combustible (CLP/L): <b>$1300</b></li>
             </ul>
             <p class="mt-2 text-sm text-zinc-600 italic">
               Estas estimaciones excluyen factores como fluctuaciones en los
@@ -84,14 +91,14 @@
               mantenimiento.
             </p>
             <ul class="ml-2 list-inside list-disc">
-              <li>Permiso de Circulación 1 Año: 75% de exención</li>
-              <li>Permiso de Circulación 2 Año: 75% de exención</li>
-              <li>Permiso de Circulación 3 Año: 50% de exención</li>
-              <li>Permiso de Circulación 4 Año: 25% de exención</li>
-              <li>Permiso de Circulación 5 Año: 25% de exención</li>
-              <li>Mantenimiento Anual Auto Combustible (CLP): $250.000 CLP</li>
+              <li>Permiso de Circulación 2025 Año: 75% de exención</li>
+              <li>Permiso de Circulación 2026 Año: 75% de exención</li>
+              <li>Permiso de Circulación 2027 Año: 50% de exención</li>
+              <li>Permiso de Circulación 2028 Año: 25% de exención</li>
+              <li>Permiso de Circulación 2029 Año: 25% de exención</li>
+              <li>Mantenimiento Anual Auto Combustible (CLP): $250.000</li>
               <li>
-                Mantenimiento Anual Auto Eléctrico & Hibrido (CLP): $125.000 CLP
+                Mantenimiento Anual Auto Eléctrico & Hibrido (CLP): $125.000
               </li>
             </ul>
             <p class="mt-2 text-sm text-zinc-600 italic">
@@ -100,20 +107,25 @@
               costo de mantenimiento de taller oficial.
             </p>
           </div>
-          <div class="flex w-full flex-col items-center gap-4">
-            <p class="h6 text-center">
+          <div class="h5 flex w-full flex-col items-center gap-4">
+            <p class="text-center">
               Si te cambiaras a
-              <span class="text-primary h5">[marca, modelo, versión]</span>
+              <span class="text-primary">[marca, modelo, versión]</span>
             </p>
-            <p class="h5 max-w-lg text-center">
-              En <span class="text-primary h5">5</span> años podrías ahorrar
-              hasta
-              <span class="text-primary h5">
+            <p class="max-w-lg text-center">
+              En <span class="text-primary">5</span> años podrías ahorrar hasta
+              <span class="text-primary">
                 [calculo diferencia gato combustible vs. carga residencial]
               </span>
-              en combustible.
+              en incentivos y mantenimiento.
             </p>
-            <BarComponent :value1="69000" :value2="390000" :max="420000" />
+            <BarComponent
+              :values="[50]"
+              :labels="[
+                { label: 'Vehículo Electrico', value: 'calculo' },
+                { label: 'Vehículo Combustible', value: 'calculo' },
+              ]"
+            />
           </div>
         </div>
       </CardComponent>
@@ -122,18 +134,28 @@
         <div class="flex">
           <div class="body max-w-lg">
             <p class="mb-2">
-              Instala tu Kit Solar Residencial para cubrir el consumo eléctrico
-              de carga residencial en su totalidad y disfrutar más de 15 años de
-              carga gratuita.
+              Instala tu Kit Solar Residencial y cubre la carga de tu auto
+              eléctrico. Gracias a netbilling, la energía inyectada genera
+              crédito en tu cuenta de luz, con un retorno de inversión esperado
+              en ~6 años y paneles que producen electricidad por más de 20 años,
+              permitiéndote disfrutar de más de 14 años de carga gratuita y
+              reducir parte de tu cuenta de luz.
             </p>
             <ul class="ml-2 list-inside list-disc">
-              <li>Inversión (CLP):</li>
-              <li>Capacidad Instalada (kWp): 2.5</li>
-              <li>Electricidad Generada al Año (kWh): 4464</li>
-              <li>
-                Consumo Eléctrico Carga Residencial al Año (kWh): [calculo]
-              </li>
+              <li>Inversión Inicial (CLP): $2.990.000</li>
+              <li>Potencia Instalada (kWp): 2.5</li>
+              <li>Horas Sol Pleno/Año (horas): 1800</li>
+              <li>Producción Anual (kWh): 4500</li>
+              <li>Consumo Auto Eléctrico (kWh/año): Calculo</li>
+              <li>Tarifa Residencial (CLP/kWh): $200</li>
+              <li>Crédito por Inyección (CLP/kWh): $100</li>
+              <li>Retorno Inversión (Años): 6.6</li>
             </ul>
+            <p class="mt-2 text-sm text-zinc-600 italic">
+              Los valores utilizados son nominales y actuales representables en
+              Santiago, Chile; los números reales pueden variar según consumo,
+              tarifas y condiciones futuras.
+            </p>
           </div>
         </div>
       </CardComponent>
@@ -142,7 +164,6 @@
 </template>
 
 <script lang="ts" setup>
-import BarComponent from "~/components/BarComponent.vue";
 import type { DataObject, ResponseData } from "~/types/api";
 import type { Cars } from "~/types/cars";
 

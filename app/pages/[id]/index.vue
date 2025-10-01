@@ -128,7 +128,7 @@
           AutoVolt recopila información de vehículos de fabricantes,
           concesionarios y fuentes públicas. Si bien pueden existir diferencias,
           hacemos nuestro mayor esfuerzo por validar los datos con múltiples
-          fuentes para ofrecer la mejor calidad y confiabilidad.
+          fuentes para ofrecer la mejor calidad y confiabilidad.
         </p>
       </CardComponent>
     </div>
@@ -166,7 +166,17 @@
               <p class="body font-bold">{{ car.maxima_velocidad_raw }}</p>
             </div>
             <div>
-              <p class="body">Consumo Combustible</p>
+              <p class="body">
+                Consumo Combustible
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Consumo del Motor de Combustión Interna (MCI), indicador de la eficiencia en el uso de combustible en condiciones mixtas."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
               <p class="body font-bold">{{ car.consumo_raw }}</p>
             </div>
             <div>
@@ -174,7 +184,17 @@
               <p class="body font-bold">{{ car.potencia_kw }}</p>
             </div>
             <div>
-              <p class="body">Autonomia Combustible</p>
+              <p class="body">
+                Autonomia Combustible
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Rango estimado de conducción usando solo combustible, considerando condiciones mixtas de ciudad y carretera."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
               <p class="body font-bold">{{ car.autonomia_combustible }}</p>
             </div>
             <div>
@@ -221,7 +241,17 @@
           <h3 class="h3">Eficiencia Eléctrica</h3>
           <div class="grid grid-cols-2 gap-2 text-xl">
             <div>
-              <p class="body">Autonomía Batería (WLTP)</p>
+              <p class="body">
+                Autonomía Batería (WLTP)
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Rango estimado de conducción solo con energía eléctrica, calculado bajo el estándar WLTP."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
               <p class="body font-bold">{{ car.rango_wltp_raw }}</p>
             </div>
             <div>
@@ -237,7 +267,17 @@
               <p class="body font-bold">{{ car.consumo_comparable }}</p>
             </div>
             <div>
-              <p class="body">Eficiencia Eléctrica</p>
+              <p class="body">
+                Eficiencia Eléctrica
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Consumo Eléctrico, indicador de la eficiencia del motor eléctrico en el uso de energía principalmente en ciudad."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
               <p class="body font-bold">{{ car.consumo_electrico }}</p>
             </div>
           </div>
@@ -250,11 +290,31 @@
               <p class="body font-bold">{{ car.tipo_bateria }}</p>
             </div>
             <div>
-              <p class="body">Tipo de Carga DC</p>
+              <p class="body">
+                Tipo de Carga DC
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Corriente Continua para carga rápida en estaciones públicas."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
               <p class="body font-bold">{{ car.tipo_carga_dc }}</p>
             </div>
             <div>
-              <p class="body">Tipo de Carga AC</p>
+              <p class="body">
+                Tipo de Carga AC
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Corriente Alterna para carga residencial o en destinos"
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
               <p class="body font-bold">{{ car.tipo_carga_ac }}</p>
             </div>
             <div>

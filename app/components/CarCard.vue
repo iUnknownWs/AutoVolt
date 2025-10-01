@@ -35,7 +35,7 @@
           <ClientOnly>
             <TooltipComponent
               class="h-3"
-              text="Consumo eléctrico del vehículo en kWh/100km"
+              text="Consumo Eléctrico, indicador de la eficiencia del motor eléctrico en el uso de energía principalmente en ciudad."
             >
               <Icon name="ph:info-bold" />
             </TooltipComponent>
@@ -49,7 +49,7 @@
           <ClientOnly>
             <TooltipComponent
               class="h-3"
-              text="Consumo eléctrico del vehículo en kWh/100km"
+              text="Consumo del Motor de Combustión Interna (MCI), indica la eficiencia en el uso de combustible en condiciones mixtas."
             >
               <Icon name="ph:info-bold" />
             </TooltipComponent>
@@ -63,7 +63,7 @@
           <ClientOnly>
             <TooltipComponent
               class="h-3"
-              text="Consumo eléctrico del vehículo en kWh/100km"
+              text="La autonomía total considera tanto la independencia eléctrica como la de combustible."
             >
               <Icon name="ph:info-bold" />
             </TooltipComponent>

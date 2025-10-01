@@ -1,53 +1,89 @@
 <template>
   <div class="bg-base-300 relative h-8 w-full rounded-lg">
+    <!-- Barras coloreadas -->
+    <template v-for="(width, i) in coloredWidths" :key="i">
+      <div
+        :class="[
+          'absolute top-0 flex h-full items-center justify-center',
+          i === 0 ? 'bg-primary rounded-l-lg' : i === 1 ? 'bg-secondary' : '',
+        ]"
+        :style="{
+          width: width + '%',
+          left: coloredLefts[i] + '%',
+        }"
+      >
+        <span class="mx-auto text-sm">
+          {{ localLabels[i]?.label }}
+        </span>
+        <span class="absolute -bottom-6 text-sm">
+          {{ localLabels[i]?.value }}
+        </span>
+      </div>
+    </template>
     <div
-      class="bg-primary absolute top-0 flex h-full flex-1 items-center justify-between rounded-l-lg"
-      :style="{ width: value1Width + '%' }"
+      class="absolute top-0 flex h-full items-center justify-center"
+      :style="{
+        width: grayWidth + '%',
+        left: grayLeft + '%',
+      }"
     >
-      <span class="mx-auto text-sm"> C. Residencial </span>
+      <span class="text-base-content mx-auto text-sm">
+        {{ localLabels[localLabels.length - 1]?.label }}
+      </span>
     </div>
     <div
-      class="bg-secondary absolute top-0 flex h-full flex-1 items-center justify-between"
-      :style="{ width: value2Width + '%', left: value1Width + '%' }"
+      class="absolute -bottom-6 z-10 mt-2 flex w-full items-center justify-end"
     >
-      <span class="mx-auto text-sm"> C. Pública </span>
-    </div>
-    <div
-      class="absolute -bottom-6 z-10 mt-2 flex w-full items-center justify-between"
-    >
-      <span class="text-sm">Mín: {{ min }}</span>
-      <span class="text-sm"> $6.919.900</span>
+      <span class="text-sm">
+        {{ localLabels[localLabels.length - 1]?.value }}
+      </span>
     </div>
     <span class="self-end text-sm">Combustible</span>
   </div>
 </template>
 
 <script setup lang="ts">
+interface labels {
+  label: string;
+  value: string;
+}
+
 const props = defineProps({
-  min: {
-    type: Number,
+  min: { type: Number, required: true, default: 0 },
+  max: { type: Number, required: true, default: 100 },
+  values: {
+    type: Array as () => number[],
     required: true,
-    default: 0,
   },
-  max: {
-    type: Number,
+  labels: {
+    type: Array as PropType<labels[]>,
     required: true,
-    default: 100,
-  },
-  value1: {
-    type: Number,
-    required: true,
-    default: 30,
-  },
-  value2: {
-    type: Number,
-    required: true,
-    default: 60,
   },
 });
 
-const value1Width =
-  ((props.value1 - props.min) / (props.max - props.min)) * 100;
-const value2Width =
-  ((props.value2 - props.value1) / (props.max - props.min)) * 100;
+// Calcula los anchos y posiciones para las barras coloreadas
+const coloredWidths: number[] = [];
+const coloredLefts: number[] = [];
+const n = props.values.length;
+
+for (let i = 0; i < n; i++) {
+  const prev = i === 0 ? props.min : (props.values[i - 1] ?? props.min);
+  const curr = props.values[i] ?? props.min;
+  coloredWidths.push(((curr - prev) / (props.max - props.min)) * 100);
+  coloredLefts.push(((prev - props.min) / (props.max - props.min)) * 100);
+}
+
+// Barra gris (fondo)
+const grayWidth =
+  ((props.max - (props.values[n - 1] ?? props.min)) / (props.max - props.min)) *
+  100;
+const grayLeft =
+  (((props.values[n - 1] ?? props.min) - props.min) / (props.max - props.min)) *
+  100;
+
+// Labels locales
+const localLabels = [...props.labels];
+while (localLabels.length < n + 1) {
+  localLabels.push({ label: "", value: "" });
+}
 </script>
