@@ -257,6 +257,10 @@ const payload = reactive({
   telefono: "",
   modo_contacto: "",
   comentarios: "",
+  comercializadora: "",
+  sucursal: "",
+  precio_lista: "",
+  direccion: "",
 });
 
 const actualBranch = ref<number | null>(null);
@@ -287,6 +291,7 @@ const city = ref("");
 
 const { data: regions } = await useFetch<string[]>("/branch_regions/", {
   $fetch: $api,
+  query: { marca: car.value?.marca },
   key: "regions",
 });
 

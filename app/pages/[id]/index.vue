@@ -125,10 +125,10 @@
       <CardComponent class="p-6">
         <h3 class="h3">Especificaciones</h3>
         <p class="body mt-2 text-xl font-medium">
-          AutoVolt recopila información de vehículos desde fabricantes,
-          concesionarios y fuentes públicas. Si bien pueden existir diferencias
-          menores, hacemos nuestro mayor esfuerzo por validar los datos con
-          múltiples fuentes para ofrecer la mejor calidad y confiabilidad.
+          AutoVolt recopila información de vehículos de fabricantes,
+          concesionarios y fuentes públicas. Si bien pueden existir diferencias,
+          hacemos nuestro mayor esfuerzo por validar los datos con múltiples
+          fuentes para ofrecer la mejor calidad y confiabilidad.
         </p>
       </CardComponent>
     </div>
@@ -237,7 +237,7 @@
               <p class="body font-bold">{{ car.consumo_comparable }}</p>
             </div>
             <div>
-              <p class="body">Consumo Eléctrico</p>
+              <p class="body">Eficiencia Eléctrica</p>
               <p class="body font-bold">{{ car.consumo_electrico }}</p>
             </div>
           </div>

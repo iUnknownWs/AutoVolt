@@ -30,11 +30,11 @@
         <p class="body font-bold">{{ car.tipo_ev }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <p class="flex items-center gap-1">
+        <p class="flex gap-1">
           Consumo EV
           <ClientOnly>
             <TooltipComponent
-              class="tooltip-secondary h-3"
+              class="h-3"
               text="Consumo eléctrico del vehículo en kWh/100km"
             >
               <Icon name="ph:info-bold" />
@@ -44,11 +44,31 @@
         <p class="body font-bold">{{ car.consumo_electrico }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <p>Consumo MCI</p>
+        <p class="flex gap-1">
+          Consumo MCI
+          <ClientOnly>
+            <TooltipComponent
+              class="h-3"
+              text="Consumo eléctrico del vehículo en kWh/100km"
+            >
+              <Icon name="ph:info-bold" />
+            </TooltipComponent>
+          </ClientOnly>
+        </p>
         <p class="body font-bold">{{ car.consumo_raw }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <p>Autonomía Total</p>
+        <p class="flex gap-1">
+          Autonomía Total
+          <ClientOnly>
+            <TooltipComponent
+              class="h-3"
+              text="Consumo eléctrico del vehículo en kWh/100km"
+            >
+              <Icon name="ph:info-bold" />
+            </TooltipComponent>
+          </ClientOnly>
+        </p>
         <p class="body font-bold">{{ car.rango_wltp_raw }}</p>
       </div>
     </div>

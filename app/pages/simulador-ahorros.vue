@@ -3,7 +3,10 @@
     <h1 class="h2 mb-4 px-8">Simulador de ahorros</h1>
     <div class="flex flex-col gap-6 px-8">
       <CardComponent class="w-fit p-6">
-        <p class="h5 mb-2">Seleccione un vehiculo</p>
+        <p class="h5 mb-2">
+          Seleccione un Vehículo (Solo Eléctricos BEV & Híbridos Enchufables
+          PHEV)
+        </p>
         <div class="flex gap-4">
           <SelectComponent
             v-if="brands"
@@ -34,24 +37,21 @@
         </div>
       </CardComponent>
       <CardComponent class="w-full px-10 py-8">
-        <p class="h5 mb-2">Ahorro en Combustible</p>
-        <div class="flex gap-12">
-          <div class="flex w-full flex-col items-center gap-4">
-            <p class="h6 text-center">
+        <div class="flex items-center gap-12">
+          <div class="h5 flex w-full flex-col items-center gap-4">
+            <p class="text-center">
               Si te cambiaras a
-              <span class="text-primary h5">[marca, modelo, versión]</span>
+              <span class="text-primary">[marca, modelo, versión]</span>
             </p>
-            <p class="h5 max-w-lg text-center">
-              En <span class="text-primary h5">5</span> años podrías ahorrar
-              hasta
-              <span class="text-primary h5">
-                [calculo diferencia gato combustible vs. carga residencial]
-              </span>
+            <p class="mb-2 text-center">
+              En <span class="text-primary">5</span> años podrías ahorrar hasta
+              <span class="text-primary"> [Ahorro] </span>
               en combustible.
             </p>
             <BarComponent />
           </div>
           <div class="body max-w-lg">
+            <p class="h5 mb-2">Ahorro en Combustible</p>
             <p class="mb-2">
               Los ahorros del auto eléctrico & hibrido se calculan usando los
               siguientes parámetros:
@@ -113,7 +113,7 @@
               </span>
               en combustible.
             </p>
-            <BarComponent />
+            <BarComponent :value1="69000" :value2="390000" :max="420000" />
           </div>
         </div>
       </CardComponent>

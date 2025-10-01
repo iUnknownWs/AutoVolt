@@ -31,6 +31,7 @@
             </details>
           </li>
           <li><NuxtLink to="/tendencias">Tendencias</NuxtLink></li>
+          <li><NuxtLink to="/contacto">Contacto</NuxtLink></li>
           <!-- <li>
             <RouterLink
               :to="{ name: 'comparador', query: { carIds } }"
@@ -44,9 +45,9 @@
               </div>
             </RouterLink>
           </li> -->
-          <li class="ml-4">
+          <!-- <li class="ml-4">
             <button class="btn btn-primary">Explora con IA</button>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
