@@ -383,25 +383,8 @@
       <h2 class="h3">Video Reseñas</h2>
       <div class="grid grid-cols-3 gap-4">
         <iframe
-          src="https://www.youtube.com/embed/_ZdsmLgCVdU?si=Fqs589GPJfPw_F5q"
-          class="aspect-video w-full rounded-xl"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-        <iframe
-          src="https://www.youtube.com/embed/_ZdsmLgCVdU?si=Fqs589GPJfPw_F5q"
-          class="aspect-video w-full rounded-xl"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-        <iframe
-          src="https://www.youtube.com/embed/_ZdsmLgCVdU?si=Fqs589GPJfPw_F5q"
+          v-for="video in car.video_urls"
+          :src="video"
           class="aspect-video w-full rounded-xl"
           title="YouTube video player"
           frameborder="0"

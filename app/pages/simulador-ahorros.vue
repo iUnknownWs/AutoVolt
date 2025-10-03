@@ -38,22 +38,27 @@
       </CardComponent>
       <CardComponent class="w-full px-10 py-8">
         <div class="flex items-center gap-12">
-          <div class="h5 flex w-full flex-col items-center gap-4">
+          <div class="h5 mb-8 flex w-full flex-col items-center gap-4">
             <p class="text-center">
               Si te cambiaras a
               <span class="text-primary">[marca, modelo, versión]</span>
             </p>
             <p class="mb-2 text-center">
               En <span class="text-primary">5</span> años podrías ahorrar hasta
-              <span class="text-primary"> [Ahorro] </span>
+              <span class="text-primary">
+                {{ formatNumber(ahorro_años) }}
+              </span>
               en combustible.
             </p>
             <BarComponent
               :values="[30, 60]"
               :labels="[
-                { label: 'C. Residencial', value: 'calculo' },
-                { label: 'C. Pública', value: 'calculo' },
-                { label: 'Combustible', value: '$6.919.900' },
+                {
+                  label: 'C. Residencial',
+                  value: formatNumber(carga_residencial),
+                },
+                { label: 'C. Pública', value: formatNumber(carga_publica) },
+                { label: 'Combustible', value: '$6.920.000' },
               ]"
             />
           </div>
@@ -82,32 +87,34 @@
         </div>
       </CardComponent>
       <CardComponent class="w-full px-10 py-8">
-        <p class="h5 mb-2">Incentivos Gubernamentales & Mantenimiento</p>
-        <div class="flex gap-12">
-          <div class="body max-w-lg">
-            <p class="mb-2">
-              Además del ahorro en combustible, los autos eléctricos ofrecen
-              beneficios como descuentos en permisos y menores gastos de
-              mantenimiento.
-            </p>
-            <ul class="ml-2 list-inside list-disc">
-              <li>Permiso de Circulación 2025 Año: 75% de exención</li>
-              <li>Permiso de Circulación 2026 Año: 75% de exención</li>
-              <li>Permiso de Circulación 2027 Año: 50% de exención</li>
-              <li>Permiso de Circulación 2028 Año: 25% de exención</li>
-              <li>Permiso de Circulación 2029 Año: 25% de exención</li>
-              <li>Mantenimiento Anual Auto Combustible (CLP): $250.000</li>
-              <li>
-                Mantenimiento Anual Auto Eléctrico & Hibrido (CLP): $125.000
-              </li>
-            </ul>
-            <p class="mt-2 text-sm text-zinc-600 italic">
-              Los montos presentados son referenciales y se calculan en base al
-              valor de tasación fiscal del vehículo seleccionado, junto a el
-              costo de mantenimiento de taller oficial.
-            </p>
+        <div class="flex items-center gap-12">
+          <div class="flex max-w-lg flex-col">
+            <p class="h5 mb-2">Incentivos Gubernamentales & Mantenimiento</p>
+            <div class="body">
+              <p class="mb-2">
+                Además del ahorro en combustible, los autos eléctricos ofrecen
+                beneficios como descuentos en permisos y menores gastos de
+                mantenimiento.
+              </p>
+              <ul class="ml-2 list-inside list-disc">
+                <li>Permiso de Circulación 2025 Año: 75% de exención</li>
+                <li>Permiso de Circulación 2026 Año: 75% de exención</li>
+                <li>Permiso de Circulación 2027 Año: 50% de exención</li>
+                <li>Permiso de Circulación 2028 Año: 25% de exención</li>
+                <li>Permiso de Circulación 2029 Año: 25% de exención</li>
+                <li>Mantenimiento Anual Auto Combustible (CLP): $250.000</li>
+                <li>
+                  Mantenimiento Anual Auto Eléctrico & Hibrido (CLP): $125.000
+                </li>
+              </ul>
+              <p class="mt-2 text-sm text-zinc-600 italic">
+                Los montos presentados son referenciales y se calculan en base
+                al valor de tasación fiscal del vehículo seleccionado, junto a
+                el costo de mantenimiento de taller oficial.
+              </p>
+            </div>
           </div>
-          <div class="h5 flex w-full flex-col items-center gap-4">
+          <div class="h5 mb-8 flex w-full flex-col items-center gap-4">
             <p class="text-center">
               Si te cambiaras a
               <span class="text-primary">[marca, modelo, versión]</span>
@@ -130,32 +137,64 @@
         </div>
       </CardComponent>
       <CardComponent class="w-full px-10 py-8">
-        <p class="h5 mb-4">Ahorro Kit Solar Residencial</p>
-        <div class="flex">
-          <div class="body max-w-lg">
-            <p class="mb-2">
-              Instala tu Kit Solar Residencial y cubre la carga de tu auto
-              eléctrico. Gracias a netbilling, la energía inyectada genera
-              crédito en tu cuenta de luz, con un retorno de inversión esperado
-              en ~6 años y paneles que producen electricidad por más de 20 años,
-              permitiéndote disfrutar de más de 14 años de carga gratuita y
-              reducir parte de tu cuenta de luz.
+        <div class="flex items-center gap-12">
+          <div class="flex max-w-lg flex-col">
+            <p class="h5 mb-4">Ahorro Kit Solar Residencial</p>
+            <div class="body">
+              <p class="mb-2">
+                Instala tu Kit Solar Residencial y cubre la carga de tu auto
+                eléctrico. Gracias a netbilling, la energía inyectada genera
+                crédito en tu cuenta de luz, con un retorno de inversión
+                esperado en ~6 años y paneles que producen electricidad por más
+                de 20 años, permitiéndote disfrutar de más de 14 años de carga
+                gratuita y reducir parte de tu cuenta de luz.
+              </p>
+              <ul class="ml-2 list-inside list-disc">
+                <li>Inversión Inicial (CLP): $2.990.000</li>
+                <li>Potencia Instalada (kWp): 2.5</li>
+                <li>Horas Sol Pleno/Año (horas): 1800</li>
+                <li>Producción Anual (kWh): 4500</li>
+                <li>Consumo Auto Eléctrico (kWh/año): Calculo</li>
+                <li>Tarifa Residencial (CLP/kWh): $200</li>
+                <li>Crédito por Inyección (CLP/kWh): $100</li>
+                <li>Retorno Inversión (Años): 6.6</li>
+              </ul>
+              <p class="mt-2 text-sm text-zinc-600 italic">
+                Los valores utilizados son nominales y actuales representables
+                en Santiago, Chile; los números reales pueden variar según
+                consumo, tarifas y condiciones futuras.
+              </p>
+            </div>
+          </div>
+          <div class="h5 mb-8 flex w-full flex-col items-center gap-4">
+            <p class="text-center">
+              Si te cambiaras a
+              <span class="text-primary">[marca, modelo, versión]</span>
             </p>
-            <ul class="ml-2 list-inside list-disc">
-              <li>Inversión Inicial (CLP): $2.990.000</li>
-              <li>Potencia Instalada (kWp): 2.5</li>
-              <li>Horas Sol Pleno/Año (horas): 1800</li>
-              <li>Producción Anual (kWh): 4500</li>
-              <li>Consumo Auto Eléctrico (kWh/año): Calculo</li>
-              <li>Tarifa Residencial (CLP/kWh): $200</li>
-              <li>Crédito por Inyección (CLP/kWh): $100</li>
-              <li>Retorno Inversión (Años): 6.6</li>
-            </ul>
-            <p class="mt-2 text-sm text-zinc-600 italic">
-              Los valores utilizados son nominales y actuales representables en
-              Santiago, Chile; los números reales pueden variar según consumo,
-              tarifas y condiciones futuras.
+            <p class="mb-2 text-center">
+              En <span class="text-primary">5</span> años podrías ahorrar hasta
+              <span class="text-primary">
+                {{ formatNumber(carga_residencial) }}
+              </span>
+              en combustible.
             </p>
+            <BarComponent
+              :values="[30, 60]"
+              :labels="[
+                {
+                  label: 'Excedente Cuenta Luz',
+                  value: formatNumber(exdente_luz),
+                },
+                {
+                  label: 'Consumo Auto Electrico Año',
+                  value: formatNumber(calculo_consumo),
+                },
+                {
+                  label: 'Credito por Inyección',
+                  value: formatNumber(credito_inyeccion),
+                },
+              ]"
+            />
           </div>
         </div>
       </CardComponent>
@@ -198,4 +237,34 @@ const getVersions = async () => {
   });
   versions.value = data.results || [];
 };
+
+const consumo_electrico = 10.5;
+
+const consumo_año = computed(() => {
+  return 12775 / consumo_electrico;
+});
+
+const carga_residencial = computed(() => {
+  return ((12775 * 5) / consumo_electrico) * 200;
+});
+
+const carga_publica = computed(() => {
+  return ((12775 * 5) / consumo_electrico) * 350;
+});
+
+const ahorro_años = computed(() => {
+  return 6920000 - carga_residencial.value;
+});
+
+const calculo_consumo = computed(() => {
+  return consumo_año.value * 200;
+});
+
+const credito_inyeccion = computed(() => {
+  return 4500 * 100;
+});
+
+const exdente_luz = computed(() => {
+  return credito_inyeccion.value - calculo_consumo.value;
+});
 </script>

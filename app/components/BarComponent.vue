@@ -30,11 +30,7 @@
       <span class="text-base-content mx-auto text-sm">
         {{ localLabels[localLabels.length - 1]?.label }}
       </span>
-    </div>
-    <div
-      class="absolute -bottom-6 z-10 mt-2 flex w-full items-center justify-end"
-    >
-      <span class="text-sm">
+      <span class="absolute -bottom-6 text-sm">
         {{ localLabels[localLabels.length - 1]?.value }}
       </span>
     </div>
