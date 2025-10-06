@@ -78,8 +78,8 @@ const grayLeft =
   100;
 
 // Labels locales
-const localLabels = [...props.labels];
-while (localLabels.length < n + 1) {
-  localLabels.push({ label: "", value: "" });
+const localLabels = computed(() => [...props.labels]);
+while (localLabels.value.length < n + 1) {
+  localLabels.value.push({ label: "", value: "" });
 }
 </script>

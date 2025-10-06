@@ -26,15 +26,19 @@ export interface Cars {
 export interface CarDetails {
     id: number;
     potencia_kw: number;
-    efficiency_kwh_per_100km: number;
-    autonomia_combustible: number;
-    autonomia_combinada: number;
-    consumo_electrico: number;
-    consumo_diario: number;
-    consumo_comparable: number;
-    tiempo_carga_20_80_ac: number;
+    costo_permiso_circulacion: number;
+    costo_cinco_anos_electrico: number;
+    costo_cinco_anos_combustible: number;
+    ahorro_cinco_anos: number;
+    efficiency_kwh_per_100km: string;
+    autonomia_combustible: string;
+    autonomia_combinada: string;
+    consumo_electrico: string;
+    consumo_diario: string;
+    consumo_comparable: string;
+    tiempo_carga_20_80_ac: string;
     tiempo_carga_20_80_dc: string;
-    autonomia_80_20_carga: number;
+    autonomia_80_20_carga: string;
     is_electric: boolean;
     is_hybrid: boolean;
     marca_modelo: string;
@@ -45,6 +49,8 @@ export interface CarDetails {
     bateria_nominal_raw: string;
     inicio_produccion_raw: string;
     potencia_raw: string;
+    potencia_kw_raw: string;
+    potencia_hp_raw: string;
     torque_raw: string;
     aceleracion_raw: string;
     maxima_velocidad_raw: string;
@@ -74,6 +80,7 @@ export interface CarDetails {
     tipo_ev: string;
     ficha_tecnica: string;
     precio_lista: number;
+    tasacion_fiscal: number;
     rango_wltp: number;
     bateria_nominal: number;
     traccion: string;
@@ -105,6 +112,7 @@ export interface CarDetails {
     inicio_produccion: number;
     popularity: string;
     logo_urls: string[];
+    video_urls: string[];
     created_at: Date;
     updated_at: Date;
     car_raw: number;

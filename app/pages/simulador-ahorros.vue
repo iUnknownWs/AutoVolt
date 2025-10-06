@@ -33,7 +33,9 @@
             :disabled="versions.length === 0"
             v-model="carInput.id"
           />
-          <button class="btn btn-neutral">Simular ahorros</button>
+          <button class="btn btn-neutral" @click="selectVehicle">
+            Simular ahorros
+          </button>
         </div>
       </CardComponent>
       <CardComponent class="w-full px-10 py-8">
@@ -41,7 +43,9 @@
           <div class="h5 mb-8 flex w-full flex-col items-center gap-4">
             <p class="text-center">
               Si te cambiaras a
-              <span class="text-primary">[marca, modelo, versión]</span>
+              <span class="text-primary">
+                {{ car?.marca }} {{ car?.modelo }} {{ car?.version }}
+              </span>
             </p>
             <p class="mb-2 text-center">
               En <span class="text-primary">5</span> años podrías ahorrar hasta
@@ -72,7 +76,7 @@
               <li>Kilometraje Anual (km/día): <b>12.775</b></li>
               <li>
                 Consumo Eléctrico (km/kWh):
-                <b>consumo eléctrico</b>
+                <b>{{ car?.consumo_electrico }}</b>
               </li>
               <li>Consumo Promedio Combustible (km/L): <b>12</b></li>
               <li>Precio Carga Pública kWh (CLP): <b>$350 </b></li>
@@ -117,20 +121,28 @@
           <div class="h5 mb-8 flex w-full flex-col items-center gap-4">
             <p class="text-center">
               Si te cambiaras a
-              <span class="text-primary">[marca, modelo, versión]</span>
+              <span class="text-primary">
+                {{ car?.marca }} {{ car?.modelo }} {{ car?.version }}
+              </span>
             </p>
             <p class="max-w-lg text-center">
               En <span class="text-primary">5</span> años podrías ahorrar hasta
               <span class="text-primary">
-                [calculo diferencia gato combustible vs. carga residencial]
+                {{ formatNumber(car?.ahorro_cinco_anos ?? 0) }}
               </span>
               en incentivos y mantenimiento.
             </p>
             <BarComponent
               :values="[50]"
               :labels="[
-                { label: 'Vehículo Electrico', value: 'calculo' },
-                { label: 'Vehículo Combustible', value: 'calculo' },
+                {
+                  label: 'Vehículo Electrico',
+                  value: formatNumber(car?.costo_cinco_anos_electrico ?? 0),
+                },
+                {
+                  label: 'Vehículo Combustible',
+                  value: formatNumber(car?.costo_cinco_anos_combustible ?? 0),
+                },
               ]"
             />
           </div>
@@ -154,7 +166,10 @@
                 <li>Potencia Instalada (kWp): 2.5</li>
                 <li>Horas Sol Pleno/Año (horas): 1800</li>
                 <li>Producción Anual (kWh): 4500</li>
-                <li>Consumo Auto Eléctrico (kWh/año): Calculo</li>
+                <li>
+                  Consumo Auto Eléctrico (kWh/año):
+                  {{ formatNumber(calculo_consumo) }}
+                </li>
                 <li>Tarifa Residencial (CLP/kWh): $200</li>
                 <li>Crédito por Inyección (CLP/kWh): $100</li>
                 <li>Retorno Inversión (Años): 6.6</li>
@@ -169,7 +184,9 @@
           <div class="h5 mb-8 flex w-full flex-col items-center gap-4">
             <p class="text-center">
               Si te cambiaras a
-              <span class="text-primary">[marca, modelo, versión]</span>
+              <span class="text-primary"
+                >{{ car?.marca }} {{ car?.modelo }} {{ car?.version }}</span
+              >
             </p>
             <p class="mb-2 text-center">
               En <span class="text-primary">5</span> años podrías ahorrar hasta
@@ -204,7 +221,7 @@
 
 <script lang="ts" setup>
 import type { DataObject, ResponseData } from "~/types/api";
-import type { Cars } from "~/types/cars";
+import type { CarDetails, Cars } from "~/types/cars";
 
 const carInput = reactive({
   brand: "" as DataObject | "",
@@ -214,7 +231,8 @@ const carInput = reactive({
 
 const { $api } = useNuxtApp();
 const { data: brands } = await useFetch(`car_brands/`, {
-  key: "brands",
+  key: "brands_by_tipo_ev",
+  query: { tipo_ev: "BEV,PHEV" },
   transform: (data: ResponseData<DataObject>) => data.results,
   $fetch: $api,
 });
@@ -224,6 +242,7 @@ const getModels = async () => {
   if (!carInput.brand) return;
   const data = await $api<ResponseData<DataObject>>(
     `car_models/?marca_id=${carInput.brand.id}`,
+    { params: { tipo_ev: "BEV,PHEV" } },
   );
   models.value = data.results || [];
 };
@@ -233,23 +252,54 @@ const getVersions = async () => {
   if (!carInput.model) return;
   if (!carInput.brand) return;
   const data = await $api<ResponseData<Cars>>("cars/search/", {
-    params: { modelo: carInput.model, marca: carInput.brand?.name },
+    params: {
+      modelo: carInput.model,
+      marca: carInput.brand?.name,
+      tipo_ev_list: "BEV,PHEV",
+    },
   });
   versions.value = data.results || [];
 };
 
-const consumo_electrico = 10.5;
+const car = ref(null as CarDetails | null);
+const selectVehicle = async () => {
+  if (!carInput.id) return;
+  car.value = await $api<CarDetails>(`cars/${carInput.id}/`);
+};
+
+const barLabels = computed(() => [
+  {
+    label: "C. Residencial",
+    value: formatNumber(carga_residencial.value),
+  },
+  {
+    label: "C. Pública",
+    value: formatNumber(carga_publica.value),
+  },
+  {
+    label: "Combustible",
+    value: "$6.920.000",
+  },
+]);
+
+const consumoElectrico = computed(() => {
+  if (!car.value) return 0;
+  return car.value.consumo;
+});
 
 const consumo_año = computed(() => {
-  return 12775 / consumo_electrico;
+  if (!car.value) return 0;
+  return 12775 / consumoElectrico.value;
 });
 
 const carga_residencial = computed(() => {
-  return ((12775 * 5) / consumo_electrico) * 200;
+  if (!car.value) return 0;
+  return ((12775 * 5) / consumoElectrico.value) * 200;
 });
 
 const carga_publica = computed(() => {
-  return ((12775 * 5) / consumo_electrico) * 350;
+  if (!car.value) return 0;
+  return ((12775 * 5) / consumoElectrico.value) * 350;
 });
 
 const ahorro_años = computed(() => {
