@@ -45,8 +45,8 @@ interface labels {
 }
 
 const props = defineProps({
-  min: { type: Number, required: true, default: 0 },
-  max: { type: Number, required: true, default: 100 },
+  min: { type: Number, default: 0 },
+  max: { type: Number, default: 100 },
   values: {
     type: Array as () => number[],
     required: true,

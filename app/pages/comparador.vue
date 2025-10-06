@@ -106,7 +106,7 @@
         </div>
       </div>
     </CardComponent>
-    <CardComponent class="m-6 p-6">
+    <CardComponent class="mt-6 p-6">
       <div class="grid grid-cols-5">
         <p class="h6">Tipo EV</p>
         <p v-for="car in 4" class="body text-center font-semibold">
@@ -221,14 +221,14 @@
           class="btn btn-neutral checked:btn-primary"
           v-model="tab"
         />
-        <input
+        <!-- <input
           type="radio"
           name="compare-tabs"
           aria-label="Ahorro en combustible"
           value="Ahorro en combustible"
           class="btn btn-neutral checked:btn-primary"
           v-model="tab"
-        />
+        /> -->
       </CardComponent>
     </div>
     <div class="px-6">

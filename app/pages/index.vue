@@ -2,9 +2,9 @@
   <div class="mx-auto w-full">
     <HomeHeroComponent />
     <div class="h-full w-full">
-      <div class="relative h-20 w-full px-6">
+      <div class="relative h-8 w-full px-6">
         <div
-          class="from-neutral absolute inset-x-0 -top-20 z-10 mx-auto w-max rounded-lg bg-gradient-to-b to-[#44462E] p-6 shadow-2xl"
+          class="from-neutral absolute inset-x-0 -top-30 z-10 mx-auto w-max rounded-lg bg-gradient-to-b to-[#44462E] p-6 shadow-2xl"
         >
           <p class="text-neutral-content text-2xl font-bold">
             Autos Eléctricos & Híbridos

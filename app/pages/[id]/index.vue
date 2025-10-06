@@ -181,7 +181,7 @@
             </div>
             <div>
               <p class="body">Potencia del Motor (kW)</p>
-              <p class="body font-bold">{{ car.potencia_kw }}</p>
+              <p class="body font-bold">{{ car.potencia_kw_raw }}</p>
             </div>
             <div>
               <p class="body">
@@ -199,7 +199,7 @@
             </div>
             <div>
               <p class="body">Potencia del Motor (HP)</p>
-              <p class="body font-bold">{{ car.potencia_raw }}</p>
+              <p class="body font-bold">{{ car.potencia_hp_raw }}</p>
             </div>
           </div>
         </CardComponent>
@@ -232,8 +232,10 @@
             </div>
           </div>
         </CardComponent>
-        <CardComponent class="flex flex-col gap-4 p-6">
-          <h3 class="h3">Ahorro en Combustible</h3>
+        <CardComponent
+          class="flex h-full flex-col items-center justify-center gap-4 p-6"
+        >
+          <NuxtLink class="h1"> Guia AutoVolt </NuxtLink>
         </CardComponent>
       </div>
       <div class="flex flex-1 flex-col gap-6">
@@ -371,11 +373,6 @@
               <p class="body font-bold">{{ car.inicio_produccion_raw }}</p>
             </div>
           </div>
-        </CardComponent>
-        <CardComponent
-          class="flex flex-col items-center justify-center gap-4 p-6"
-        >
-          <NuxtLink class="h1"> Guia AutoVolt </NuxtLink>
         </CardComponent>
       </div>
     </div>
