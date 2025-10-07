@@ -34,6 +34,7 @@ export interface CarDetails {
     autonomia_combustible: string;
     autonomia_combinada: string;
     consumo_electrico: string;
+    consumo_electrico_numeric: number;
     consumo_diario: string;
     consumo_comparable: string;
     tiempo_carga_20_80_ac: string;
@@ -81,6 +82,9 @@ export interface CarDetails {
     ficha_tecnica: string;
     precio_lista: number;
     tasacion_fiscal: number;
+    bono_comercializadora: string;
+    bono_financiamiento: string;
+    precio_oferta: string;
     rango_wltp: number;
     bateria_nominal: number;
     traccion: string;
