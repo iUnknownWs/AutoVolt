@@ -65,19 +65,19 @@ const orderList: dataObject[] = [
 
 const cargaInfo = [
   {
-    id: 0,
+    id: 'instalacion_cargador_ac',
     title: 'Instalación de Cargador Residencial (AC)',
     description: 'Instalación rápida y segura de tu cargador en casa o edificio, con conexión monofásica y certificada por la SEC.',
     price: '749.000',
   },
   {
-    id: 1,
+    id: 'cargador_residencial_instalacion',
     title: 'Cargador Residencial más Instalación',
     description: 'Cargador Wallbox Pulsar Plus 7.4 kW (AC) con instalación incluida, en un solo paquete para casas y edificios.',
     price: '1.549.000'
   },
   {
-    id: 2,
+    id: 'kit_solar_residencial',
     title: 'Kit Solar Residencial',
     description: 'Genera tu propia energía limpia en casa con nuestro kit solar residencial de 2.5 kWp, diseñado para cubrir el 100% del consumo eléctrico de carga de tu auto.',
     price: '2.990.000'
