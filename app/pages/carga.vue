@@ -74,7 +74,7 @@
                       name="option"
                       class="radio radio-neutral"
                       :value="carga.id"
-                      v-model="payload.tipo_servicio"
+                      v-model="cargaSelected"
                     />
                     <div class="ml-6">
                       <p class="h6">{{ carga.title }}</p>
@@ -94,10 +94,7 @@
               </div>
             </div>
           </div>
-          <div
-            v-if="payload.tipo_servicio == 'instalacion_cargador_ac'"
-            class="w-full"
-          >
+          <div v-if="cargaSelected == 0" class="w-full">
             <p class="h5 w-full underline">
               Descripción de la Instalación de Cargador Residencial
             </p>
@@ -115,10 +112,7 @@
               <li>Preguntas frecuentes:</li>
             </ul>
           </div>
-          <div
-            v-if="payload.tipo_servicio == 'cargador_residencial_instalacion'"
-            class="w-full"
-          >
+          <div v-if="cargaSelected == 1" class="w-full">
             <p class="h5 w-full underline">
               Descripción del Cargador Residencial más Instalación
             </p>
@@ -136,10 +130,7 @@
               <li>Preguntas frecuentes:</li>
             </ul>
           </div>
-          <div
-            v-if="payload.tipo_servicio == 'kit_solar_residencial'"
-            class="w-full"
-          >
+          <div v-if="cargaSelected == 2" class="w-full">
             <p class="h5 w-full underline">
               Descripción del Kit Solar Residencial
             </p>
@@ -186,6 +177,7 @@ const { $api } = useNuxtApp();
 
 const snackbar = useSnackbar();
 
+const cargaSelected = ref(0);
 const payload = reactive({
   nombre: "",
   apellido: "",
@@ -193,7 +185,7 @@ const payload = reactive({
   telefono: "",
   tipo_residencia: "",
   direccion: "",
-  tipo_servicio: "instalacion_cargador_ac",
+  tipo_servicio: "",
   comentarios: "",
 });
 
@@ -206,7 +198,9 @@ const submitForm = async () => {
     });
     return;
   }
-
+  payload.tipo_servicio =
+    masterData.cargaInfo.find((carga) => carga.id === cargaSelected.value)
+      ?.title || "";
   await $api("formulario_cotizador_carga_residencial/", {
     method: "POST",
     body: payload,
