@@ -19,7 +19,7 @@
       <li class="step" :class="{ 'step-primary': step == 2 }">Ofertas</li>
     </ul>
     <div
-      class="border-neutral bg-base-100 flex w-full max-w-4xl min-w-3xl flex-col gap-6 rounded-2xl border-2 p-12"
+      class="border-neutral bg-base-100 flex min-w-3xl flex-col gap-6 rounded-2xl border-2 p-12"
     >
       <div v-if="car" class="mx-auto flex w-fit gap-16">
         <div class="flex flex-col items-center gap-2">
@@ -185,15 +185,15 @@
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Bono Comercializadora</p>
-                <p class="h6">{{ car?.bono_comercializadora || "-" }}</p>
+                <p class="h6">-</p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Bono Financiamiento</p>
-                <p class="h6">{{ car?.bono_financiamiento || "-" }}</p>
+                <p class="h6">-</p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Precio Oferta</p>
-                <p class="h6">{{ car?.precio_oferta || "-" }}</p>
+                <p class="h6">-</p>
               </div>
             </div>
             <button
@@ -212,8 +212,9 @@
             </button>
           </CardComponent>
         </div>
+        <div v-else-if="loading" class="mx-auto"></div>
         <div v-else class="mx-auto">
-          <p class="h5 text-center">
+          <p class="h5">
             Selecciona tu región y ciudad, luego haz clic en "Buscar Ofertas"
             para ver todas las opciones disponibles.
           </p>
@@ -224,7 +225,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ResponseData } from "~/types/api";
+import type { DataObject, ResponseData } from "~/types/api";
 import type { Branch } from "~/types/branches";
 import type { CarDetails } from "~/types/cars";
 
@@ -250,7 +251,6 @@ const openModal = (branch: Branch) => {
 const snackbar = useSnackbar();
 const payload = reactive({
   car_id: id,
-  branch_id: null as number | string | null,
   nombre: "",
   apellido: "",
   email: "",
@@ -265,9 +265,7 @@ const payload = reactive({
 
 const actualBranch = ref<number | null>(null);
 const appraisedList = ref<number[]>([]);
-
 const appraise = async () => {
-  payload.branch_id = actualBranch.value || "";
   await $api("/formulario_cotizador/", {
     method: "POST",
     body: payload,

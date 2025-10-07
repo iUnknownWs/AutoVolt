@@ -244,12 +244,12 @@
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Potencia del Motor (kW)</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.potencia_kw_raw || "-" }}
+            {{ cars[car - 1]?.potencia_kw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Potencia del Motor (HP)</p>
           <p v-for="car in 4" class="body text-center font-bold">
-            {{ cars[car - 1]?.potencia_hp_raw || "-" }}
+            {{ cars[car - 1]?.potencia_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
           <p class="h6">Tracción</p>
@@ -293,7 +293,17 @@
             {{ cars[car - 1]?.consumo_raw || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Autonomía Combustible</p>
+          <p class="h6">
+            Autonomía Combustible
+            <ClientOnly>
+              <TooltipComponent
+                class="h-3"
+                text="Rango estimado de conducción usando solo combustible, considerando condiciones mixtas de ciudad y carretera."
+              >
+                <Icon name="ph:info-bold" size="14" />
+              </TooltipComponent>
+            </ClientOnly>
+          </p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.autonomia_combustible || "-" }}
           </p>
@@ -395,12 +405,12 @@
             {{ cars[car - 1]?.consumo_electrico || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Consumo Diario</p>
+          <p class="h6">Consumo Diario (kWh; 35 km)</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.consumo_diario || "-" }}
           </p>
           <div class="divider col-span-5 m-0"></div>
-          <p class="h6">Consumo Comparable</p>
+          <p class="h6">Consumo Comparable (kWh; 35 km)</p>
           <p v-for="car in 4" class="body text-center font-bold">
             {{ cars[car - 1]?.consumo_comparable || "-" }}
           </p>

@@ -1,25 +1,24 @@
 <template>
-  <div class="">
-    <textarea
-      v-if="validation"
-      class="textarea validator"
-      :class="$attrs.class"
-      :type="type"
-      required
-      :placeholder="placeholder"
-      v-model="value"
-    />
-    <textarea
-      v-else
-      class="textarea"
-      :class="$attrs.class"
-      :type="type"
-      :required="false"
-      :placeholder="placeholder"
-      v-model="value"
-    />
-    <div v-if="validation" class="validator-hint">{{ validation }}</div>
-  </div>
+  <textarea
+    v-if="validation"
+    class="textarea validator"
+    :class="$attrs.class"
+    :type="type"
+    required
+    :placeholder="placeholder"
+    v-model="value"
+  />
+
+  <textarea
+    v-else
+    class="textarea"
+    :class="$attrs.class"
+    :type="type"
+    :required="false"
+    :placeholder="placeholder"
+    v-model="value"
+  />
+  <div v-if="validation" class="validator-hint">Enter valid email address</div>
 </template>
 
 <script lang="ts" setup>
@@ -30,5 +29,5 @@ defineProps({
   validation: { type: String },
   required: { type: Boolean, default: false },
 });
-const value = defineModel<string>();
+const value = defineModel();
 </script>
