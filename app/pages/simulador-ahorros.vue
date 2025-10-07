@@ -284,7 +284,7 @@ const barLabels = computed(() => [
 
 const consumoElectrico = computed(() => {
   if (!car.value) return 0;
-  return car.value.consumo;
+  return car.value.consumo_electrico_numeric;
 });
 
 const consumo_año = computed(() => {
