@@ -3,15 +3,15 @@
     <template #content>
       <p class="h6">Tipo EV</p>
       <p class="body mt-2">
-        BEV (Battery Electric Vehicle): funciona solo con batería y motor
-        eléctrico, sin motor a combustión.
+        <strong>BEV (Battery Electric Vehicle):</strong> funciona solo con
+        batería y motor eléctrico, sin motor a combustión.
         <br />
-        PHEV (Plug-in Hybrid Electric Vehicle): combina motor eléctrico
-        recargable por enchufe y motor a combustión. <br />
-        HEV (Hybrid Electric Vehicle): usa motor eléctrico y a combustión, pero
-        no se enchufa (la batería se recarga al frenar). <br />
-        MHEV (Mild Hybrid Electric Vehicle): motor a combustión con asistencia
-        eléctrica ligera que mejora eficiencia y arranque.
+        <strong>PHEV (Plug-in Hybrid Electric Vehicle):</strong> combina motor
+        eléctrico recargable por enchufe y motor a combustión. <br />
+        <strong>HEV (Hybrid Electric Vehicle):</strong> usa motor eléctrico y a
+        combustión, pero no se enchufa (la batería se recarga al frenar). <br />
+        <strong>MHEV (Mild Hybrid Electric Vehicle):</strong> motor a combustión
+        con asistencia eléctrica ligera que mejora eficiencia y arranque.
       </p>
     </template>
   </ModalComponent>
@@ -42,11 +42,18 @@
         <p class="body font-bold">{{ car.precio_lista_raw }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <ClientOnly>
-          <a class="flex gap-1" @click.prevent="modal?.modal?.showModal()">
-            Tipo EV <Icon name="ph:info-bold" />
-          </a>
-        </ClientOnly>
+        <p class="font-bold">
+          Tipo EV
+          <ClientOnly>
+            <TooltipComponent
+              class="h-3 font-bold"
+              text="Haz clic para más información"
+              @click.prevent="modal?.modal?.showModal()"
+            >
+              <Icon name="ph:info-bold" />
+            </TooltipComponent>
+          </ClientOnly>
+        </p>
         <p class="body font-bold">{{ car.tipo_ev }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">

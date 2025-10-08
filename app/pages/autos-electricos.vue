@@ -6,9 +6,21 @@
         <li>Autos</li>
       </ul>
     </div>
+    <div class="flex justify-between px-6">
+      <p class="h4 bg-secondary rounded px-4 py-2 text-nowrap">
+        Filtros ({{ cars?.count }} Autos)
+      </p>
+      <div class="flex items-center gap-1">
+        <span class="body text-nowrap">Ordenar por</span>
+        <SelectComponent
+          placeholder="Ordenar por"
+          :options="masterData.orderList"
+          v-model="filters.ordering"
+        />
+      </div>
+    </div>
     <div class="flex w-full gap-6 px-6 pb-6">
       <div class="flex w-fit max-w-64 flex-col gap-6">
-        <p class="h4">Filtros ({{ cars?.count }} Autos)</p>
         <div class="flex flex-wrap gap-2">
           <template v-for="(filter, key) in filters">
             <div
@@ -70,6 +82,25 @@
           />
         </div>
         <div class="flex flex-col gap-2">
+          <span class="h6">Tipo EV</span>
+          <label
+            v-for="option in masterData.autoTypes"
+            class="label text-neutral leading-4 font-semibold"
+          >
+            <input
+              class="radio radio-neutral"
+              type="radio"
+              name="ev_type"
+              :value="option.id"
+              v-model="filters.tipo_ev"
+            />
+            <p>
+              {{ option.id }} <br />
+              <span class="text-xs">{{ option.name }}</span>
+            </p>
+          </label>
+        </div>
+        <div class="flex flex-col gap-2">
           <span class="h6">Rango de precio</span>
           <RadioComponent
             v-for="option in masterData.priceRanges"
@@ -91,37 +122,8 @@
             v-model="filters.carroceria"
           />
         </div>
-        <div class="flex flex-col gap-2">
-          <span class="h6">Tipo EV</span>
-          <label
-            v-for="option in masterData.autoTypes"
-            class="label text-neutral leading-4 font-semibold"
-          >
-            <input
-              class="radio radio-neutral"
-              type="radio"
-              name="ev_type"
-              :value="option.id"
-              v-model="filters.tipo_ev"
-            />
-            <p>
-              {{ option.id }} <br />
-              <span class="text-xs">{{ option.name }}</span>
-            </p>
-          </label>
-        </div>
       </div>
       <div class="flex w-full flex-col">
-        <div class="flex justify-end">
-          <div class="flex items-center gap-1">
-            <span class="body text-nowrap">Ordenar por</span>
-            <SelectComponent
-              placeholder="Ordenar por"
-              :options="masterData.orderList"
-              v-model="filters.ordering"
-            />
-          </div>
-        </div>
         <div class="mt-4 flex h-full flex-wrap justify-center gap-4">
           <CarCard v-for="car in cars?.results" :key="car.id" :car="car" />
         </div>

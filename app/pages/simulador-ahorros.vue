@@ -166,7 +166,7 @@
                 <li>Producción Anual (kWh): 4500</li>
                 <li>
                   Consumo Auto Eléctrico (kWh/año):
-                  {{ formatNumber(calculo_consumo) }}
+                  {{ consumo_año }}
                 </li>
                 <li>Tarifa Residencial (CLP/kWh): $200</li>
                 <li>Crédito por Inyección (CLP/kWh): $100</li>
@@ -184,7 +184,7 @@
             <p class="mb-2 text-center">
               Se cubre la totalidad de la carga y cubre
               <span class="text-primary">
-                {{ formatNumber(carga_residencial) }}
+                {{ formatNumber(excedente_luz) }}
               </span>
               de tu cuenta de luz.
             </p>
@@ -308,6 +308,6 @@ const credito_inyeccion = computed(() => {
 });
 
 const excedente_luz = computed(() => {
-  return Math.abs(credito_inyeccion.value - calculo_consumo.value);
+  return credito_inyeccion.value - calculo_consumo.value;
 });
 </script>

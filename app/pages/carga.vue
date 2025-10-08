@@ -9,7 +9,9 @@
         class="mx-auto flex w-full max-w-[1280p] flex-col items-center gap-16 py-12"
       >
         <div class="flex max-w-[920px] flex-col gap-8">
-          <h1 class="h3">Servicio de Carga Residencial</h1>
+          <h1 class="h3 bg-secondary w-fit rounded px-4 py-2">
+            Servicio de Carga Residencial
+          </h1>
           <div class="flex gap-16">
             <form
               @submit.prevent="submitForm"
@@ -58,7 +60,7 @@
               <!-- <button type="button" class="btn btn-lg btn-neutral mt-4">
                 Descargar Instructivo
               </button> -->
-              <button class="btn btn-lg btn-primary mt-4">
+              <button class="btn btn-lg btn-secondary mt-4">
                 Solicitar Cotizacion
               </button>
             </form>
