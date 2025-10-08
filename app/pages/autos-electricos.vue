@@ -6,9 +6,9 @@
         <li>Autos</li>
       </ul>
     </div>
-    <div class="flex w-full gap-6 p-6">
+    <div class="flex w-full gap-6 px-6 pb-6">
       <div class="flex w-fit max-w-64 flex-col gap-6">
-        <p class="h4">Filtros</p>
+        <p class="h4">Filtros ({{ cars?.count }} Autos)</p>
         <div class="flex flex-wrap gap-2">
           <template v-for="(filter, key) in filters">
             <div
@@ -112,8 +112,7 @@
         </div>
       </div>
       <div class="flex w-full flex-col">
-        <div class="flex justify-between">
-          <p class="h4">{{ cars?.count }} Autos</p>
+        <div class="flex justify-end">
           <div class="flex items-center gap-1">
             <span class="body text-nowrap">Ordenar por</span>
             <SelectComponent
@@ -170,6 +169,7 @@ const models = ref([] as DataObject[]);
 const getModels = async () => {
   if (!brand.value) return;
   filters.marca = brand.value.name;
+  filters.page = 1;
   const data = await $api<ResponseData<DataObject>>(
     `car_models/?marca_id=${brand.value.id}`,
   );
@@ -250,7 +250,18 @@ watch(searchObject, () => {
   filters.marca = searchObject.value?.marca || "";
 });
 
-watch(filters, () => {
-  filters.page = 1;
-});
+watch(
+  () => [
+    filters.marca,
+    filters.modelo,
+    filters.carroceria,
+    filters.tipo_ev,
+    filters.precio_min,
+    filters.precio_max,
+    filters.ordering,
+  ],
+  () => {
+    filters.page = 1;
+  },
+);
 </script>

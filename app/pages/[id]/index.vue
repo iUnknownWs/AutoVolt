@@ -270,7 +270,7 @@
             </div>
             <div>
               <p class="body">
-                Eficiencia Eléctrica
+                Consumo Eléctrico
                 <ClientOnly>
                   <TooltipComponent
                     class="h-3"

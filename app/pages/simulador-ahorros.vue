@@ -97,8 +97,8 @@
             <div class="body">
               <p class="mb-2">
                 Además del ahorro en combustible, los autos eléctricos ofrecen
-                beneficios como descuentos en permisos y menores gastos de
-                mantenimiento.
+                beneficios como descuentos en permisos de circulación y menores
+                gastos de mantenimiento.
               </p>
               <ul class="ml-2 list-inside list-disc">
                 <li>Permiso de Circulación 2025 Año: 75% de exención</li>
@@ -114,7 +114,7 @@
               <p class="mt-2 text-sm text-zinc-600 italic">
                 Los montos presentados son referenciales y se calculan en base
                 al valor de tasación fiscal del vehículo seleccionado, junto a
-                el costo de mantenimiento de taller oficial.
+                un costo aproximado de mantenimiento anual.
               </p>
             </div>
           </div>
@@ -130,7 +130,7 @@
               <span class="text-primary">
                 {{ formatNumber(car?.ahorro_cinco_anos ?? 0) }}
               </span>
-              en incentivos y mantenimiento.
+              en permisos y mantenimiento.
             </p>
             <BarComponent
               :values="[50]"
@@ -154,12 +154,10 @@
             <p class="h5 mb-4">Ahorro Kit Solar Residencial</p>
             <div class="body">
               <p class="mb-2">
-                Instala tu Kit Solar Residencial y cubre la carga de tu auto
-                eléctrico. Gracias a netbilling, la energía inyectada genera
-                crédito en tu cuenta de luz, con un retorno de inversión
-                esperado en ~6 años y paneles que producen electricidad por más
-                de 20 años, permitiéndote disfrutar de más de 14 años de carga
-                gratuita y reducir parte de tu cuenta de luz.
+                Instala tu kit solar y carga tu auto eléctrico. Con netbilling
+                generas crédito por la energía producida, recuperas tu inversión
+                en ~6 años y disfrutas más de 14 años de carga gratuita y menor
+                cuenta de luz.
               </p>
               <ul class="ml-2 list-inside list-disc">
                 <li>Inversión Inicial (CLP): $2.990.000</li>
@@ -175,35 +173,30 @@
                 <li>Retorno Inversión (Años): 6.6</li>
               </ul>
               <p class="mt-2 text-sm text-zinc-600 italic">
-                Los valores utilizados son nominales y actuales representables
-                en Santiago, Chile; los números reales pueden variar según
-                consumo, tarifas y condiciones futuras.
+                Los valores son nominales y referenciales para Santiago, Chile;
+                pueden variar según el consumo, las tarifas y las condiciones
+                futuras.
               </p>
             </div>
           </div>
           <div class="h5 mb-8 flex w-full flex-col items-center gap-4">
-            <p class="text-center">
-              Si te cambiaras a
-              <span class="text-primary"
-                >{{ car?.marca }} {{ car?.modelo }} {{ car?.version }}</span
-              >
-            </p>
+            <p class="text-center">Simulación contempla valores anuales</p>
             <p class="mb-2 text-center">
-              En <span class="text-primary">5</span> años podrías ahorrar hasta
+              Se cubre la totalidad de la carga y cubre
               <span class="text-primary">
                 {{ formatNumber(carga_residencial) }}
               </span>
-              en combustible.
+              de tu cuenta de luz.
             </p>
             <BarComponent
               :values="[30, 60]"
               :labels="[
                 {
                   label: 'Excedente Cuenta Luz',
-                  value: formatNumber(exdente_luz),
+                  value: formatNumber(excedente_luz),
                 },
                 {
-                  label: 'Consumo Auto Electrico Año',
+                  label: 'Consumo Carga Auto',
                   value: formatNumber(calculo_consumo),
                 },
                 {
@@ -314,7 +307,7 @@ const credito_inyeccion = computed(() => {
   return 4500 * 100;
 });
 
-const exdente_luz = computed(() => {
-  return credito_inyeccion.value - calculo_consumo.value;
+const excedente_luz = computed(() => {
+  return Math.abs(credito_inyeccion.value - calculo_consumo.value);
 });
 </script>

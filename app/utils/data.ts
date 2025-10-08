@@ -66,7 +66,7 @@ const orderList: dataObject[] = [
 const cargaInfo = [
   {
     id: 'instalacion_cargador_ac',
-    title: 'Instalación de Cargador Residencial (AC)',
+    title: 'Instalación de Cargador Residencial',
     description: 'Instalación rápida y segura de tu cargador en casa o edificio, con conexión monofásica y certificada por la SEC.',
     price: '749.000',
   },

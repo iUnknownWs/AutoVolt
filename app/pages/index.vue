@@ -44,7 +44,7 @@
         <div class="flex h-full min-w-96 flex-col gap-4">
           <HomeInfoCard
             title="Toda la oferta en un solo lugar"
-            description="Encuentra todos los autos eléctricos e híbridos disponibles en Chile, compara marcas, modelos, versiones y ofertas en un solo lugar."
+            description="Encuentra todos los autos eléctricos e híbridos disponibles para comprar en Chile, compara marcas, modelos, versiones y ofertas en un solo lugar."
             icon="ph:info-duotone"
             cta="Explorar Modelos"
             to="/autos-electricos/"

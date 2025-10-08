@@ -82,9 +82,9 @@ export interface CarDetails {
     ficha_tecnica: string;
     precio_lista: number;
     tasacion_fiscal: number;
-    bono_comercializadora: string;
-    bono_financiamiento: string;
-    precio_oferta: string;
+    bono_comercializadora: number;
+    bono_financiamiento: number;
+    precio_oferta: number;
     rango_wltp: number;
     bateria_nominal: number;
     traccion: string;

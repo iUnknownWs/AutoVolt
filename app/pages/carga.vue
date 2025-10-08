@@ -6,10 +6,10 @@
     />
     <div class="flex flex-col gap-12 p-4">
       <CardComponent
-        class="mx-auto flex w-full max-w-[1280p] flex-col items-center gap-16 p-8"
+        class="mx-auto flex w-full max-w-[1280p] flex-col items-center gap-16 py-12"
       >
-        <h1 class="h3">Servicio de Carga Residencial</h1>
-        <div class="flex max-w-[920px] flex-col gap-12">
+        <div class="flex max-w-[920px] flex-col gap-8">
+          <h1 class="h3">Servicio de Carga Residencial</h1>
           <div class="flex gap-16">
             <form
               @submit.prevent="submitForm"
@@ -50,15 +50,15 @@
                 v-model="payload.tipo_residencia"
               />
               <SelectComponent
-                class="mt-2"
+                class="mt-4"
                 placeholder="Ciudad *"
                 :options="[{ id: 'Santiago', name: 'Santiago' }]"
                 v-model="payload.direccion"
               />
-              <button type="button" class="btn btn-lg btn-neutral mt-4">
+              <!-- <button type="button" class="btn btn-lg btn-neutral mt-4">
                 Descargar Instructivo
-              </button>
-              <button class="btn btn-lg btn-primary">
+              </button> -->
+              <button class="btn btn-lg btn-primary mt-4">
                 Solicitar Cotizacion
               </button>
             </form>
@@ -96,7 +96,7 @@
           </div>
           <div
             v-if="payload.tipo_servicio == 'instalacion_cargador_ac'"
-            class="w-full"
+            class="mt-8 w-full"
           >
             <p class="h5 w-full underline">
               Descripción de la Instalación de Cargador Residencial

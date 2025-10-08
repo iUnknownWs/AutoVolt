@@ -7,8 +7,8 @@
       >
         <h1 class="h1">Contáctanos</h1>
         <p class="body">
-          ¿Tienes dudas o necesitas ayuda? Escríbenos y te responderemos lo
-          antes posible
+          ¿Tienes sugerencias, reclamos o felicitaciones? Escríbenos, queremos
+          escucharte.
         </p>
         <div class="divider m-0"></div>
         <div class="flex w-full gap-2">

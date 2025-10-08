@@ -1,6 +1,21 @@
 <template>
+  <ModalComponent ref="modal">
+    <template #content>
+      <p class="h6">Tipo EV</p>
+      <p class="body mt-2">
+        BEV (Battery Electric Vehicle): funciona solo con batería y motor
+        eléctrico, sin motor a combustión.
+        <br />
+        PHEV (Plug-in Hybrid Electric Vehicle): combina motor eléctrico
+        recargable por enchufe y motor a combustión. <br />
+        HEV (Hybrid Electric Vehicle): usa motor eléctrico y a combustión, pero
+        no se enchufa (la batería se recarga al frenar). <br />
+        MHEV (Mild Hybrid Electric Vehicle): motor a combustión con asistencia
+        eléctrica ligera que mejora eficiencia y arranque.
+      </p>
+    </template>
+  </ModalComponent>
   <NuxtLink
-    v-if="car.id && car.id !== 'N/A'"
     :to="{ name: 'id', params: { id: car.id } }"
     class="group bg-base-100 group flex aspect-square h-fit w-full max-w-[270px] grow-0 cursor-pointer flex-col items-center gap-4 rounded-2xl p-6 shadow-lg"
   >
@@ -27,7 +42,11 @@
         <p class="body font-bold">{{ car.precio_lista_raw }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
-        <p>Tipo EV</p>
+        <ClientOnly>
+          <a class="flex gap-1" @click.prevent="modal?.modal?.showModal()">
+            Tipo EV <Icon name="ph:info-bold" />
+          </a>
+        </ClientOnly>
         <p class="body font-bold">{{ car.tipo_ev }}</p>
       </div>
       <div class="flex items-center justify-between gap-6">
@@ -42,7 +61,10 @@
             </TooltipComponent>
           </ClientOnly>
         </p>
-        <p class="body font-bold">{{ car.consumo_electrico }}</p>
+        <p class="body font-bold">
+          {{ car.consumo_electrico }}
+          {{ car.consumo_electrico == "N/A" ? "" : "kWh" }}
+        </p>
       </div>
       <div class="flex items-center justify-between gap-6">
         <p class="flex gap-1">
@@ -81,6 +103,8 @@
 
 <script lang="ts" setup>
 import type { Cars } from "~/types/cars";
+
+const modal = ref<{ modal: HTMLDialogElement | null } | null>(null);
 
 defineProps({
   car: {

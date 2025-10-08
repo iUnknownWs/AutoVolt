@@ -178,22 +178,40 @@
                 <p class="h6">{{ branch.branch_address }}</p>
               </div>
             </div>
-            <div class="flex flex-col">
+            <div v-if="car" class="flex flex-col">
               <div class="flex flex-col">
                 <p class="h6 text-xs">Precio Lista</p>
                 <p class="h6">{{ car?.precio_lista_raw }}</p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Bono Comercializadora</p>
-                <p class="h6">{{ car?.bono_comercializadora || "-" }}</p>
+                <p class="h6">
+                  {{
+                    car?.bono_comercializadora == "N/A"
+                      ? "$0"
+                      : formatNumber(car?.bono_comercializadora)
+                  }}
+                </p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Bono Financiamiento</p>
-                <p class="h6">{{ car?.bono_financiamiento || "-" }}</p>
+                <p class="h6">
+                  {{
+                    car?.bono_financiamiento == "N/A"
+                      ? "$0"
+                      : formatNumber(car?.bono_financiamiento)
+                  }}
+                </p>
               </div>
               <div class="flex flex-col">
                 <p class="h6 text-xs">Precio Oferta</p>
-                <p class="h6">{{ car?.precio_oferta || "-" }}</p>
+                <p class="h6">
+                  {{
+                    car?.precio_oferta == "N/A"
+                      ? "$0"
+                      : formatNumber(car?.precio_oferta)
+                  }}
+                </p>
               </div>
             </div>
             <button

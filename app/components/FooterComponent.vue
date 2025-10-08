@@ -76,10 +76,11 @@
       <div class="flex items-center justify-between">
         <div class="flex flex-col items-start gap-0 *:text-neutral-400">
           <p class="body">
-            © 2025 Autovolt SPA. Todos los derechos reservados.
+            © 2025 AutoVolt Chile SPA. Todos los derechos reservados.
           </p>
           <p class="body">
-            AutoVolt no está afiliado con ningun frabicante de autos.
+            AutoVolt no está afiliado con ningún fabricante o comercializador de
+            autos.
           </p>
           <p class="body">
             Las marcas, nombres de modelos y logotipos son marcas registradas.
