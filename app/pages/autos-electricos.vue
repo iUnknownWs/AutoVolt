@@ -6,7 +6,7 @@
         <li>Autos</li>
       </ul>
     </div>
-    <div class="flex justify-between px-6">
+    <div class="flex justify-between px-6 pb-4">
       <p class="h4 bg-secondary rounded px-4 py-2 text-nowrap">
         Filtros ({{ cars?.count }} Autos)
       </p>
@@ -21,6 +21,13 @@
     </div>
     <div class="flex w-full gap-6 px-6 pb-6">
       <div class="flex w-fit max-w-64 flex-col gap-6">
+        <SearchSelect
+          v-if="searchResult"
+          :options="searchResult.results"
+          option-label="marca_modelo"
+          v-model:search="search"
+          v-model="searchObject"
+        />
         <div class="flex flex-wrap gap-2">
           <template v-for="(filter, key) in filters">
             <div
@@ -52,13 +59,6 @@
             </div>
           </template>
         </div>
-        <SearchSelect
-          v-if="searchResult"
-          :options="searchResult.results"
-          option-label="marca_modelo"
-          v-model:search="search"
-          v-model="searchObject"
-        />
         <div class="flex flex-col gap-2">
           <span class="h6">Marca</span>
           <SelectComponent
@@ -124,7 +124,7 @@
         </div>
       </div>
       <div class="flex w-full flex-col">
-        <div class="mt-4 flex h-full flex-wrap justify-center gap-4">
+        <div class="flex h-full flex-wrap justify-center gap-4">
           <CarCard v-for="car in cars?.results" :key="car.id" :car="car" />
         </div>
         <div class="join mx-auto mt-6">

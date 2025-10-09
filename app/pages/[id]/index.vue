@@ -1,5 +1,23 @@
 <template>
   <div v-if="car">
+    <ModalComponent ref="modal">
+      <template #content>
+        <p class="h6">Tipo EV</p>
+        <p class="body mt-2">
+          <strong>BEV (Battery Electric Vehicle):</strong> funciona solo con
+          batería y motor eléctrico, sin motor a combustión.
+          <br />
+          <strong>PHEV (Plug-in Hybrid Electric Vehicle):</strong> combina motor
+          eléctrico recargable por enchufe y motor a combustión. <br />
+          <strong>HEV (Hybrid Electric Vehicle):</strong> usa motor eléctrico y
+          a combustión, pero no se enchufa (la batería se recarga al frenar).
+          <br />
+          <strong>MHEV (Mild Hybrid Electric Vehicle):</strong> motor a
+          combustión con asistencia eléctrica ligera que mejora eficiencia y
+          arranque.
+        </p>
+      </template>
+    </ModalComponent>
     <div class="breadcrumbs p-6 text-lg">
       <ul>
         <li><NuxtLink to="/">Home</NuxtLink></li>
@@ -56,7 +74,17 @@
         <div class="flex justify-between">
           <div class="flex flex-col gap-6">
             <div class="flex flex-col">
-              <span class="body text-2xl font-medium">Tipo</span>
+              <span class="body text-2xl font-medium"
+                >Tipo EV
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3 font-bold"
+                    text="Haz clic para más información"
+                    @click.prevent="modal?.modal?.showModal()"
+                  >
+                    <Icon name="ph:info-bold" />
+                  </TooltipComponent> </ClientOnly
+              ></span>
               <p class="body text-3xl font-bold">{{ car.tipo_ev }}</p>
             </div>
             <div class="flex flex-col">
@@ -72,7 +100,17 @@
           </div>
           <div class="flex flex-col gap-6">
             <div>
-              <span class="body text-2xl font-medium">Autonomía Total</span>
+              <span class="body text-2xl font-medium">
+                Autonomía Total
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="La autonomía total considera tanto la independencia eléctrica como la de combustible."
+                  >
+                    <Icon name="ph:info-bold" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </span>
               <p class="body text-3xl font-bold">
                 {{ car.autonomia_combinada }}
               </p>
@@ -423,6 +461,7 @@
 <script lang="ts" setup>
 import type { CarDetails, Cars } from "~/types/cars";
 
+const modal = ref<{ modal: HTMLDialogElement | null } | null>(null);
 const route = useRoute();
 const id = route.params.id as string;
 const { $api } = useNuxtApp();
