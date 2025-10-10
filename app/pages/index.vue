@@ -65,7 +65,7 @@
         </div>
         <NuxtImg
           class="h-fit max-h-[656px] w-fit rounded-2xl"
-          src="https://storage.googleapis.com/mediamvp/Informativo%201%20F.png"
+          src="https://storage.googleapis.com/mediamvp/Informativo%201%20png.png"
         />
       </div>
       <div class="flex flex-col gap-6 p-6">
