@@ -4,14 +4,19 @@
       <p class="h6">Tipo EV</p>
       <p class="body mt-2">
         <strong>BEV (Battery Electric Vehicle):</strong> funciona solo con
-        batería y motor eléctrico, sin motor a combustión.
+        batería y motor eléctrico, sin motor a combustión. Carga lenta (AC) y
+        rápida (DC).
         <br />
         <strong>PHEV (Plug-in Hybrid Electric Vehicle):</strong> combina motor
-        eléctrico recargable por enchufe y motor a combustión. <br />
-        <strong>HEV (Hybrid Electric Vehicle):</strong> usa motor eléctrico y a
-        combustión, pero no se enchufa (la batería se recarga al frenar). <br />
+        eléctrico para ciudad y motor a combustión para carretera. Carga lenta
+        (AC). <br />
+        <strong>HEV (Hybrid Electric Vehicle):</strong> motor principal a
+        combustión y un motor eléctrico auxiliar que se recarga automáticamente
+        al frenar.
+        <br />
         <strong>MHEV (Mild Hybrid Electric Vehicle):</strong> motor a combustión
-        con asistencia eléctrica ligera que mejora eficiencia y arranque.
+        con asistencia eléctrica ligera, mejora el consumo y suaviza el
+        arranque.
       </p>
     </template>
   </ModalComponent>

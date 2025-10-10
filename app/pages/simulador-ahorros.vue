@@ -73,7 +73,7 @@
               siguientes parámetros:
             </p>
             <ul class="ml-2 list-inside list-disc">
-              <li>Kilometraje Anual (km/día): <b>12.775</b></li>
+              <li>Kilometraje Anual (35 km/día): <b>12.775</b></li>
               <li>
                 Consumo Eléctrico (km/kWh):
                 <b>{{ car?.consumo_electrico }}</b>

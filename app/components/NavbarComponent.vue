@@ -15,7 +15,9 @@
               <summary class="font-semibold">Recursos</summary>
               <ul class="bg-base-100 z-10 w-56 rounded-t-none p-2">
                 <li>
-                  <NuxtLink @click="closePopover">Guía AutoVolt</NuxtLink>
+                  <NuxtLink :to="{ name: 'guia' }" @click="closePopover">
+                    Guía AutoVolt
+                  </NuxtLink>
                 </li>
                 <li>
                   <NuxtLink :to="{ name: 'comparador' }" @click="closePopover">

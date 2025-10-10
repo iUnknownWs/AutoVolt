@@ -47,6 +47,27 @@
         </div>
       </template>
     </ModalComponent>
+    <ModalComponent ref="modalEV">
+      <template #content>
+        <p class="h6">Tipo EV</p>
+        <p class="body mt-2">
+          <strong>BEV (Battery Electric Vehicle):</strong> funciona solo con
+          batería y motor eléctrico, sin motor a combustión. Carga lenta (AC) y
+          rápida (DC).
+          <br />
+          <strong>PHEV (Plug-in Hybrid Electric Vehicle):</strong> combina motor
+          eléctrico para ciudad y motor a combustión para carretera. Carga lenta
+          (AC). <br />
+          <strong>HEV (Hybrid Electric Vehicle):</strong> motor principal a
+          combustión y un motor eléctrico auxiliar que se recarga
+          automáticamente al frenar.
+          <br />
+          <strong>MHEV (Mild Hybrid Electric Vehicle):</strong> motor a
+          combustión con asistencia eléctrica ligera, mejora el consumo y
+          suaviza el arranque.
+        </p>
+      </template>
+    </ModalComponent>
     <CardComponent class="mx-6">
       <div class="bg-primary flex items-center justify-between rounded-2xl p-6">
         <div class="max-w-72">
@@ -108,7 +129,18 @@
     </CardComponent>
     <CardComponent class="mt-6 p-6">
       <div class="grid grid-cols-5">
-        <p class="h6">Tipo EV</p>
+        <p class="h6">
+          Tipo EV
+          <ClientOnly>
+            <TooltipComponent
+              class="h-3 font-bold"
+              text="Haz clic para más información"
+              @click.prevent="openModalEV"
+            >
+              <Icon name="ph:info-bold" />
+            </TooltipComponent>
+          </ClientOnly>
+        </p>
         <p v-for="car in 4" class="body text-center font-semibold">
           {{ cars[car - 1]?.tipo_ev || "-" }}
         </p>
@@ -547,6 +579,7 @@ import type { CarDetails, Cars } from "~/types/cars";
 const query = useRoute().query;
 const carIds = ref<string[]>([]);
 const modal = ref<{ modal: HTMLDialogElement } | null>(null);
+const modalEV = ref<{ modal: HTMLDialogElement } | null>(null);
 const tab = ref("Motor & Desempeño");
 
 const carParams = reactive({
@@ -559,6 +592,10 @@ const openModal = () => {
   carParams.brand = "";
   carParams.model = "";
   modal.value?.modal.showModal();
+};
+
+const openModalEV = () => {
+  modalEV.value?.modal.showModal();
 };
 
 const addAuto = () => {
