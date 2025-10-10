@@ -2,11 +2,9 @@
   <section id="guia-autovolt-electromovilidad" class="bg-white py-10 md:py-16">
     <div class="container mx-auto px-4 lg:px-8">
       <header class="mb-10">
-        <h1
-          class="text-primary mb-4 text-4xl leading-tight font-extrabold lg:text-5xl"
-        >
-          Guía AutoVolt: Lo que necesitas saber antes de dar el paso a la
-          electromovilidad
+        <h1 class="h1 mb-4 text-4xl leading-tight font-extrabold lg:text-5xl">
+          <span class="text-primary">Guía AutoVolt:</span> Lo que necesitas
+          saber antes de dar el paso a la electromovilidad
         </h1>
         <p class="mb-6 text-lg text-gray-700">
           La revolución de la movilidad sostenible ha llegado a Chile y cada vez
