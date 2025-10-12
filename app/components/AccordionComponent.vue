@@ -1,31 +1,11 @@
 <template>
-  <div class="collapse-arrow bg-base-100 border-base-300 collapse border">
-    <input type="radio" name="my-accordion-2" checked />
-    <div class="collapse-title font-semibold">How do I create an account?</div>
-    <div class="collapse-content text-sm">
-      Click the "Sign Up" button in the top right corner and follow the
-      registration process.
+  <template v-for="(faq, index) in faqs">
+    <div class="collapse-arrow bg-base-100 border-base-300 collapse border">
+      <input type="radio" :name="name" :value="index" v-model="model" />
+      <div class="collapse-title font-semibold">{{ faq.question }}</div>
+      <div class="collapse-content text-sm">{{ faq.answer }}</div>
     </div>
-  </div>
-  <div class="collapse-arrow bg-base-100 border-base-300 collapse border">
-    <input type="radio" name="my-accordion-2" />
-    <div class="collapse-title font-semibold">
-      I forgot my password. What should I do?
-    </div>
-    <div class="collapse-content text-sm">
-      Click on "Forgot Password" on the login page and follow the instructions
-      sent to your email.
-    </div>
-  </div>
-  <div class="collapse-arrow bg-base-100 border-base-300 collapse border">
-    <input type="radio" name="my-accordion-2" />
-    <div class="collapse-title font-semibold">
-      How do I update my profile information?
-    </div>
-    <div class="collapse-content text-sm">
-      Go to "My Account" settings and select "Edit Profile" to make changes.
-    </div>
-  </div>
+  </template>
 </template>
 
 <script lang="ts" setup>
@@ -34,5 +14,10 @@ defineProps({
     type: Array as () => { question: string; answer: string }[],
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
 });
+const model = defineModel({ default: 0 });
 </script>

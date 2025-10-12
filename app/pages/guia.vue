@@ -9,13 +9,23 @@
         <p class="mb-6 text-lg text-gray-700">
           La revolución de la movilidad sostenible ha llegado a Chile y cada vez
           más personas se preguntan si es el momento adecuado para hacer la
-          transición hacia un vehículo eléctrico o híbrido.
+          transición hacia un vehículo eléctrico o híbrido. Aunque
+          históricamente la inversión inicial ha sido más alta que un vehículo
+          convencional, el panorama está cambiando rápidamente. Los avances
+          tecnológicos en baterías y la creciente competencia entre fabricantes
+          han logrado que numerosos modelos eléctricos e híbridos alcancen
+          precios competitivos frente a sus equivalentes de combustión interna.
+          Si estás contemplando hacer el cambio, te acompañamos paso a paso con
+          todo lo que debes saber para elegir el vehículo que mejor se adapte a
+          tus necesidades y estilo de vida.
         </p>
         <div
           class="border-primary rounded-md border-l-4 bg-yellow-50 p-4 text-yellow-500"
         >
-          <p class="mb-1 font-semibold">Las razones son convincentes:</p>
-          <ul class="ml-4 list-inside list-disc text-sm">
+          <p class="mb-1 text-2xl font-semibold">
+            Las razones son convincentes:
+          </p>
+          <ul class="ml-4 list-inside list-disc">
             <li>
               Ahorro significativo en combustible, descuentos en permisos de
               circulación (-75%), menores costos de mantenimiento.
@@ -28,16 +38,6 @@
           </ul>
         </div>
       </header>
-
-      <p class="mb-6 text-gray-700">
-        Aunque históricamente la inversión inicial ha sido más alta que un
-        vehículo convencional, el panorama está cambiando rápidamente. Los
-        avances tecnológicos en baterías y la creciente competencia entre
-        fabricantes han logrado que numerosos modelos eléctricos e híbridos
-        alcancen precios competitivos frente a sus equivalentes de combustión
-        interna.
-      </p>
-
       <div class="mb-10 rounded-lg bg-gray-100 p-5">
         <h2 class="mb-3 text-2xl font-bold text-gray-800">
           Los Números Hablan
@@ -51,13 +51,6 @@
           movilidad sustentable.
         </p>
       </div>
-
-      <p class="mb-10 text-gray-700">
-        Si estás contemplando hacer el cambio, te acompañamos paso a paso con
-        todo lo que debes saber para elegir el vehículo que mejor se adapte a
-        tus necesidades y estilo de vida.
-      </p>
-
       <h2
         class="mb-6 border-b-2 border-gray-200 pb-2 text-3xl font-bold text-gray-800"
       >
@@ -187,174 +180,35 @@
           <h3 class="mb-4 border-b pb-2 text-2xl font-semibold text-gray-700">
             Carga & Batería
           </h3>
-          <ul class="space-y-4 text-gray-700">
-            <li>
-              <strong>¿Qué diferencia hay entre carga AC y DC?</strong>
-              <ul class="mt-1 ml-5 list-inside list-disc space-y-1 text-sm">
-                <li>
-                  <strong>AC (Corriente Alterna):</strong> Carga doméstica,
-                  potencia 3.7-7.4 kW, 6-12 horas.
-                </li>
-                <li>
-                  <strong>DC (Corriente Continua):</strong> Carga rápida 50-350
-                  kW, 20%-80% en 15-45 minutos, solo BEV.
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>¿Cómo cargo un auto eléctrico en casa?</strong>
-              <ul class="mt-1 ml-5 list-inside list-disc space-y-1 text-sm">
-                <li>
-                  Enchufe convencional (220V): 8-14 horas con cargador portátil
-                  3.5 kW.
-                </li>
-                <li>
-                  Cargador residencial 7 kW: 4-8 horas, más seguro y eficiente.
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong
-                >¿Puedo instalar un cargador en un edificio de
-                departamentos?</strong
-              >
-              Sí, con autorización del edificio y electricista certificado.
-            </li>
-            <li>
-              <strong>¿Dónde cargar fuera de casa en Chile?</strong> Más de 400
-              puntos públicos: estaciones de servicio, centros comerciales,
-              hoteles. Redes principales: Enel X, Copec Voltex, Enex E-Pro.
-            </li>
-            <li>
-              <strong>¿Cuánto cuesta cargar un auto eléctrico?</strong>
-              <ul class="mt-1 ml-5 list-inside list-disc space-y-1 text-sm">
-                <li>AC casa: ~$200 CLP/kWh.</li>
-                <li>DC público: ~$350 CLP/kWh.</li>
-                <li>Comparado con gasolina: ahorro 50-75%.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>¿Qué pasa si me quedo sin batería?</strong> El vehículo
-              activa alertas y modo tortuga; usar apps como PlugShare para
-              localizar cargadores.
-            </li>
-            <li>
-              <strong>Duración de batería:</strong> 8-12 años o 160.000-200.000
-              km, manteniendo 70-80% capacidad. Garantías típicas: 8 años o
-              160.000 km.
-            </li>
-          </ul>
+          <AccordionComponent name="cargaFaqs" :faqs="cargaFaqs" />
         </div>
 
         <div>
           <h3 class="mb-4 border-b pb-2 text-2xl font-semibold text-gray-700">
             Costos & Ahorros
           </h3>
-          <ul class="space-y-4 text-gray-700">
-            <li>
-              <strong>¿Cuánto ahorro realmente con un auto eléctrico?</strong>
-              <ul class="mt-1 ml-5 list-inside list-disc space-y-1 text-sm">
-                <li>Combustible: 60-70% menos por km.</li>
-                <li>
-                  Mantención: 40-50% menos (sin cambios de aceite, filtros,
-                  menor desgaste de frenos).
-                </li>
-                <li>Permisos: hasta 50% descuento o exención.</li>
-                <li>Seguros: descuentos 5-15% por ser "verde".</li>
-              </ul>
-            </li>
-            <li>
-              <strong>¿Vale la pena comprar usado?</strong> Sí, verificar
-              batería >80%, historial de mantención y garantía.
-            </li>
-            <li>
-              <strong>¿Los autos eléctricos se deprecian más rápido?</strong>
-              Inicialmente sí, pero modelos consolidados mantienen mejor valor.
-            </li>
-          </ul>
+          <AccordionComponent name="CostosFaqs" :faqs="CostosFaqs" />
         </div>
 
         <div>
           <h3 class="mb-4 border-b pb-2 text-2xl font-semibold text-gray-700">
             Incentivos y Beneficios
           </h3>
-          <ul class="space-y-4 text-gray-700">
-            <li>
-              <strong>Incentivos en Chile:</strong>
-              <ul class="mt-1 ml-5 list-inside list-disc space-y-1 text-sm">
-                <li>Exención de restricción vehicular.</li>
-                <li>Descuento en permiso de circulación (50% o exento).</li>
-                <li>Exención IPT por 2 años.</li>
-                <li>Descuentos en peajes y TAG.</li>
-                <li>Créditos automotrices verdes.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Autos híbridos también tienen beneficios</strong>, aunque
-              algunos específicos solo para eléctricos puros.
-            </li>
-          </ul>
+          <AccordionComponent name="IncentivosFaqs" :faqs="IncentivosFaqs" />
         </div>
 
         <div>
           <h3 class="mb-4 border-b pb-2 text-2xl font-semibold text-gray-700">
             Mantención y Servicio Técnico
           </h3>
-          <ul class="space-y-4 text-gray-700">
-            <li>
-              <strong>Autos eléctricos requieren:</strong>
-              <ul class="mt-1 ml-5 list-inside list-disc space-y-1 text-sm">
-                <li>
-                  <strong>NO:</strong> cambios de aceite, filtros de
-                  aire/combustible, mantención escape.
-                </li>
-                <li>
-                  <strong>Sí:</strong> revisión líquido de frenos 2 años, filtro
-                  cabina anual, rotación neumáticos cada 10.000 km, revisión
-                  anual batería tracción.
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Autos híbridos requieren:</strong>
-              <ul class="mt-1 ml-5 list-inside list-disc space-y-1 text-sm">
-                <li>Todo lo de combustión.</li>
-                <li>
-                  Plus: revisión batería híbrida, sistemas duales de
-                  refrigeración.
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Ahorro real en mantención:</strong>
-              <ul class="mt-1 ml-5 list-inside list-disc space-y-1 text-sm">
-                <li>
-                  Eléctricos: 40-60% menos en mantención anual
-                  ($200.000-$500.000).
-                </li>
-                <li>Híbridos: 15-25% menos que convencionales.</li>
-              </ul>
-            </li>
-          </ul>
+          <AccordionComponent name="MantencionFaqs" :faqs="MantencionFaqs" />
         </div>
 
         <div>
           <h3 class="mb-4 border-b pb-2 text-2xl font-semibold text-gray-700">
             Condiciones Especiales
           </h3>
-          <ul class="space-y-4 text-gray-700">
-            <li>
-              <strong>Invierno:</strong> autonomía puede reducirse 15-25%.
-            </li>
-            <li>
-              <strong>Car wash:</strong> seguros, sistemas eléctricos sellados
-              IP67.
-            </li>
-            <li>
-              <strong>Inundación:</strong> no encender, contactar
-              fabricante/seguro.
-            </li>
-          </ul>
+          <AccordionComponent name="condicionesFaqs" :faqs="condicionesFaqs" />
         </div>
       </div>
 
@@ -378,4 +232,106 @@
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const cargaFaqs = [
+  {
+    question: "¿Qué diferencia hay entre carga AC y DC?",
+    answer:
+      "AC (Corriente Alterna): Carga doméstica, potencia 3.7-7.4 kW, 6-12 horas.\nDC (Corriente Continua): Carga rápida 50-350 kW, 20%-80% en 15-45 minutos, solo BEV.",
+  },
+  {
+    question: "¿Cómo cargo un auto eléctrico en casa?",
+    answer:
+      "Enchufe convencional (220V): 8-14 horas con cargador portátil 3.5 kW.\nCargador residencial 7 kW: 4-8 horas, más seguro y eficiente.",
+  },
+  {
+    question: "¿Puedo instalar un cargador en un edificio de departamentos?",
+    answer: "Sí, con autorización del edificio y electricista certificado.",
+  },
+  {
+    question: "¿Dónde cargar fuera de casa en Chile?",
+    answer:
+      "Más de 400 puntos públicos: estaciones de servicio, centros comerciales, hoteles. Redes principales: Enel X, Copec Voltex, Enex E-Pro.",
+  },
+  {
+    question: "¿Cuánto cuesta cargar un auto eléctrico?",
+    answer:
+      "AC casa: ~$200 CLP/kWh.\nDC público: ~$350 CLP/kWh.\nComparado con gasolina: ahorro 50-75%.",
+  },
+  {
+    question: "¿Qué pasa si me quedo sin batería?",
+    answer:
+      "El vehículo activa alertas y modo tortuga; usar apps como PlugShare para localizar cargadores.",
+  },
+  {
+    question: "Duración de batería",
+    answer:
+      "8-12 años o 160.000-200.000 km, manteniendo 70-80% capacidad. Garantías típicas: 8 años o 160.000 km.",
+  },
+];
+
+const CostosFaqs = [
+  {
+    question: "¿Cuánto ahorro realmente con un auto eléctrico?",
+    answer:
+      "Combustible: 60-70% menos por km.\nMantención: 40-50% menos (sin cambios de aceite, filtros, menor desgaste de frenos).\nPermisos: hasta 50% descuento o exento.\nSeguros: descuentos 5-15% por ser 'verde'.",
+  },
+  {
+    question: "¿Vale la pena comprar usado?",
+    answer: "Sí, verificar batería >80%, historial de mantención y garantía.",
+  },
+  {
+    question: "¿Los autos eléctricos se deprecian más rápido?",
+    answer: "Inicialmente sí, pero modelos consolidados mantienen mejor valor.",
+  },
+];
+
+const IncentivosFaqs = [
+  {
+    question: "¿Qué incentivos hay en Chile para autos eléctricos?",
+    answer:
+      "Exención de restricción vehicular.\nDescuento en permiso de circulación (50% o exento).\nExención IPT por 2 años.\nDescuentos en peajes y TAG.\nCréditos automotrices verdes.",
+  },
+  {
+    question: "¿Los autos híbridos también tienen beneficios?",
+    answer:
+      "Sí, aunque algunos específicos solo para eléctricos puros. Verificar con municipalidad y concesionarios.",
+  },
+];
+
+const MantencionFaqs = [
+  {
+    question: "¿Qué mantenimiento requiere un auto eléctrico?",
+    answer:
+      "Revisión líquido de frenos cada 2 años.\nFiltro de cabina anual.\nRotación de neumáticos cada 10.000 km.\nRevisión anual batería tracción.",
+  },
+  {
+    question: "¿Y un híbrido?",
+    answer:
+      "Mantenimiento similar a combustión más revisión batería híbrida y sistemas duales de refrigeración.",
+  },
+  {
+    question: "¿Cuánto cuesta el mantenimiento anual?",
+    answer:
+      "Eléctricos: $200.000-$500.000 CLP (40-60% menos que combustión).\nHíbridos: 15-25% menos que autos convencionales.",
+  },
+];
+
+const condicionesFaqs = [
+  {
+    question: "¿Cómo afecta el frío a la autonomía?",
+    answer:
+      "Reducción 15-25% en invierno por calefacción y menor eficiencia batería. Mitigar precalentando y cargando en garaje.",
+  },
+  {
+    question: "¿Puedo lavar mi auto eléctrico en un car wash?",
+    answer:
+      "Sí, sistemas eléctricos sellados IP67, pero evitar chorros directos en puertos de carga.",
+  },
+  {
+    question: "¿Qué hacer si mi auto eléctrico se inunda?",
+    answer:
+      "No encender. Contactar fabricante o seguro. Sistemas sellados, pero mejor prevenir daños mayores.",
+  },
+];
+</script>

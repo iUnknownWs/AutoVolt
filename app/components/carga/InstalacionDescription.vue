@@ -107,10 +107,6 @@
         <li>Interruptor automático 1×40 A, 6 kA</li>
 
         <li>Protector diferencial 2×40 A</li>
-
-        <li>Tablero exterior de 5 puestos grado IP65</li>
-
-        <li>Tornillería, fijaciones y accesorios menores</li>
       </ul>
       <p class="border-t pt-3 text-gray-700 italic">
         Incluye además la <strong>mano de obra certificada</strong>, ajustes
