@@ -121,7 +121,15 @@
 }
 
 .markdown-body h2 {
-  @apply text-3xl font-semibold mb-3;
+  @apply text-2xl font-semibold mb-3;
+}
+
+.markdown-body a {
+  @apply link link-primary;
+}
+
+.markdown-body p {
+  @apply mb-4;
 }
 
 .select:disabled {

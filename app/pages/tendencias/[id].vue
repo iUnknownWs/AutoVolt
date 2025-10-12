@@ -8,34 +8,43 @@
       </ul>
     </div>
     <div
-      class="flex h-[calc(100vh-148px)] flex-col justify-end bg-[url(/hero.jpg)] bg-cover bg-center p-8 py-6 text-white"
+      v-if="data"
+      class="h-[calc(100vh-148px)] bg-cover bg-center text-white"
+      :style="`background-image: url(${data.data.image_url})`"
     >
-      <h1 class="h2">Tendencia Titulo</h1>
-      <div class="flex items-center gap-4">
-        <p class="body text-primary text-lg font-bold">Willders Carvajal</p>
-        <div class="flex gap-1">
-          <Icon name="ph:calendar" size="24" />
-          <p class="body text-center font-bold">07/03/2000</p>
+      <div class="flex h-full flex-col justify-end bg-black/30 p-8 py-6">
+        <h1 class="h2">{{ data.data.titulo }}</h1>
+        <div class="flex items-center gap-4">
+          <p class="body text-primary text-lg font-bold">
+            {{ data.data.autor }}
+          </p>
+          <div class="flex gap-1">
+            <Icon name="ph:calendar" size="24" />
+            <p class="body text-center font-bold">
+              {{ data.data.fecha_publicacion }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
     <div class="flex gap-8 p-6">
       <div class="markdown-body flex-1" v-html="compiledMarkdown"></div>
       <div class="max-w-80 flex-1">
+        <div class="mb-12 flex flex-col gap-4">
+          <p class="h4">Sugeridos</p>
+          <TendenciasCardComponent
+            v-for="item in suggesteds"
+            :key="item.id"
+            :data="item"
+          />
+        </div>
         <div class="flex flex-col gap-4">
           <p class="h4">Populares</p>
-          <CardComponent class="flex cursor-pointer">
-            <NuxtImg
-              src="/hero.jpg"
-              class="h-24 w-28 rounded-l-2xl object-cover"
-              alt="Tendencia foto"
-            />
-            <div
-              class="flex flex-col items-center justify-center gap-1 p-4 text-sm"
-            >
-              <p class="h6 leading-5">Descripción de la tendencia 1</p>
-            </div>
-          </CardComponent>
+          <TendenciasCardComponent
+            v-for="item in populars"
+            :key="item.id"
+            :data="item"
+          />
         </div>
       </div>
     </div>
@@ -45,11 +54,25 @@
 <script lang="ts" setup>
 import MarkdownIt from "markdown-it";
 import { computed } from "vue";
+import type { Tendencias } from "~/types/tendencias";
 
 const { $api } = useNuxtApp();
-const { data } = await useFetch("tendencias/", {
+const { id } = useRoute().params;
+
+const { data } = await useFetch<Tendencias>(`tendencias/${id}`, {
   $fetch: $api,
 });
+
+const { data: populars } = await useFetch("tendencias/popular", {
+  $fetch: $api,
+  transform: (data: Tendencias) => data.results,
+});
+
+const { data: suggesteds } = await useFetch("tendencias/sugerido", {
+  $fetch: $api,
+  transform: (data: Tendencias) => data.results,
+});
+
 const md = new MarkdownIt();
 const compiledMarkdown = computed(() =>
   md.render(data.value.data.markdown || ""),

@@ -43,7 +43,11 @@
         </ul>
         <p class="mt-4 text-sm text-blue-600">
           Puedes revisar la
-          <a href="#" class="font-medium hover:underline"
+          <a
+            href="https://storage.googleapis.com/mediamvp/Ficha%20Tecnica%20Wallbox%20Pulsar%20Plus.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-medium hover:underline"
             >ficha técnica del cargador Wallbox Pulsar Plus</a
           >
           aquí.
@@ -95,20 +99,16 @@
         class="mb-6 grid list-inside list-disc grid-cols-1 gap-2 text-gray-700 md:grid-cols-2"
       >
         <li>Cargador <strong>Wallbox Pulsar Plus 7.4 kW (AC)</strong></li>
-
         <li>Cable de cobre 6 mm</li>
-
         <li>Canalización metálica de 40 mm (3 m)</li>
-
         <li>Conector EMT 40 mm</li>
-
         <li>Abrazaderas metálicas (una cada 1,5 m aprox.)</li>
-
         <li>Interruptor automático 1×40 A, 6 kA</li>
-
         <li>Protector diferencial 2×40 A</li>
+        <li>Tablero exterior de 5 puestos grado IP65</li>
+        <li>Tornillería, fijaciones y accesorios menores</li>
       </ul>
-      <p class="border-t pt-3 text-gray-700 italic">
+      <p class="text-gray-700 italic">
         Incluye además la <strong>mano de obra certificada</strong>, ajustes
         eléctricos necesarios y <strong>supervisión técnica final</strong>.
       </p>

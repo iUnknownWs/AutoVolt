@@ -50,24 +50,37 @@
         </div>
       </div>
       <div class="max-w-80 flex-1">
-        <div class="flex flex-col gap-4">
+        <div class="mb-12 flex flex-col gap-4">
           <p class="h4">Sugeridos</p>
-          <CardComponent class="flex cursor-pointer">
-            <NuxtImg
-              src="/hero.jpg"
-              class="h-24 w-28 rounded-l-2xl object-cover"
-              alt="Tendencia foto"
-            />
-            <div
-              class="flex flex-col items-center justify-center gap-1 p-4 text-sm"
-            >
-              <p class="h6 leading-5">Descripción de la tendencia 1</p>
-            </div>
-          </CardComponent>
+          <TendenciasCardComponent
+            v-for="item in suggesteds"
+            :key="item.id"
+            :data="item"
+          />
+        </div>
+        <div class="flex flex-col gap-4">
+          <p class="h4">Populares</p>
+          <TendenciasCardComponent
+            v-for="item in populars"
+            :key="item.id"
+            :data="item"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { $api } = useNuxtApp();
+
+const { data: populars } = await useFetch("tendencias/popular", {
+  $fetch: $api,
+  transform: (data: Tendencias) => data.results,
+});
+
+const { data: suggesteds } = await useFetch("tendencias/sugerido", {
+  $fetch: $api,
+  transform: (data: Tendencias) => data.results,
+});
+</script>

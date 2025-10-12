@@ -167,7 +167,7 @@
           </ClientOnly>
         </p>
         <p v-for="car in 4" class="body text-center font-semibold">
-          {{ cars[car - 1]?.rango_wltp || "-" }}
+          {{ cars[car - 1]?.autonomia_combinada || "-" }}
         </p>
         <div class="divider col-span-5 m-0"></div>
         <p class="h6">

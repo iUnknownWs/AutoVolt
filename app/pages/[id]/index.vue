@@ -4,20 +4,18 @@
       <template #content>
         <p class="h6">Tipo EV</p>
         <p class="body mt-2">
-          <strong>BEV (Battery Electric Vehicle):</strong> funciona solo con
-          batería y motor eléctrico, sin motor a combustión. Carga lenta (AC) y
-          rápida (DC).
+          <b>BEV (Battery Electric Vehicle):</b> funciona solo con batería y
+          motor eléctrico, sin motor a combustión. Carga lenta (AC) y rápida
+          (DC).
           <br />
-          <strong>PHEV (Plug-in Hybrid Electric Vehicle):</strong> combina motor
-          eléctrico para ciudad y motor a combustión para carretera. Carga lenta
-          (AC). <br />
-          <strong>HEV (Hybrid Electric Vehicle):</strong> motor principal a
-          combustión y un motor eléctrico auxiliar que se recarga
-          automáticamente al frenar.
+          <b>PHEV (Plug-in Hybrid Electric Vehicle):</b> combina motor eléctrico
+          para ciudad y motor a combustión para carretera. Carga lenta (AC).
           <br />
-          <strong>MHEV (Mild Hybrid Electric Vehicle):</strong> motor a
-          combustión con asistencia eléctrica ligera, mejora el consumo y
-          suaviza el arranque.
+          <b>HEV (Hybrid Electric Vehicle):</b> motor principal a combustión y
+          un motor eléctrico auxiliar que se recarga automáticamente al frenar.
+          <br />
+          <b>MHEV (Mild Hybrid Electric Vehicle):</b> motor a combustión con
+          asistencia eléctrica ligera, mejora el consumo y suaviza el arranque.
         </p>
       </template>
     </ModalComponent>
@@ -274,11 +272,13 @@
             </div>
           </div>
         </CardComponent>
-        <CardComponent
-          class="flex h-full flex-col items-center justify-center gap-4 p-6"
-        >
-          <NuxtLink class="h1"> Guia AutoVolt </NuxtLink>
-        </CardComponent>
+
+        <NuxtLink to="/guia" class="h1 card-shadow">
+          <NuxtImg
+            src="https://storage.googleapis.com/mediamvp/Guia%20AutoVolt%20png.png"
+            class="h-[220px] w-[684px] rounded-2xl object-cover"
+          />
+        </NuxtLink>
       </div>
       <div class="flex flex-1 flex-col gap-6">
         <CardComponent class="flex flex-col gap-4 p-6">

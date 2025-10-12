@@ -26,16 +26,18 @@
           <NuxtLink to="/carga" class="btn btn-ghost btn-sm">
             Carga Residencial
           </NuxtLink>
-          <NuxtLink class="btn btn-ghost btn-sm">Guía AutoVolt</NuxtLink>
+          <NuxtLink to="/guia" class="btn btn-ghost btn-sm">
+            Guía AutoVolt
+          </NuxtLink>
           <NuxtLink to="/comparador" class="btn btn-ghost btn-sm">
             Comparador
           </NuxtLink>
           <NuxtLink to="/simulador-ahorros" class="btn btn-ghost btn-sm">
             Simulador de Ahorros
           </NuxtLink>
-          <NuxtLink to="/tendencias" class="btn btn-ghost btn-sm"
-            >Tendencias</NuxtLink
-          >
+          <NuxtLink to="/tendencias" class="btn btn-ghost btn-sm">
+            Tendencias
+          </NuxtLink>
           <NuxtLink to="/contacto" class="btn btn-ghost btn-sm">
             Contacto
           </NuxtLink>

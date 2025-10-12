@@ -282,7 +282,7 @@ const consumoElectrico = computed(() => {
 
 const consumo_año = computed(() => {
   if (!car.value) return 0;
-  return 12775 / consumoElectrico.value;
+  return Number(12775 / consumoElectrico.value).toFixed(0);
 });
 
 const carga_residencial = computed(() => {
@@ -300,7 +300,7 @@ const ahorro_años = computed(() => {
 });
 
 const calculo_consumo = computed(() => {
-  return consumo_año.value * 200;
+  return Number(consumo_año.value) * 200;
 });
 
 const credito_inyeccion = computed(() => {

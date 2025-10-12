@@ -3,23 +3,23 @@
     <Slide>
       <NuxtImg
         class="h-[40vw] w-full object-cover"
-        src="https://storage.googleapis.com/mediamvp/Main%20Banner%201%20png%20(1).png"
+        src="https://storage.googleapis.com/mediamvp/Main%20Banner%20Mitsubishi%20png.png"
       />
     </Slide>
     <Slide>
       <NuxtImg
         class="h-[40vw] w-full object-cover"
-        src="https://storage.googleapis.com/mediamvp/Main%20Banner%202%20png%20(1).png"
+        src="https://storage.googleapis.com/mediamvp/Main%20Banner%20Skoda%20png.png"
       />
     </Slide>
     <Slide>
       <NuxtImg
         class="h-[40vw] w-full object-cover"
-        src="https://storage.googleapis.com/mediamvp/Main%20banner%203%20png.png"
+        src="https://storage.googleapis.com/mediamvp/Main%20Banner%20Tesla%20png.png"
       />
     </Slide>
     <template #addons>
-      <div class="absolute flex h-full w-full flex-col">
+      <div class="absolute flex h-full w-full flex-col bg-black/40">
         <h2 class="h2 w-full pt-12 text-center text-white">
           Tu camino hacia la electromovilidad comienza aquí.
         </h2>
