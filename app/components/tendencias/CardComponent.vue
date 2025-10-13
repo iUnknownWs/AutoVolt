@@ -1,6 +1,6 @@
 <template>
   <NuxtLink :to="`/tendencias/${data.id}`">
-    <CardComponent class="flex cursor-pointer">
+    <CardComponent :data="data" class="flex cursor-pointer">
       <NuxtImg
         :src="data.image_url"
         class="h-24 w-28 rounded-l-2xl object-cover"

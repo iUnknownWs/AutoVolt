@@ -104,7 +104,7 @@
             </TooltipComponent>
           </ClientOnly>
         </p>
-        <p class="body font-bold">{{ car.rango_wltp_raw }}</p>
+        <p class="body font-bold">{{ car.autonomia_combinada_raw }}</p>
       </div>
     </div>
     <button class="btn btn-secondary btn-wide">

@@ -21,6 +21,7 @@ export interface Cars {
     consumo_raw: string;
     created_at: Date;
     foto_portada: string;
+    autonomia_combinada_raw: string;
 }
 
 export interface CarDetails {

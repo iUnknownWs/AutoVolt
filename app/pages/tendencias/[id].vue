@@ -10,18 +10,18 @@
     <div
       v-if="data"
       class="h-[calc(100vh-148px)] bg-cover bg-center text-white"
-      :style="`background-image: url(${data.data.image_url})`"
+      :style="`background-image: url(${data.image_url})`"
     >
       <div class="flex h-full flex-col justify-end bg-black/30 p-8 py-6">
-        <h1 class="h2">{{ data.data.titulo }}</h1>
+        <h1 class="h2">{{ data.titulo }}</h1>
         <div class="flex items-center gap-4">
           <p class="body text-primary text-lg font-bold">
-            {{ data.data.autor }}
+            {{ data.autor }}
           </p>
           <div class="flex gap-1">
             <Icon name="ph:calendar" size="24" />
             <p class="body text-center font-bold">
-              {{ data.data.fecha_publicacion }}
+              {{ data.fecha_publicacion }}
             </p>
           </div>
         </div>
@@ -54,27 +54,29 @@
 <script lang="ts" setup>
 import MarkdownIt from "markdown-it";
 import { computed } from "vue";
-import type { Tendencias } from "~/types/tendencias";
+import type { TendenciaDetail, Tendencias } from "~/types/tendencias";
 
 const { $api } = useNuxtApp();
 const { id } = useRoute().params;
 
-const { data } = await useFetch<Tendencias>(`tendencias/${id}`, {
+const { data } = await useFetch(`tendencias/${id}`, {
   $fetch: $api,
+  key: `tendencias-${id}`,
+  transform: (data: TendenciaDetail) => data.data,
 });
 
 const { data: populars } = await useFetch("tendencias/popular", {
   $fetch: $api,
+  key: "tendencias-populars",
   transform: (data: Tendencias) => data.results,
 });
 
 const { data: suggesteds } = await useFetch("tendencias/sugerido", {
   $fetch: $api,
+  key: "tendencias-suggesteds",
   transform: (data: Tendencias) => data.results,
 });
 
 const md = new MarkdownIt();
-const compiledMarkdown = computed(() =>
-  md.render(data.value.data.markdown || ""),
-);
+const compiledMarkdown = computed(() => md.render(data.value?.markdown || ""));
 </script>

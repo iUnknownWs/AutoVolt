@@ -8,45 +8,56 @@
     </div>
     <div class="flex gap-8 pb-6">
       <div class="flex-1">
-        <CardComponent class="mb-6">
-          <div
-            class="flex h-80 w-full cursor-pointer flex-col justify-end rounded-t-2xl bg-[url(/hero.jpg)] bg-cover bg-center object-cover p-8 py-6 text-white"
-          >
-            <h1 class="h2">Tendencia Titulo</h1>
-            <div class="flex items-center gap-4">
-              <p class="body text-primary text-lg font-bold">
-                Willders Carvajal
-              </p>
-              <div class="flex gap-1">
-                <Icon name="ph:calendar" size="24" />
-                <p class="body text-center font-bold">07/03/2000</p>
+        <NuxtLink
+          :to="{ name: 'tendencias-id', params: { id: firstTendencia?.id } }"
+        >
+          <CardComponent class="mb-6">
+            <div
+              class="flex h-80 w-full cursor-pointer flex-col justify-end rounded-t-2xl bg-cover bg-center object-cover p-8 py-6 text-white"
+              :style="`background-image: url(${firstTendencia?.image_url})`"
+            >
+              <h1 class="h2">{{ firstTendencia?.titulo }}</h1>
+              <div class="flex items-center gap-4">
+                <p class="body text-primary text-lg font-bold">
+                  {{ firstTendencia?.autor }}
+                </p>
+                <div class="flex gap-1">
+                  <Icon name="ph:calendar" size="24" />
+                  <p class="body text-center font-bold">
+                    {{ firstTendencia?.fecha_publicacion }}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="p-4">
-            <p class="body">
-              Esta es una descripción detallada de la tendencia principal que
-              está siendo destacada en esta sección. Aquí puedes incluir
-              información relevante y atractiva para los usuarios.
-            </p>
-          </div>
-        </CardComponent>
-        <div class="flex flex-col gap-4">
-          <CardComponent class="flex cursor-pointer">
-            <NuxtImg
-              src="/hero.jpg"
-              class="h-32 w-48 rounded-l-2xl object-cover"
-              alt="Tendencia 1"
-            />
-            <div class="flex flex-col gap-1 p-4 text-sm">
-              <p class="h4 link link-hover link-primary">
-                Descripción de la tendencia 1
-              </p>
-              <p class="body text-lg">
-                Detalles adicionales sobre la tendencia 1
+            <div class="p-4">
+              <p class="body">
+                {{ firstTendencia?.descripcion }}
               </p>
             </div>
           </CardComponent>
+        </NuxtLink>
+        <div v-if="data" class="flex flex-col gap-4">
+          <NuxtLink
+            v-for="item in data"
+            :key="item.id"
+            :to="{ name: 'tendencias-id', params: { id: item.id } }"
+          >
+            <CardComponent class="flex cursor-pointer">
+              <NuxtImg
+                :src="item.image_url"
+                class="h-32 w-48 rounded-l-2xl object-cover"
+                :alt="item.titulo"
+              />
+              <div class="flex flex-col gap-1 p-4 text-sm">
+                <p class="h4 link link-hover link-primary">
+                  {{ item.titulo }}
+                </p>
+                <p class="body text-lg">
+                  {{ item.descripcion }}
+                </p>
+              </div>
+            </CardComponent>
+          </NuxtLink>
         </div>
       </div>
       <div class="max-w-80 flex-1">
@@ -72,15 +83,27 @@
 </template>
 
 <script lang="ts" setup>
+import type { Tendencias } from "~/types/tendencias";
+
 const { $api } = useNuxtApp();
+
+const { data } = await useFetch(`tendencias/`, {
+  $fetch: $api,
+  key: "tendencias",
+  transform: (data: Tendencias) => data.results,
+});
+
+const firstTendencia = data.value?.shift();
 
 const { data: populars } = await useFetch("tendencias/popular", {
   $fetch: $api,
+  key: "tendencias-populars",
   transform: (data: Tendencias) => data.results,
 });
 
 const { data: suggesteds } = await useFetch("tendencias/sugerido", {
   $fetch: $api,
+  key: "tendencias-suggesteds",
   transform: (data: Tendencias) => data.results,
 });
 </script>
