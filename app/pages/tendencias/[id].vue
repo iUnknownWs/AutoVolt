@@ -55,6 +55,7 @@
 
 <script lang="ts" setup>
 import MarkdownIt from "markdown-it";
+import matter from "gray-matter";
 import { computed } from "vue";
 import type { TendenciaDetail, Tendencias } from "~/types/tendencias";
 
@@ -80,5 +81,24 @@ const { data: suggesteds } = await useFetch("tendencias/sugerido", {
 });
 
 const md = new MarkdownIt();
-const compiledMarkdown = computed(() => md.render(data.value?.markdown || ""));
+const { data: frontmatter, content } = matter(data.value?.markdown || "");
+const compiledMarkdown = computed(() => md.render(content || ""));
+useHead({
+  title: frontmatter.title || "Tendencias",
+  meta: [
+    {
+      name: "description",
+      content: frontmatter.description || "Descripción de la tendencia",
+    },
+    { property: "og:title", content: frontmatter.title || "Tendencias" },
+    {
+      property: "og:description",
+      content: frontmatter.description || "Descripción de la tendencia",
+    },
+    {
+      property: "keywords",
+      content: (frontmatter.tags || []).join(", "),
+    },
+  ],
+});
 </script>
