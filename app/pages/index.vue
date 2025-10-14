@@ -120,45 +120,39 @@
           </template>
         </Carousel>
       </div>
-      <div class="flex h-full items-center justify-between gap-12 px-6 py-8">
-        <div
-          v-if="firstTendencia"
+      <div
+        v-if="tendencias"
+        class="flex h-full items-center justify-between gap-12 px-6 py-8"
+      >
+        <NuxtLink
+          :to="{ name: 'tendencias-id', params: { id: tendencias[0]?.id } }"
           class="h-[424px] w-full rounded-2xl bg-cover bg-bottom"
-          :style="{ backgroundImage: `url(${firstTendencia?.image_url})` }"
+          :style="{ backgroundImage: `url(${tendencias[0]?.image_url})` }"
         >
           <div
             class="text-neutral-content flex h-full w-full flex-col justify-between rounded-2xl bg-black/30 p-10"
           >
             <p class="h2 text-wrap">Tendencias</p>
             <div>
-              <p class="h4">{{ firstTendencia?.titulo }}</p>
+              <p class="h4">{{ tendencias[0]?.titulo }}</p>
               <p class="body line-clamp-3 text-ellipsis">
-                {{ firstTendencia?.descripcion }}
+                {{ tendencias[0]?.descripcion }}
               </p>
             </div>
           </div>
-        </div>
-        <div
-          v-if="tendencias"
-          class="bg-base-100 flex h-fit w-full gap-4 rounded-lg p-6 shadow"
-        >
+        </NuxtLink>
+        <div class="bg-base-100 flex h-fit w-full gap-4 rounded-lg p-6 shadow">
           <div class="w-full flex-col">
             <div class="flex max-w-96 flex-col gap-2">
-              <a class="h6 link link-hover link-primary">
-                {{ tendencias[0]?.titulo }}
-              </a>
-              <p class="body line-clamp-4 text-ellipsis">
-                {{ tendencias[0]?.descripcion }}
-              </p>
-              <p class="body font-bold">
-                {{ tendencias[0]?.fecha_publicacion }}
-              </p>
-            </div>
-            <div class="divider"></div>
-            <div class="flex max-w-96 flex-col gap-2">
-              <a class="h6 link link-hover link-primary">
+              <NuxtLink
+                :to="{
+                  name: 'tendencias-id',
+                  params: { id: tendencias[1]?.id },
+                }"
+                class="h6 link link-hover link-primary line-clamp-2"
+              >
                 {{ tendencias[1]?.titulo }}
-              </a>
+              </NuxtLink>
               <p class="body line-clamp-4 text-ellipsis">
                 {{ tendencias[1]?.descripcion }}
               </p>
@@ -166,12 +160,17 @@
                 {{ tendencias[1]?.fecha_publicacion }}
               </p>
             </div>
-          </div>
-          <div class="w-full flex-col">
+            <div class="divider"></div>
             <div class="flex max-w-96 flex-col gap-2">
-              <a class="h6 link link-hover link-primary">
+              <NuxtLink
+                :to="{
+                  name: 'tendencias-id',
+                  params: { id: tendencias[2]?.id },
+                }"
+                class="h6 link link-hover link-primary line-clamp-2"
+              >
                 {{ tendencias[2]?.titulo }}
-              </a>
+              </NuxtLink>
               <p class="body line-clamp-4 text-ellipsis">
                 {{ tendencias[2]?.descripcion }}
               </p>
@@ -179,16 +178,41 @@
                 {{ tendencias[2]?.fecha_publicacion }}
               </p>
             </div>
-            <div class="divider"></div>
+          </div>
+          <div class="w-full flex-col">
             <div class="flex max-w-96 flex-col gap-2">
-              <a class="h6 link link-hover link-primary">
+              <NuxtLink
+                :to="{
+                  name: 'tendencias-id',
+                  params: { id: tendencias[3]?.id },
+                }"
+                class="h6 link link-hover link-primary line-clamp-2"
+              >
                 {{ tendencias[3]?.titulo }}
-              </a>
+              </NuxtLink>
               <p class="body line-clamp-4 text-ellipsis">
                 {{ tendencias[3]?.descripcion }}
               </p>
               <p class="body font-bold">
                 {{ tendencias[3]?.fecha_publicacion }}
+              </p>
+            </div>
+            <div class="divider"></div>
+            <div class="flex max-w-96 flex-col gap-2">
+              <NuxtLink
+                :to="{
+                  name: 'tendencias-id',
+                  params: { id: tendencias[4]?.id },
+                }"
+                class="h6 link link-hover link-primary line-clamp-2"
+              >
+                {{ tendencias[4]?.titulo }}
+              </NuxtLink>
+              <p class="body line-clamp-4 text-ellipsis">
+                {{ tendencias[4]?.descripcion }}
+              </p>
+              <p class="body font-bold">
+                {{ tendencias[4]?.fecha_publicacion }}
               </p>
             </div>
           </div>
@@ -203,8 +227,8 @@ const { $api } = useNuxtApp();
 const brand = ref("");
 const model = ref("");
 import type { DataObject, ResponseData } from "~/types/api";
-import type { CarDetails, Cars } from "~/types/cars";
-import type { Tendencia, Tendencias } from "~/types/tendencias";
+import type { Cars } from "~/types/cars";
+import type { Tendencias } from "~/types/tendencias";
 
 const carouselCarsSettings = {
   wrapAround: true,
@@ -216,8 +240,6 @@ const { data: tendencias } = await useFetch(`tendencias/`, {
   key: "tendencias",
   transform: (data: Tendencias) => data.results,
 });
-
-let firstTendencia: Tendencia | undefined;
 
 const { data: brands } = await useFetch(`car_brands/`, {
   key: "brands",
@@ -241,9 +263,5 @@ const getModels = async () => {
 
 watch(brand, () => {
   getModels();
-});
-
-onMounted(() => {
-  firstTendencia = tendencias.value?.shift();
 });
 </script>

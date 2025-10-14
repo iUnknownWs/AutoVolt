@@ -70,17 +70,19 @@ const { data } = await useFetch(`tendencias/${id}`, {
 
 const { data: populars } = await useFetch("tendencias/popular", {
   $fetch: $api,
-  key: "tendencias-populars",
   transform: (data: Tendencias) => data.results,
 });
 
 const { data: suggesteds } = await useFetch("tendencias/sugerido", {
   $fetch: $api,
-  key: "tendencias-suggesteds",
   transform: (data: Tendencias) => data.results,
 });
 
-const md = new MarkdownIt();
+const md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true,
+});
 const { data: frontmatter, content } = matter(data.value?.markdown || "");
 const compiledMarkdown = computed(() => md.render(content || ""));
 useHead({

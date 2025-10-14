@@ -9,25 +9,26 @@
     <div class="flex gap-8 pb-6">
       <div class="flex-1">
         <NuxtLink
-          :to="{ name: 'tendencias-id', params: { id: firstTendencia?.id } }"
+          v-if="tendencias"
+          :to="{ name: 'tendencias-id', params: { id: tendencias[0]?.id } }"
         >
           <CardComponent class="mb-6">
             <div
               class="h-80 w-full cursor-pointer rounded-t-2xl bg-cover bg-center object-cover text-white"
-              :style="`background-image: url(${firstTendencia?.image_url})`"
+              :style="`background-image: url(${tendencias[0]?.image_url})`"
             >
               <div
                 class="flex h-full flex-col justify-end rounded-t-2xl bg-gradient-to-t from-black/70 to-transparent p-8 py-6"
               >
-                <h1 class="h2">{{ firstTendencia?.titulo }}</h1>
+                <h1 class="h2">{{ tendencias[0]?.titulo }}</h1>
                 <div class="flex items-center gap-4">
                   <p class="body text-primary text-lg font-bold">
-                    {{ firstTendencia?.autor }}
+                    {{ tendencias[0]?.autor }}
                   </p>
                   <div class="flex gap-1">
                     <Icon name="ph:calendar" size="24" />
                     <p class="body text-center font-bold">
-                      {{ firstTendencia?.fecha_publicacion }}
+                      {{ tendencias[0]?.fecha_publicacion }}
                     </p>
                   </div>
                 </div>
@@ -35,14 +36,14 @@
             </div>
             <div class="p-4">
               <p class="body">
-                {{ firstTendencia?.descripcion }}
+                {{ tendencias[0]?.descripcion }}
               </p>
             </div>
           </CardComponent>
         </NuxtLink>
-        <div v-if="data" class="flex flex-col gap-4">
+        <div v-if="tendencias" class="flex flex-col gap-4">
           <NuxtLink
-            v-for="item in data"
+            v-for="item in tendencias.slice(1)"
             :key="item.id"
             :to="{ name: 'tendencias-id', params: { id: item.id } }"
           >
@@ -87,17 +88,17 @@
 </template>
 
 <script lang="ts" setup>
-import type { Tendencias } from "~/types/tendencias";
+import type { Tendencia, Tendencias } from "~/types/tendencias";
 
 const { $api } = useNuxtApp();
 
-const { data } = await useFetch(`tendencias/`, {
+const { data: tendencias } = await useFetch(`tendencias/`, {
   $fetch: $api,
   key: "tendencias",
   transform: (data: Tendencias) => data.results,
 });
 
-const firstTendencia = data.value?.shift();
+let firstTendencia: Tendencia | undefined;
 
 const { data: populars } = await useFetch("tendencias/popular", {
   $fetch: $api,
