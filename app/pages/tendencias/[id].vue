@@ -4,7 +4,9 @@
       <ul>
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li><NuxtLink to="/tendencias">Tendencias</NuxtLink></li>
-        <li>Tendencias titulo</li>
+        <li v-if="data">
+          <span>{{ data.titulo }}</span>
+        </li>
       </ul>
     </div>
     <div
@@ -31,7 +33,7 @@
       <div class="markdown-body flex-1" v-html="compiledMarkdown"></div>
       <div class="max-w-80 flex-1">
         <div class="mb-12 flex flex-col gap-4">
-          <p class="h4">Sugeridos</p>
+          <p class="h4 bg-secondary rounded px-4 py-2">Sugeridos</p>
           <TendenciasCardComponent
             v-for="item in suggesteds"
             :key="item.id"
@@ -39,7 +41,7 @@
           />
         </div>
         <div class="flex flex-col gap-4">
-          <p class="h4">Populares</p>
+          <p class="h4 bg-secondary rounded px-4 py-2">Populares</p>
           <TendenciasCardComponent
             v-for="item in populars"
             :key="item.id"

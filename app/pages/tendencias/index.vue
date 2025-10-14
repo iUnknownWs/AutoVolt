@@ -13,19 +13,23 @@
         >
           <CardComponent class="mb-6">
             <div
-              class="flex h-80 w-full cursor-pointer flex-col justify-end rounded-t-2xl bg-cover bg-center object-cover p-8 py-6 text-white"
+              class="h-80 w-full cursor-pointer rounded-t-2xl bg-cover bg-center object-cover text-white"
               :style="`background-image: url(${firstTendencia?.image_url})`"
             >
-              <h1 class="h2">{{ firstTendencia?.titulo }}</h1>
-              <div class="flex items-center gap-4">
-                <p class="body text-primary text-lg font-bold">
-                  {{ firstTendencia?.autor }}
-                </p>
-                <div class="flex gap-1">
-                  <Icon name="ph:calendar" size="24" />
-                  <p class="body text-center font-bold">
-                    {{ firstTendencia?.fecha_publicacion }}
+              <div
+                class="flex h-full flex-col justify-end rounded-t-2xl bg-gradient-to-t from-black/70 to-transparent p-8 py-6"
+              >
+                <h1 class="h2">{{ firstTendencia?.titulo }}</h1>
+                <div class="flex items-center gap-4">
+                  <p class="body text-primary text-lg font-bold">
+                    {{ firstTendencia?.autor }}
                   </p>
+                  <div class="flex gap-1">
+                    <Icon name="ph:calendar" size="24" />
+                    <p class="body text-center font-bold">
+                      {{ firstTendencia?.fecha_publicacion }}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -45,7 +49,7 @@
             <CardComponent class="flex cursor-pointer">
               <NuxtImg
                 :src="item.image_url"
-                class="h-32 w-48 rounded-l-2xl object-cover"
+                class="h-32 w-48 shrink-0 rounded-l-2xl object-cover"
                 :alt="item.titulo"
               />
               <div class="flex flex-col gap-1 p-4 text-sm">
@@ -62,7 +66,7 @@
       </div>
       <div class="max-w-80 flex-1">
         <div class="mb-12 flex flex-col gap-4">
-          <p class="h4">Sugeridos</p>
+          <p class="h4 bg-secondary rounded px-4 py-2">Sugeridos</p>
           <TendenciasCardComponent
             v-for="item in suggesteds"
             :key="item.id"
@@ -70,7 +74,7 @@
           />
         </div>
         <div class="flex flex-col gap-4">
-          <p class="h4">Populares</p>
+          <p class="h4 bg-secondary rounded px-4 py-2">Populares</p>
           <TendenciasCardComponent
             v-for="item in populars"
             :key="item.id"

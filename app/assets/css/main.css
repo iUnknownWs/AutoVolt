@@ -132,6 +132,10 @@
   @apply mb-4;
 }
 
+.markdown-body hr {
+  @apply my-6;
+}
+
 .select:disabled {
   @apply bg-base-300 border-(--input-color);
 }

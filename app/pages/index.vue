@@ -54,6 +54,7 @@
             description="Accede a guías, simuladores de ahorro y comparadores para encontrar el auto eléctrico que mejor se ajusta a tus necesidades."
             icon="ph:info-duotone"
             cta="Guía AutoVolt"
+            to="/guia/"
           />
           <HomeInfoCard
             title="Cargador Residencial"
@@ -119,74 +120,76 @@
           </template>
         </Carousel>
       </div>
-      <div class="flex h-full items-center justify-between gap-12 px-6 py-12">
+      <div class="flex h-full items-center justify-between gap-12 px-6 py-8">
         <div
+          v-if="firstTendencia"
           class="h-[424px] w-full rounded-2xl bg-cover bg-bottom"
-          :class="`bg-[url(/hero.jpg)]`"
+          :style="{ backgroundImage: `url(${firstTendencia?.image_url})` }"
         >
           <div
             class="text-neutral-content flex h-full w-full flex-col justify-between rounded-2xl bg-black/30 p-10"
           >
             <p class="h2 text-wrap">Tendencias</p>
             <div>
-              <p class="h4">2026 Kia EV9 Prices Cut By Up To $2.000</p>
+              <p class="h4">{{ firstTendencia?.titulo }}</p>
               <p class="body line-clamp-3 text-ellipsis">
-                While most automakers are raising prices for the upcoming 2026
-                model year, Kia has found a way to keep pricing for the 2026 EV9
-                steady and in
+                {{ firstTendencia?.descripcion }}
               </p>
             </div>
           </div>
         </div>
-        <div class="bg-base-300 flex h-fit w-full gap-4 rounded-lg p-6 shadow">
+        <div
+          v-if="tendencias"
+          class="bg-base-100 flex h-fit w-full gap-4 rounded-lg p-6 shadow"
+        >
           <div class="w-full flex-col">
             <div class="flex max-w-96 flex-col gap-2">
               <a class="h6 link link-hover link-primary">
-                Is the Niro EV Going Away?
+                {{ tendencias[0]?.titulo }}
               </a>
               <p class="body line-clamp-4 text-ellipsis">
-                The current second-gen Kia Niro EV is a bit of an oddity. With
-                up to 253 miles of bueno bueno buen viaje estamos pasando por el
-                peaje y eso que no has
+                {{ tendencias[0]?.descripcion }}
               </p>
-              <p class="body font-bold">May 28, 2025</p>
+              <p class="body font-bold">
+                {{ tendencias[0]?.fecha_publicacion }}
+              </p>
             </div>
             <div class="divider"></div>
             <div class="flex max-w-96 flex-col gap-2">
               <a class="h6 link link-hover link-primary">
-                Is the Niro EV Going Away?
+                {{ tendencias[1]?.titulo }}
               </a>
               <p class="body line-clamp-4 text-ellipsis">
-                The current second-gen Kia Niro EV is a bit of an oddity. With
-                up to 253 miles of bueno bueno buen viaje estamos pasando por el
-                peaje y eso que no has
+                {{ tendencias[1]?.descripcion }}
               </p>
-              <p class="body font-bold">May 28, 2025</p>
+              <p class="body font-bold">
+                {{ tendencias[1]?.fecha_publicacion }}
+              </p>
             </div>
           </div>
           <div class="w-full flex-col">
             <div class="flex max-w-96 flex-col gap-2">
               <a class="h6 link link-hover link-primary">
-                Is the Niro EV Going Away?
+                {{ tendencias[2]?.titulo }}
               </a>
               <p class="body line-clamp-4 text-ellipsis">
-                The current second-gen Kia Niro EV is a bit of an oddity. With
-                up to 253 miles of bueno bueno buen viaje estamos pasando por el
-                peaje y eso que no has
+                {{ tendencias[2]?.descripcion }}
               </p>
-              <p class="body font-bold">May 28, 2025</p>
+              <p class="body font-bold">
+                {{ tendencias[2]?.fecha_publicacion }}
+              </p>
             </div>
             <div class="divider"></div>
             <div class="flex max-w-96 flex-col gap-2">
               <a class="h6 link link-hover link-primary">
-                Is the Niro EV Going Away?
+                {{ tendencias[3]?.titulo }}
               </a>
               <p class="body line-clamp-4 text-ellipsis">
-                The current second-gen Kia Niro EV is a bit of an oddity. With
-                up to 253 miles of bueno bueno buen viaje estamos pasando por el
-                peaje y eso que no has
+                {{ tendencias[3]?.descripcion }}
               </p>
-              <p class="body font-bold">May 28, 2025</p>
+              <p class="body font-bold">
+                {{ tendencias[3]?.fecha_publicacion }}
+              </p>
             </div>
           </div>
         </div>
@@ -201,11 +204,20 @@ const brand = ref("");
 const model = ref("");
 import type { DataObject, ResponseData } from "~/types/api";
 import type { CarDetails, Cars } from "~/types/cars";
+import type { Tendencia, Tendencias } from "~/types/tendencias";
 
 const carouselCarsSettings = {
   wrapAround: true,
   itemsToShow: 4,
 };
+
+const { data: tendencias } = await useFetch(`tendencias/`, {
+  $fetch: $api,
+  key: "tendencias",
+  transform: (data: Tendencias) => data.results,
+});
+
+let firstTendencia: Tendencia | undefined;
 
 const { data: brands } = await useFetch(`car_brands/`, {
   key: "brands",
@@ -229,5 +241,9 @@ const getModels = async () => {
 
 watch(brand, () => {
   getModels();
+});
+
+onMounted(() => {
+  firstTendencia = tendencias.value?.shift();
 });
 </script>

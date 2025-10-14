@@ -1,13 +1,13 @@
 <template>
   <NuxtLink :to="`/tendencias/${data.id}`">
-    <CardComponent :data="data" class="flex cursor-pointer">
+    <CardComponent :data="data" class="flex h-full cursor-pointer">
       <NuxtImg
         :src="data.image_url"
-        class="h-24 w-28 rounded-l-2xl object-cover"
+        class="h-28 w-28 rounded-l-2xl object-cover"
         alt="Tendencia foto"
       />
       <div class="flex flex-col items-center justify-center gap-1 p-4 text-sm">
-        <p class="h6 leading-5">{{ data.titulo }}</p>
+        <p class="h6 line-clamp-4 leading-5">{{ data.titulo }}</p>
       </div>
     </CardComponent>
   </NuxtLink>
