@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     'vue3-carousel-nuxt',
     'nuxt-snackbar',
+    'nuxt-gtag',
   ],
   runtimeConfig: {
     public: {
@@ -24,6 +25,9 @@ export default defineNuxtConfig({
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL,
       apiKey: process.env.NUXT_PUBLIC_API_KEY,
     }
+  },
+  gtag: {
+    id: 'G-DG2686F5C8'
   },
   snackbar: {
     bottom: true,

@@ -1,7 +1,7 @@
 <template>
   <Carousel
     v-bind="carouselSettings"
-    class="relative hidden h-[40vw] w-full lg:block"
+    class="relative hidden h-[40vw] w-full lg:inline-flex"
   >
     <Slide>
       <NuxtImg
