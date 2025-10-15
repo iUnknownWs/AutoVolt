@@ -21,7 +21,7 @@
           v-model="filters.ordering"
         />
       </div>
-      <button class="btn btn-secondary btn-square h-[44px]">
+      <button class="btn btn-secondary btn-square h-[44px] lg:hidden">
         <Icon name="ph:funnel-duotone" size="24" />
       </button>
     </div>
