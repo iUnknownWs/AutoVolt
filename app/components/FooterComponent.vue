@@ -9,7 +9,7 @@
   </ModalComponent>
   <div class="bg-neutral">
     <div
-      class="bg-neutral text-neutral-content mx-auto flex max-w-[1440px] flex-col gap-4 px-4 py-10"
+      class="bg-neutral text-neutral-content mx-auto flex max-w-[1440px] flex-col items-center gap-4 px-4 py-10 lg:items-stretch"
     >
       <div class="mb-4 flex justify-between">
         <NuxtLink to="/">
@@ -19,7 +19,7 @@
             class="w-56 object-contain"
           />
         </NuxtLink>
-        <div class="flex gap-2">
+        <div class="hidden flex-wrap justify-end gap-2 lg:flex">
           <NuxtLink to="/autos-electricos/" class="btn btn-ghost btn-sm">
             Autos
           </NuxtLink>
@@ -43,14 +43,14 @@
           </NuxtLink>
         </div>
       </div>
-      <div class="flex flex-col items-start gap-0">
+      <div class="flex flex-col items-center gap-0 lg:items-start">
         <p class="h5">Dirección:</p>
         <p class="body text-lg">
           Apoquindo 2930, Piso 2, Las Condes, Santiago, Chile
         </p>
       </div>
-      <div class="flex items-center justify-between">
-        <div class="flex flex-col items-start gap-0">
+      <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
+        <div class="flex flex-col items-center gap-0 lg:items-start">
           <p class="h5">Contacto:</p>
           <a
             href="mailto:contacto@auto-volt.cl"
@@ -75,8 +75,10 @@
         </div>
       </div>
       <div class="divider divider-white w-full"></div>
-      <div class="flex items-center justify-between">
-        <div class="flex flex-col items-start gap-0 *:text-neutral-400">
+      <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
+        <div
+          class="flex flex-col items-center gap-0 *:text-neutral-400 lg:items-start"
+        >
           <p class="body">
             © 2025 AutoVolt Chile SPA. Todos los derechos reservados.
           </p>

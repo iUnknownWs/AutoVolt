@@ -7,8 +7,11 @@
       </ul>
     </div>
     <div class="flex justify-between px-6 pb-4">
-      <p class="h4 bg-secondary rounded px-4 py-2 text-nowrap">
+      <p class="h4 bg-secondary hidden rounded px-4 py-2 text-nowrap lg:block">
         Filtros ({{ cars?.count }} Autos)
+      </p>
+      <p class="h4 bg-secondary rounded px-4 py-2 text-nowrap lg:hidden">
+        {{ cars?.count }} Autos
       </p>
       <div class="flex items-center gap-1">
         <span class="body text-nowrap">Ordenar por</span>
@@ -20,7 +23,7 @@
       </div>
     </div>
     <div class="flex w-full gap-6 px-6 pb-6">
-      <div class="flex w-fit max-w-64 flex-col gap-6">
+      <div class="hidden w-fit max-w-64 flex-col gap-6 lg:flex">
         <SearchSelect
           v-if="searchResult"
           :options="searchResult.results"

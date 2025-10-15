@@ -7,7 +7,7 @@
         </NuxtLink>
       </div>
       <div class="flex-none">
-        <ul class="menu menu-horizontal items-center px-1">
+        <ul class="menu menu-horizontal hidden items-center px-1 lg:flex">
           <li><NuxtLink to="/autos-electricos/">Autos</NuxtLink></li>
           <li><NuxtLink to="/carga">Carga Residencial</NuxtLink></li>
           <li>
@@ -51,6 +51,9 @@
             <button class="btn btn-primary">Explora con IA</button>
           </li> -->
         </ul>
+        <button class="btn btn-square lg:hidden" @click="$emit('menu')">
+          <icon name="ph:list" size="28" />
+        </button>
       </div>
     </div>
   </div>
