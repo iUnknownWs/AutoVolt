@@ -45,7 +45,7 @@
       </div>
       <div class="flex flex-col items-center gap-0 lg:items-start">
         <p class="h5">Dirección:</p>
-        <p class="body text-lg">
+        <p class="body text-center text-lg">
           Apoquindo 2930, Piso 2, Las Condes, Santiago, Chile
         </p>
       </div>
@@ -77,7 +77,7 @@
       <div class="divider divider-white w-full"></div>
       <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
         <div
-          class="flex flex-col items-center gap-0 *:text-neutral-400 lg:items-start"
+          class="flex flex-col items-center gap-0 text-center *:text-neutral-400 lg:items-start"
         >
           <p class="body">
             © 2025 AutoVolt Chile SPA. Todos los derechos reservados.

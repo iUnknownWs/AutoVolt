@@ -1,19 +1,19 @@
 <template>
   <div>
-    <div class="breadcrumbs p-6 text-lg">
+    <div class="breadcrumbs hidden px-6 pt-6 text-lg lg:flex">
       <ul>
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li>Autos</li>
       </ul>
     </div>
-    <div class="flex justify-between px-6 pb-4">
+    <div class="flex justify-between px-2 py-4 lg:px-6">
       <p class="h4 bg-secondary hidden rounded px-4 py-2 text-nowrap lg:block">
         Filtros ({{ cars?.count }} Autos)
       </p>
-      <p class="h4 bg-secondary rounded px-4 py-2 text-nowrap lg:hidden">
+      <p class="h5 lg:h4 bg-secondary rounded px-4 py-2 text-nowrap lg:hidden">
         {{ cars?.count }} Autos
       </p>
-      <div class="flex items-center gap-1">
+      <div class="hidden flex-col gap-1 lg:flex lg:flex-row lg:items-center">
         <span class="body text-nowrap">Ordenar por</span>
         <SelectComponent
           placeholder="Ordenar por"
@@ -21,6 +21,9 @@
           v-model="filters.ordering"
         />
       </div>
+      <button class="btn btn-secondary btn-square h-[44px]">
+        <Icon name="ph:funnel-duotone" size="24" />
+      </button>
     </div>
     <div class="flex w-full gap-6 px-6 pb-6">
       <div class="hidden w-fit max-w-64 flex-col gap-6 lg:flex">

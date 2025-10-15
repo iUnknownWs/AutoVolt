@@ -40,8 +40,8 @@
           </div>
         </div>
       </div>
-      <div class="flex h-full justify-evenly gap-6 p-6">
-        <div class="flex h-full min-w-96 flex-col gap-4">
+      <div class="flex h-full flex-wrap-reverse justify-evenly gap-6 p-6">
+        <div class="flex h-full min-w-96 flex-row gap-4 xl:flex-col">
           <HomeInfoCard
             title="Toda la oferta en un solo lugar"
             description="Encuentra todos los autos eléctricos e híbridos disponibles para comprar en Chile, compara marcas, modelos, versiones y ofertas en un solo lugar."
