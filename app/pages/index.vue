@@ -2,7 +2,7 @@
   <div class="mx-auto w-full">
     <HomeHeroComponent />
     <div class="h-full w-full">
-      <div class="relative h-8 w-full px-6">
+      <div class="relative hidden h-8 w-full px-6 lg:block">
         <div
           class="from-neutral absolute inset-x-0 -top-30 z-10 mx-auto w-max rounded-lg bg-gradient-to-b to-[#44462E] p-6 shadow-2xl"
         >
@@ -40,8 +40,8 @@
           </div>
         </div>
       </div>
-      <div class="flex h-full flex-wrap-reverse justify-evenly gap-6 p-6">
-        <div class="flex h-full min-w-96 flex-row gap-4 xl:flex-col">
+      <div class="flex h-full justify-evenly gap-6 p-2 lg:p-6">
+        <div class="flex h-full flex-col gap-4 lg:min-w-96">
           <HomeInfoCard
             title="Toda la oferta en un solo lugar"
             description="Encuentra todos los autos eléctricos e híbridos disponibles para comprar en Chile, compara marcas, modelos, versiones y ofertas en un solo lugar."
@@ -65,13 +65,15 @@
           />
         </div>
         <NuxtImg
-          class="h-fit max-h-[656px] w-fit rounded-2xl"
+          class="hidden h-fit max-h-[656px] w-fit rounded-2xl md:block"
           src="https://storage.googleapis.com/mediamvp/Informativo%201%20png.png"
         />
       </div>
-      <div class="flex flex-col gap-6 p-6">
-        <h2 class="h3">Explora por carrocería</h2>
-        <div class="flex cursor-pointer justify-between gap-4">
+      <div class="flex flex-col gap-6 p-2 lg:p-6">
+        <h2 class="h4 lg:h3">Explora por carrocería</h2>
+        <div
+          class="flex max-w-[calc(100vw-16px)] cursor-pointer justify-between gap-4 overflow-hidden"
+        >
           <HomeBodyCard
             v-for="body in masterData.bodies"
             :image="body.img"
@@ -80,9 +82,11 @@
           />
         </div>
       </div>
-      <div class="flex flex-col gap-6 p-6">
-        <h2 class="h3">Explora por rango de precio (CLP)</h2>
-        <div class="flex cursor-pointer justify-between gap-4">
+      <div class="flex flex-col gap-6 p-2 lg:p-6">
+        <h2 class="h4 lg:h3">Explora por rango de precio (CLP)</h2>
+        <div
+          class="flex max-w-[calc(100vw-16px)] cursor-pointer justify-between gap-4 overflow-hidden"
+        >
           <HomePriceCard
             v-for="price in masterData.priceRanges"
             :image="price.img"
@@ -91,17 +95,16 @@
           />
         </div>
       </div>
-      <div class="flex w-full max-w-[calc(100vw-15px)] flex-col p-6">
-        <h2 class="h3">Modelos populares en Chile</h2>
-        <Carousel
-          v-bind="carouselCarsSettings"
-          class="w-full overflow-hidden rounded-2xl"
-        >
+      <div
+        class="flex w-full max-w-screen flex-col p-2 lg:max-w-[calc(100vw-15px)] lg:p-6"
+      >
+        <h2 class="h4 lg:h3">Modelos populares en Chile</h2>
+        <Carousel v-bind="carouselCarsSettings">
           <Slide v-for="car in popular_cars" class="py-5">
             <CarCard :car="car" />
           </Slide>
           <template #addons>
-            <Navigation class="inset-y-[10%]!">
+            <Navigation class="inset-y-[10%]! hidden! lg:flex!">
               <template #prev>
                 <icon
                   name="ph:arrow-circle-left-duotone"
@@ -122,7 +125,7 @@
       </div>
       <div
         v-if="tendencias"
-        class="flex h-full items-center justify-between gap-12 px-6 py-8"
+        class="flex h-full flex-col items-center justify-between gap-12 px-2 py-8 lg:flex-row lg:px-6"
       >
         <NuxtLink
           :to="{ name: 'tendencias-id', params: { id: tendencias[0]?.id } }"
@@ -130,18 +133,20 @@
           :style="{ backgroundImage: `url(${tendencias[0]?.image_url})` }"
         >
           <div
-            class="text-neutral-content flex h-full w-full flex-col justify-between rounded-2xl bg-black/30 p-10"
+            class="text-neutral-content flex h-full w-full flex-col justify-between rounded-2xl bg-black/30 p-6 lg:p-10"
           >
-            <p class="h2 text-wrap">Tendencias</p>
+            <p class="lg:h2 h3 text-wrap">Tendencias</p>
             <div>
-              <p class="h4">{{ tendencias[0]?.titulo }}</p>
+              <p class="lg:h4 h5">{{ tendencias[0]?.titulo }}</p>
               <p class="body line-clamp-3 text-ellipsis">
                 {{ tendencias[0]?.descripcion }}
               </p>
             </div>
           </div>
         </NuxtLink>
-        <div class="bg-base-100 flex h-fit w-full gap-4 rounded-lg p-6 shadow">
+        <div
+          class="bg-base-100 hidden h-fit w-full gap-4 rounded-lg p-6 shadow lg:flex"
+        >
           <div class="w-full flex-col">
             <div class="flex max-w-96 flex-col gap-2">
               <NuxtLink
@@ -218,6 +223,98 @@
           </div>
         </div>
       </div>
+      <Carousel
+        v-if="tendencias"
+        class="max-w-screen pb-6 lg:hidden"
+        :wrapAround="true"
+        :gap="8"
+        itemsToShow="auto"
+      >
+        <Slide>
+          <div
+            class="bg-base-100 flex w-80 max-w-96 flex-col gap-2 rounded-lg border border-gray-300 p-6 shadow"
+          >
+            <NuxtLink
+              :to="{
+                name: 'tendencias-id',
+                params: { id: tendencias[1]?.id },
+              }"
+              class="h6 link link-hover link-primary line-clamp-2"
+            >
+              {{ tendencias[1]?.titulo }}
+            </NuxtLink>
+            <p class="body line-clamp-4 text-ellipsis">
+              {{ tendencias[1]?.descripcion }}
+            </p>
+            <p class="body font-bold">
+              {{ tendencias[1]?.fecha_publicacion }}
+            </p>
+          </div>
+        </Slide>
+        <Slide>
+          <div
+            class="bg-base-100 flex w-80 max-w-96 flex-col gap-2 rounded-lg border border-gray-300 p-6 shadow"
+          >
+            <NuxtLink
+              :to="{
+                name: 'tendencias-id',
+                params: { id: tendencias[1]?.id },
+              }"
+              class="h6 link link-hover link-primary line-clamp-2"
+            >
+              {{ tendencias[2]?.titulo }}
+            </NuxtLink>
+            <p class="body line-clamp-4 text-ellipsis">
+              {{ tendencias[2]?.descripcion }}
+            </p>
+            <p class="body font-bold">
+              {{ tendencias[2]?.fecha_publicacion }}
+            </p>
+          </div>
+        </Slide>
+        <Slide>
+          <div
+            class="bg-base-100 flex w-80 max-w-96 flex-col gap-2 rounded-lg border border-gray-300 p-6 shadow"
+          >
+            <NuxtLink
+              :to="{
+                name: 'tendencias-id',
+                params: { id: tendencias[1]?.id },
+              }"
+              class="h6 link link-hover link-primary line-clamp-2"
+            >
+              {{ tendencias[3]?.titulo }}
+            </NuxtLink>
+            <p class="body line-clamp-4 text-ellipsis">
+              {{ tendencias[3]?.descripcion }}
+            </p>
+            <p class="body font-bold">
+              {{ tendencias[3]?.fecha_publicacion }}
+            </p>
+          </div>
+        </Slide>
+        <Slide>
+          <div
+            class="bg-base-100 flex w-80 max-w-96 flex-col gap-2 rounded-lg border border-gray-300 p-6 shadow"
+          >
+            <NuxtLink
+              :to="{
+                name: 'tendencias-id',
+                params: { id: tendencias[1]?.id },
+              }"
+              class="h6 link link-hover link-primary line-clamp-2"
+            >
+              {{ tendencias[4]?.titulo }}
+            </NuxtLink>
+            <p class="body line-clamp-4 text-ellipsis">
+              {{ tendencias[4]?.descripcion }}
+            </p>
+            <p class="body font-bold">
+              {{ tendencias[4]?.fecha_publicacion }}
+            </p>
+          </div>
+        </Slide>
+      </Carousel>
     </div>
   </div>
 </template>
@@ -232,7 +329,18 @@ import type { Tendencias } from "~/types/tendencias";
 
 const carouselCarsSettings = {
   wrapAround: true,
-  itemsToShow: 4,
+  itemsToShow: 1.2,
+  breakpoints: {
+    640: {
+      itemsToShow: 2,
+    },
+    1024: {
+      itemsToShow: 3,
+    },
+    1280: {
+      itemsToShow: 4,
+    },
+  },
 };
 
 const { data: tendencias } = await useFetch(`tendencias/`, {
