@@ -72,7 +72,7 @@
       <div class="flex flex-col gap-6 p-2 lg:p-6">
         <h2 class="h4 lg:h3">Explora por carrocería</h2>
         <div
-          class="flex max-w-[calc(100vw-16px)] cursor-pointer justify-between gap-4 overflow-hidden"
+          class="mobile-scroll flex cursor-pointer justify-between gap-4 pb-4 lg:overflow-visible"
         >
           <HomeBodyCard
             v-for="body in masterData.bodies"
@@ -83,9 +83,9 @@
         </div>
       </div>
       <div class="flex flex-col gap-6 p-2 lg:p-6">
-        <h2 class="h4 lg:h3">Explora por rango de precio (CLP)</h2>
+        <h2 class="h4 lg:h3">Explora por rango de precio</h2>
         <div
-          class="flex max-w-[calc(100vw-16px)] cursor-pointer justify-between gap-4 overflow-hidden"
+          class="mobile-scroll flex cursor-pointer justify-between gap-4 pb-4 lg:overflow-visible"
         >
           <HomePriceCard
             v-for="price in masterData.priceRanges"

@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="{ name: 'id', params: { id: car.id } }"
-    class="bg-base-100 group flex h-full max-h-[460px] w-full max-w-[270px] cursor-pointer flex-col items-center gap-4 rounded-2xl p-6 shadow-lg"
+    class="bg-base-100 group flex max-h-[460px] w-full max-w-[270px] cursor-pointer flex-col items-center gap-4 rounded-2xl p-6 shadow-lg"
   >
     <NuxtImg
       v-if="car.foto_portada"
