@@ -22,7 +22,7 @@
   </ModalComponent>
   <NuxtLink
     :to="{ name: 'id', params: { id: car.id } }"
-    class="group bg-base-100 group flex aspect-square h-fit w-full max-w-[270px] grow-0 cursor-pointer flex-col items-center gap-4 rounded-2xl p-6 shadow-lg"
+    class="group bg-base-100 group flex aspect-square h-full w-full max-w-[270px] grow-0 cursor-pointer flex-col items-center gap-4 rounded-2xl p-6 shadow-lg"
   >
     <NuxtImg
       v-if="car.foto_portada"
