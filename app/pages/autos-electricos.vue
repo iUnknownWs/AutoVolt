@@ -2,7 +2,7 @@
   <DrawerComponent name="filters-drawer" title="Filtros" v-model="drawer">
     <template #content>
       <div>
-        <div class="breadcrumbs hidden px-6 pt-6 text-lg lg:flex">
+        <div class="breadcrumbs px-6 pt-6 text-lg">
           <ul>
             <li><NuxtLink to="/">Home</NuxtLink></li>
             <li>Autos</li>

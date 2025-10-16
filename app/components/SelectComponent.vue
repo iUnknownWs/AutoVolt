@@ -1,7 +1,7 @@
 <template>
   <div v-if="validation">
     <select
-      class="select validator min-w-56"
+      class="select validator lg:min-w-56"
       :class="$attrs.class"
       v-model="value"
       required
@@ -30,7 +30,7 @@
   </div>
   <select
     v-else-if="single"
-    class="select min-w-56"
+    class="select lg:min-w-56"
     :class="$attrs.class"
     v-model="value"
     :disabled="disabled"
@@ -43,7 +43,7 @@
   </select>
   <select
     v-else
-    class="select min-w-56"
+    class="select lg:min-w-56"
     :class="$attrs.class"
     v-model="value"
     :disabled="disabled"

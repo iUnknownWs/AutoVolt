@@ -69,31 +69,31 @@
 }
 
 @utility h1 {
-  @apply text-5xl font-bold;
+  @apply text-4xl lg:text-5xl font-bold;
 }
 
 @utility h2 {
-  @apply text-4xl font-bold;
+  @apply text-2xl lg:text-4xl font-bold;
 }
 
 @utility h3 {
-  @apply text-3xl font-bold;
+  @apply text-2xl lg:text-3xl font-bold;
 }
 
 @utility h4 {
-  @apply text-2xl font-bold;
+  @apply text-xl lg:text-2xl font-bold;
 }
 
 @utility h5 {
-  @apply text-xl font-bold;
+  @apply text-lg lg:text-xl font-bold;
 }
 
 @utility h6 {
-  @apply text-lg font-bold;
+  @apply lg:text-lg font-bold;
 }
 
 @utility body {
-  @apply font-body;
+  @apply text-sm lg:text-base font-body;
 }
 
 @utility btn {
@@ -104,7 +104,12 @@
   @apply text-base;
 }
 
+@utility breadcrumbs {
+  @apply hidden lg:flex;
+}
+
 @utility divider-white {
+
   &:before,
   &:after {
     background-color: var(--color-white);
@@ -117,6 +122,7 @@
   overflow-y: visible;
   -ms-overflow-style: none;
   scrollbar-width: none;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -156,6 +162,7 @@
 }
 
 .breadcrumbs {
+
   & > menu,
   & > ul,
   & > ol {

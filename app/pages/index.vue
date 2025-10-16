@@ -2,44 +2,6 @@
   <div class="mx-auto w-full">
     <HomeHeroComponent />
     <div class="h-full w-full">
-      <div class="relative hidden h-8 w-full px-6 lg:block">
-        <div
-          class="from-neutral absolute inset-x-0 -top-30 z-10 mx-auto w-max rounded-lg bg-gradient-to-b to-[#44462E] p-6 shadow-2xl"
-        >
-          <p class="text-neutral-content text-2xl font-bold">
-            Autos Eléctricos & Híbridos
-          </p>
-          <div class="mt-4 flex gap-4">
-            <SelectComponent
-              v-if="brands"
-              placeholder="Marca"
-              :options="brands"
-              v-model="brand"
-            />
-            <SelectComponent
-              placeholder="Modelo"
-              :options="models"
-              v-model="model"
-              option-label="modelo"
-              option-value="modelo"
-              :disabled="models.length === 0"
-              object
-            />
-            <NuxtLink
-              :to="{ name: 'autos-electricos', query: model || {} }"
-              class="btn btn-primary"
-            >
-              Buscar Modelo
-            </NuxtLink>
-            <NuxtLink
-              to="/autos-electricos/"
-              class="btn btn-primary btn-outline"
-            >
-              Explorar todos los modelos
-            </NuxtLink>
-          </div>
-        </div>
-      </div>
       <div class="flex h-full justify-evenly gap-6 p-2 lg:p-6">
         <div class="flex h-full flex-col gap-4 lg:min-w-96">
           <HomeInfoCard
@@ -320,16 +282,14 @@
 </template>
 
 <script lang="ts" setup>
-const { $api } = useNuxtApp();
-const brand = ref("");
-const model = ref("");
-import type { DataObject, ResponseData } from "~/types/api";
+import type { ResponseData } from "~/types/api";
 import type { Cars } from "~/types/cars";
 import type { Tendencias } from "~/types/tendencias";
 
+const { $api } = useNuxtApp();
 const carouselCarsSettings = {
   wrapAround: true,
-  itemsToShow: 1.2,
+  itemsToShow: 1.3,
   breakpoints: {
     640: {
       itemsToShow: 2,
@@ -349,27 +309,9 @@ const { data: tendencias } = await useFetch(`tendencias/`, {
   transform: (data: Tendencias) => data.results,
 });
 
-const { data: brands } = await useFetch(`car_brands/`, {
-  key: "brands",
-  transform: (data: ResponseData<DataObject>) => data.results,
-  $fetch: $api,
-});
-
 const { data: popular_cars } = await useFetch(`popular_cars`, {
   key: "popular_cars",
   transform: (data: ResponseData<Cars>) => data.results,
   $fetch: $api,
-});
-
-const models = ref([] as DataObject[]);
-const getModels = async () => {
-  const data = await $api<ResponseData<DataObject>>(
-    `car_models/?marca_id=${brand.value}`,
-  );
-  models.value = data.results || [];
-};
-
-watch(brand, () => {
-  getModels();
 });
 </script>
