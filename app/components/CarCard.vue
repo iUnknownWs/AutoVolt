@@ -11,7 +11,7 @@
     <div class="flex flex-col gap-4">
       <div class="flex flex-col items-center">
         <p
-          class="group-hover:text-primary-600 group-active:text-primary-600 text-lg font-bold"
+          class="group-hover:text-primary-600 group-active:text-primary-600 line-clamp-1 w-fit text-lg font-bold"
         >
           {{ car.marca }} {{ car.modelo }}
         </p>

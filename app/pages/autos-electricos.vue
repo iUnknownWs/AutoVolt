@@ -141,7 +141,7 @@
             </div>
           </div>
           <div class="flex w-full flex-col">
-            <div class="flex h-full flex-wrap justify-center gap-4">
+            <div class="flex flex-wrap justify-center gap-4">
               <CarCard v-for="car in cars?.results" :key="car.id" :car="car" />
             </div>
             <div class="join mx-auto mt-6">
