@@ -67,8 +67,103 @@
           </Navigation>
         </template>
       </Carousel>
+      <CardComponent
+        class="flex flex-col justify-between gap-4 p-4 lg:min-w-xl lg:gap-8 lg:p-6"
+      >
+        <div>
+          <h1 class="h1">{{ car.marca }} {{ car.modelo }}</h1>
+          <h2 class="h3 text-primary">{{ car.version }}</h2>
+        </div>
+        <div class="flex flex-col justify-between lg:flex-row">
+          <div class="flex flex-col gap-2 lg:gap-6">
+            <div class="flex flex-col">
+              <span class="body h6font-medium">
+                Tipo EV
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3 font-bold"
+                    text="Haz clic para más información"
+                    @click.prevent="modal?.modal?.showModal()"
+                  >
+                    <Icon name="ph:info-bold" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </span>
+              <p class="body h2 font-bold">{{ car.tipo_ev }}</p>
+            </div>
+            <div class="flex flex-col">
+              <span class="body h6 font-medium">Carrocería</span>
+              <p class="body h2 font-bold">{{ car.carroceria }}</p>
+            </div>
+            <div class="flex flex-col">
+              <span class="body h6 font-medium">Precio desde (CLP)</span>
+              <p class="body h2 font-bold">
+                {{ car.precio_lista_raw }}
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2 lg:gap-6">
+            <div class="flex flex-col">
+              <span class="body h6font-medium">
+                Autonomía Total
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="La autonomía total considera tanto la independencia eléctrica como la de combustible."
+                  >
+                    <Icon name="ph:info-bold" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </span>
+              <p class="body h2 font-bold">
+                {{ car.autonomia_combinada }}
+              </p>
+            </div>
+            <div class="flex flex-col">
+              <span class="body h6 font-medium">Consumo Eléctrico</span>
+              <p class="body h2 font-bold">
+                {{ car.consumo_electrico }}
+              </p>
+            </div>
+            <div class="flex flex-col">
+              <span class="body h6 font-medium">Consumo Combustible</span>
+              <p class="body h2 font-bold">
+                {{ car.consumo_raw }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="flex w-full flex-col gap-2">
+          <div class="flex w-full flex-col gap-2 lg:flex-row lg:gap-6">
+            <a
+              class="btn btn-primary lg:flex-1"
+              :class="{ 'btn-disabled': !car?.ficha_tecnica }"
+              :href="car.ficha_tecnica || ''"
+              target="_blank"
+            >
+              <Icon name="ph:download-simple" />
+              Ficha tecnica
+            </a>
+            <NuxtLink
+              :to="{ name: 'comparador', query: { id: id } }"
+              target="_blank"
+              class="btn btn-primary lg:flex-1"
+            >
+              <Icon name="ph:list-plus" />
+              Comparar
+            </NuxtLink>
+          </div>
+          <NuxtLink
+            :to="{ name: 'id-cotizar', params: { id: id } }"
+            class="btn btn-primary w-full"
+          >
+            <Icon name="ph:currency-circle-dollar-duotone" />
+            Buscar Ofertas
+          </NuxtLink>
+        </div>
+      </CardComponent>
     </div>
-    <div class="p-4 lg:p-6">
+    <div class="p-6">
       <CardComponent class="p-6">
         <h3 class="h3">Especificaciones</h3>
         <p class="body mt-2 text-xl font-medium">
@@ -79,11 +174,11 @@
         </p>
       </CardComponent>
     </div>
-    <div class="flex flex-col gap-6 p-4 lg:flex-row lg:p-6">
-      <div class="flex flex-col gap-6 lg:flex-1">
-        <CardComponent class="flex flex-col gap-4 p-4 lg:p-6">
+    <div class="flex flex-col gap-6 p-6 lg:flex-row">
+      <div class="flex flex-1 flex-col gap-6">
+        <CardComponent class="flex flex-col gap-4 p-6">
           <h3 class="h3">Motor & Desempeño</h3>
-          <div class="grid min-w-0 grid-cols-2 gap-2">
+          <div class="grid gap-2 text-xl lg:grid-cols-2">
             <div>
               <p class="body">Tracción</p>
               <p class="body font-bold">{{ car.traccion }}</p>
@@ -150,6 +245,35 @@
             </div>
           </div>
         </CardComponent>
+        <CardComponent class="flex flex-col gap-4 p-6">
+          <h3 class="h3">Dimensiones & Peso</h3>
+          <div class="grid gap-2 text-xl lg:grid-cols-2">
+            <div>
+              <p class="body">Largo</p>
+              <p class="body font-bold">{{ car.largo_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Peso Vehicular</p>
+              <p class="body font-bold">{{ car.peso_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Ancho</p>
+              <p class="body font-bold">{{ car.ancho_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Capacidad del Maletero</p>
+              <p class="body font-bold">{{ car.maletero_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Alto</p>
+              <p class="body font-bold">{{ car.alto_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Distancia entre ejes</p>
+              <p class="body font-bold">{{ car.distancia_entre_ejes_raw }}</p>
+            </div>
+          </div>
+        </CardComponent>
 
         <NuxtLink to="/guia" class="h1 card-shadow">
           <NuxtImg
@@ -157,6 +281,143 @@
             class="h-[220px] w-[684px] rounded-2xl object-cover"
           />
         </NuxtLink>
+      </div>
+      <div class="flex flex-1 flex-col gap-6">
+        <CardComponent class="flex flex-col gap-4 p-6">
+          <h3 class="h3">Eficiencia Eléctrica</h3>
+          <div class="grid gap-2 text-xl lg:grid-cols-2">
+            <div>
+              <p class="body">
+                Autonomía Batería (WLTP)
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Rango estimado de conducción solo con energía eléctrica, calculado bajo el estándar WLTP."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
+              <p class="body font-bold">{{ car.rango_wltp_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Consumo Diario</p>
+              <p class="body font-bold">{{ car.consumo_diario }}</p>
+            </div>
+            <div>
+              <p class="body">Capacidad Batería</p>
+              <p class="body font-bold">{{ car.bateria_nominal_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Consumo Comparable</p>
+              <p class="body font-bold">{{ car.consumo_comparable }}</p>
+            </div>
+            <div>
+              <p class="body">
+                Consumo Eléctrico
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Consumo Eléctrico, indicador de la eficiencia del motor eléctrico en el uso de energía principalmente en ciudad."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
+              <p class="body font-bold">{{ car.consumo_electrico }}</p>
+            </div>
+          </div>
+        </CardComponent>
+        <CardComponent class="flex flex-col gap-4 p-6">
+          <h3 class="h3">Batería & Carga</h3>
+          <div class="grid gap-2 text-xl lg:grid-cols-2">
+            <div>
+              <p class="body">Tipo de Batería</p>
+              <p class="body font-bold">{{ car.tipo_bateria }}</p>
+            </div>
+            <div>
+              <p class="body">
+                Tipo de Carga DC
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Conocida como Carga Rápida, usa corriente continua. Disponible en electrolineras; puede cargar la batería en 30-60 minutos."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
+              <p class="body font-bold">{{ car.tipo_carga_dc }}</p>
+            </div>
+            <div>
+              <p class="body">
+                Tipo de Carga AC
+                <ClientOnly>
+                  <TooltipComponent
+                    class="h-3"
+                    text="Conocida como Carga Lenta, usa corriente alterna. Común en hogares y oficinas; tarda varias horas en completar la carga."
+                  >
+                    <Icon name="ph:info-bold" size="14" />
+                  </TooltipComponent>
+                </ClientOnly>
+              </p>
+              <p class="body font-bold">{{ car.tipo_carga_ac }}</p>
+            </div>
+            <div>
+              <p class="body">Potencia Carga DC</p>
+              <p class="body font-bold">{{ car.carga_dc_max_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Potencia Carga AC</p>
+              <p class="body font-bold">{{ car.carga_ac_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Tiempo Carga DC 20% > 80%</p>
+              <p class="body font-bold">{{ car.tiempo_carga_20_80_dc }}</p>
+            </div>
+            <div>
+              <p class="body">Tiempo Carga AC 20% > 80%</p>
+              <p class="body font-bold">{{ car.tiempo_carga_20_80_ac }}</p>
+            </div>
+            <div>
+              <p class="body">Autonomía Carga 80% > 20%</p>
+              <p class="body font-bold">{{ car.autonomia_80_20_carga }}</p>
+            </div>
+          </div>
+        </CardComponent>
+        <CardComponent class="flex flex-col gap-4 p-6">
+          <h3 class="h3">Seguridad & Otros</h3>
+          <div class="grid gap-2 text-xl lg:grid-cols-2">
+            <div>
+              <p class="body">Llantas</p>
+              <p class="body font-bold">{{ car.llantas_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Calif. Seguridad (NCAP)</p>
+              <p class="body font-bold">{{ car.seguridad_ncap_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Asientos</p>
+              <p class="body font-bold">{{ car.asientos_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Garantía</p>
+              <p class="body font-bold">{{ car.garantia_anos_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Airbags</p>
+              <p class="body font-bold">{{ car.airbags_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Garantía</p>
+              <p class="body font-bold">{{ car.garantia_km_raw }}</p>
+            </div>
+            <div>
+              <p class="body">Producido desde</p>
+              <p class="body font-bold">{{ car.inicio_produccion_raw }}</p>
+            </div>
+          </div>
+        </CardComponent>
       </div>
     </div>
     <div
@@ -178,7 +439,7 @@
       </div>
     </div>
     <div
-      class="flex max-w-screen flex-col gap-6 lg:max-w-[calc(100vw-15px)] lg:p-6"
+      class="flex max-w-[calc(100vw-8px)] flex-col gap-6 lg:max-w-[calc(100vw-15px)] lg:p-6"
     >
       <h2 class="h3 px-4">Alternativas Sugeridas (Precio)</h2>
       <Carousel v-bind="carouselCarsSettings">
