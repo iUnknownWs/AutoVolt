@@ -308,13 +308,13 @@ const price = ref({});
 const search = ref("");
 const searchObject = ref<Cars | null>(null);
 const filters = reactive({
-  ordering: "precio_lista" as string,
-  marca: query?.marca || ("" as string),
-  modelo: typeof query?.modelo === "string" ? query.modelo : ("" as string),
+  ordering: "precio_lista",
+  marca: "",
+  modelo: "",
   carroceria: null as string | null,
   tipo_ev: null as string | null,
-  precio_min: query?.precio_min || (null as number | null),
-  precio_max: query?.precio_max || (null as number | null),
+  precio_min: null as string | number | null,
+  precio_max: null as string | number | null,
   page: 1 as number,
 });
 
@@ -356,7 +356,7 @@ function clearFilter(key: keyof typeof filters) {
   if (key === "ordering" || key === "carroceria" || key === "tipo_ev") {
     filters[key] = "";
   } else if (key === "precio_min" || key === "precio_max") {
-    filters[key] = "";
+    filters[key] = null;
     price.value = {};
   } else if (key === "page") {
     filters[key] = 1;
@@ -392,4 +392,12 @@ watch(
     filters.page = 1;
   },
 );
+
+onMounted(() => {
+  filters.marca = (query?.marca as string) || "";
+  filters.modelo = (query?.modelo as string) || "";
+  filters.carroceria = (query?.carroceria as string) || null;
+  filters.precio_max = (query?.precio_max as string) || null;
+  filters.precio_min = (query?.precio_min as string) || null;
+});
 </script>
