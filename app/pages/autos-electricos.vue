@@ -281,7 +281,6 @@ import type { DataObject, ResponseData } from "~/types/api";
 import type { Cars } from "~/types/cars";
 
 const route = useRoute();
-const query = route.query;
 const brand = ref<DataObject | "">("");
 
 const drawer = ref(false);
@@ -320,7 +319,6 @@ const filters = reactive({
 
 const { data: cars } = await useFetch<ResponseData<Cars>>("cars/search/", {
   params: filters,
-  key: "list-cars",
   $fetch: $api,
 });
 
@@ -328,7 +326,6 @@ const { data: searchResult } = await useFetch<ResponseData<Cars>>(
   "search_box",
   {
     query: { q: search },
-    key: "search_cars",
     $fetch: $api,
   },
 );
@@ -341,16 +338,6 @@ const navigateCars = (direction: "next" | "previous") => {
   }
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
-
-if (query.carroceria) {
-  filters.carroceria = query.carroceria as string;
-}
-
-if (query.marca && brands.value) {
-  brand.value =
-    brands.value.find((b: DataObject) => b.name === query.marca) || "";
-  getModels();
-}
 
 function clearFilter(key: keyof typeof filters) {
   if (key === "ordering" || key === "carroceria" || key === "tipo_ev") {
@@ -394,7 +381,12 @@ watch(
 );
 
 onMounted(() => {
-  filters.marca = (query?.marca as string) || "";
+  const query = route.query;
+  if (query.marca && brands.value) {
+    brand.value =
+      brands.value.find((b: DataObject) => b.name === query.marca) || "";
+    getModels();
+  }
   filters.modelo = (query?.modelo as string) || "";
   filters.carroceria = (query?.carroceria as string) || null;
   filters.precio_max = (query?.precio_max as string) || null;
