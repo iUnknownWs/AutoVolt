@@ -1,5 +1,9 @@
 <template>
-  <DrawerComponent title="Navegación" name="nav-drawer" v-model="drawer">
+  <DrawerComponent
+    title="Navegación AutoVolt"
+    name="nav-drawer"
+    v-model="drawer"
+  >
     <template #content>
       <div class="grid min-h-dvh grid-rows-[auto_1fr_auto]">
         <NavbarComponent @menu="drawer = !drawer" />
