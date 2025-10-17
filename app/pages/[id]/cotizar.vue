@@ -254,7 +254,7 @@ const id = useRoute().params.id as string;
 const modal = ref<{ modal: HTMLDialogElement } | null>(null);
 const openModal = (branch: Branch) => {
   if (appraisedList.value.includes(branch.id)) {
-    snackbar.add({
+    snackbar?.add({
       title: "¡Ya has cotizado este auto!",
       text: "Puedes cotizar otras ofertas",
       type: "warning",
@@ -265,7 +265,7 @@ const openModal = (branch: Branch) => {
   modal.value?.modal.showModal();
 };
 
-const snackbar = useSnackbar();
+let snackbar: ReturnType<typeof useSnackbar> | null = null;
 const payload = reactive({
   car_id: id,
   branch_id: null as number | string | null,
@@ -292,7 +292,7 @@ const appraise = async () => {
   });
   appraisedList.value.push(actualBranch.value as number);
   actualBranch.value = null;
-  snackbar.add({
+  snackbar?.add({
     title: "¡Cotización Enviada!",
     text: "Puedes cotizar otras ofertas o cerrar la pestaña.",
     type: "success",
@@ -347,4 +347,8 @@ const getBranches = async () => {
   branches.value = response.results;
   loading.value = false;
 };
+
+onMounted(() => {
+  snackbar = useSnackbar();
+});
 </script>

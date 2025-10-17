@@ -128,7 +128,7 @@
 <script lang="ts" setup>
 const { $api } = useNuxtApp();
 
-const snackbar = useSnackbar();
+let snackbar: ReturnType<typeof useSnackbar> | undefined;
 
 const payload = reactive({
   nombre: "",
@@ -143,7 +143,7 @@ const payload = reactive({
 
 const submitForm = async () => {
   if (payload.tipo_residencia === null || payload.direccion === null) {
-    snackbar.add({
+    snackbar?.add({
       title: "Error",
       text: "Por favor rellena los campos Tipo de Residencia y Ciudad.",
       type: "error",
@@ -155,10 +155,14 @@ const submitForm = async () => {
     method: "POST",
     body: payload,
   });
-  snackbar.add({
+  snackbar?.add({
     title: "¡Cotización Enviada!",
     text: "Puedes cotizar otras ofertas o cerrar la pestaña.",
     type: "success",
   });
 };
+
+onMounted(() => {
+  snackbar = useSnackbar();
+});
 </script>

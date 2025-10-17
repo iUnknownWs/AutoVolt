@@ -89,7 +89,7 @@
 }
 
 @utility h6 {
-  @apply lg:text-lg font-bold;
+  @apply text-base lg:text-lg font-bold;
 }
 
 @utility body {

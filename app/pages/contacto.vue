@@ -52,7 +52,7 @@
 
 <script lang="ts" setup>
 const { $api } = useNuxtApp();
-const snackbar = useSnackbar();
+let snackbar: ReturnType<typeof useSnackbar> | null = null;
 const payload = reactive({
   nombre: "",
   apellido: "",
@@ -65,10 +65,14 @@ const contact = () => {
     method: "POST",
     body: payload,
   });
-  snackbar.add({
+  snackbar?.add({
     title: "Tu formulario de contacto ha sido enviado",
     text: "Te contactaremos a la mayor brevedad posible.",
     type: "success",
   });
 };
+
+onMounted(() => {
+  snackbar = useSnackbar();
+});
 </script>

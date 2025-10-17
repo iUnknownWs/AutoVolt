@@ -68,19 +68,21 @@
         </p>
       </template>
     </ModalComponent>
-    <CardComponent class="mx-6">
-      <div class="bg-primary flex items-center justify-between rounded-2xl p-6">
-        <div class="max-w-72">
-          <h1 class="h3 leading-10">
+    <CardComponent class="mx-4 lg:mx-6">
+      <div
+        class="bg-primary flex flex-col items-center justify-between gap-2 rounded-2xl p-4 lg:flex-row lg:p-6"
+      >
+        <div class="lg:max-w-72">
+          <h1 class="h6 lg:h3 text-center lg:text-start lg:leading-10">
             Selecciona los autos que deseas comparar
-            <Icon name="ph:car-duotone" />
+            <Icon name="ph:car-duotone" class="hidden! lg:inline-block!" />
           </h1>
         </div>
-        <div class="flex w-full gap-6">
+        <div class="flex w-full flex-col gap-6 lg:flex-row">
           <CardComponent
             v-for="car in cars"
             :key="car.id"
-            class="relative flex aspect-square w-full max-w-60 flex-1 flex-col items-center justify-center"
+            class="relative flex w-full flex-1 items-center gap-4 p-4 lg:aspect-square lg:max-w-60 lg:flex-col lg:justify-center lg:gap-0"
           >
             <Icon
               name="ph:x-bold"
@@ -88,131 +90,162 @@
               size="24"
               @click="carIds.splice(carIds.indexOf(car.id.toString()), 1)"
             />
-            <NuxtImg :src="car?.foto_portada || ''" class="w-40 object-cover" />
-            <p class="h3 text-center">{{ car.marca }} {{ car.modelo }}</p>
-            <p>{{ car.version }}</p>
+            <NuxtImg
+              :src="car?.foto_portada || ''"
+              class="w-20 object-cover lg:w-40"
+            />
+            <div class="flex flex-col items-center lg:gap-1">
+              <p class="lg:h3 h4 text-center">
+                {{ car.marca }} {{ car.modelo }}
+              </p>
+              <p class="body">{{ car.version }}</p>
+            </div>
           </CardComponent>
-          <CardComponent
-            v-if="loading || carIds.length < 4"
-            class="flex aspect-square w-full max-w-60 flex-1 items-center justify-center"
+          <div
+            class="flex w-full flex-1 justify-evenly gap-6 lg:justify-between"
           >
-            <button class="btn btn-primary" @click="openModal">
-              <Icon name="ph:plus" /> Añadir Auto
-            </button>
-          </CardComponent>
-          <CardComponent
-            v-if="loading || carIds.length < 3"
-            class="flex aspect-square w-full max-w-60 flex-1 items-center justify-center"
-          >
-            <button class="btn btn-primary" @click="openModal">
-              <Icon name="ph:plus" /> Añadir Auto
-            </button>
-          </CardComponent>
-          <CardComponent
-            v-if="loading || carIds.length < 2"
-            class="flex aspect-square w-full max-w-60 flex-1 items-center justify-center"
-          >
-            <button class="btn btn-primary" @click="openModal">
-              <Icon name="ph:plus" /> Añadir Auto
-            </button>
-          </CardComponent>
-          <CardComponent
-            v-if="loading || carIds.length < 1"
-            class="flex aspect-square w-full max-w-60 flex-1 items-center justify-center"
-          >
-            <button class="btn btn-primary" @click="openModal">
-              <Icon name="ph:plus" /> Añadir Auto
-            </button>
-          </CardComponent>
+            <CardComponent
+              v-if="loading || carIds.length < 4"
+              class="flex aspect-square w-full max-w-24 flex-1 items-center justify-center lg:max-w-60"
+            >
+              <button
+                class="btn btn-ghost lg:btn-primary btn-xs lg:btn-md"
+                @click="openModal"
+              >
+                <Icon name="ph:plus" />
+                <div class="hidden lg:block">Añadir Auto</div>
+              </button>
+            </CardComponent>
+            <CardComponent
+              v-if="loading || carIds.length < 3"
+              class="flex aspect-square w-full max-w-24 flex-1 items-center justify-center lg:max-w-60"
+            >
+              <button
+                class="btn btn-ghost lg:btn-primary btn-xs lg:btn-md"
+                @click="openModal"
+              >
+                <Icon name="ph:plus" />
+                <div class="hidden lg:block">Añadir Auto</div>
+              </button>
+            </CardComponent>
+            <CardComponent
+              v-if="loading || carIds.length < 2"
+              class="flex aspect-square w-full max-w-24 flex-1 items-center justify-center lg:max-w-60"
+            >
+              <button
+                class="btn btn-ghost lg:btn-primary btn-xs lg:btn-md"
+                @click="openModal"
+              >
+                <Icon name="ph:plus" />
+                <div class="hidden lg:block">Añadir Auto</div>
+              </button>
+            </CardComponent>
+            <CardComponent
+              v-if="loading || carIds.length < 1"
+              class="flex aspect-square w-full max-w-24 flex-1 items-center justify-center lg:max-w-60"
+            >
+              <button
+                class="btn btn-ghost lg:btn-primary btn-xs lg:btn-md"
+                @click="openModal"
+              >
+                <Icon name="ph:plus" />
+                <div class="hidden lg:block">Añadir Auto</div>
+              </button>
+            </CardComponent>
+          </div>
         </div>
       </div>
     </CardComponent>
-    <CardComponent class="mt-6 p-6">
-      <div class="grid grid-cols-5">
-        <p class="h6">
-          Tipo EV
-          <ClientOnly>
-            <TooltipComponent
-              class="h-3 font-bold"
-              text="Haz clic para más información"
-              @click.prevent="openModalEV"
-            >
-              <Icon name="ph:info-bold" />
-            </TooltipComponent>
-          </ClientOnly>
-        </p>
-        <p v-for="car in 4" class="body text-center font-semibold">
-          {{ cars[car - 1]?.tipo_ev || "-" }}
-        </p>
-        <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Carrocería</p>
-        <p v-for="car in 4" class="body text-center font-semibold">
-          {{ cars[car - 1]?.carroceria || "-" }}
-        </p>
-        <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Precio desde (CLP)</p>
-        <p v-for="car in 4" class="body text-center font-semibold">
-          {{ cars[car - 1]?.precio_lista_raw || "-" }}
-        </p>
-        <div class="divider col-span-5 m-0"></div>
-        <p class="h6">
-          Autonomía Total
-          <ClientOnly>
-            <TooltipComponent
-              class="h-3"
-              text="La autonomía total considera tanto la independencia eléctrica como la de combustible."
-            >
-              <Icon name="ph:info-bold" size="14" />
-            </TooltipComponent>
-          </ClientOnly>
-        </p>
-        <p v-for="car in 4" class="body text-center font-semibold">
-          {{ cars[car - 1]?.autonomia_combinada || "-" }}
-        </p>
-        <div class="divider col-span-5 m-0"></div>
-        <p class="h6">
-          Consumo Eléctrico
-          <ClientOnly>
-            <TooltipComponent
-              class="h-3"
-              text="Consumo Eléctrico, indicador de la eficiencia del motor eléctrico en el uso de energía principalmente en ciudad."
-            >
-              <Icon name="ph:info-bold" size="14" />
-            </TooltipComponent>
-          </ClientOnly>
-        </p>
-        <p v-for="car in 4" class="body text-center font-semibold">
-          {{ cars[car - 1]?.consumo_electrico || "-" }}
-        </p>
-        <div class="divider col-span-5 m-0"></div>
-        <p class="h6">
-          Consumo Combustible
-          <ClientOnly>
-            <TooltipComponent
-              class="h-3"
-              text="Consumo del Motor de Combustión Interna (MCI), indicador de la eficiencia en el uso de combustible en condiciones mixtas."
-            >
-              <Icon name="ph:info-bold" size="14" />
-            </TooltipComponent>
-          </ClientOnly>
-        </p>
-        <p v-for="car in 4" class="body text-center font-semibold">
-          {{ cars[car - 1]?.consumo || "-" }}
-        </p>
-        <div class="divider col-span-5 m-0"></div>
-        <p class="h6">Cotizar</p>
-        <button
-          v-for="car in 4"
-          class="btn btn-primary mx-auto w-fit"
-          @click="appraise(cars[car - 1]?.id ?? 0)"
-          :disabled="!cars[car - 1]"
-        >
-          Cotizar
-        </button>
-      </div>
-    </CardComponent>
-    <div class="p-6">
-      <CardComponent class="mx-auto flex w-fit gap-2 p-4">
+    <div class="mobile-scroll lg:mx-6">
+      <CardComponent class="m-6 w-[1280px] p-6 lg:mx-auto lg:w-full">
+        <div class="grid grid-cols-5">
+          <p class="h6">
+            Tipo EV
+            <ClientOnly>
+              <TooltipComponent
+                class="h-3 font-bold"
+                text="Haz clic para más información"
+                @click.prevent="openModalEV"
+              >
+                <Icon name="ph:info-bold" />
+              </TooltipComponent>
+            </ClientOnly>
+          </p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.tipo_ev || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Carrocería</p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.carroceria || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Precio desde (CLP)</p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.precio_lista_raw || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">
+            Autonomía Total
+            <ClientOnly>
+              <TooltipComponent
+                class="h-3"
+                text="La autonomía total considera tanto la independencia eléctrica como la de combustible."
+              >
+                <Icon name="ph:info-bold" size="14" />
+              </TooltipComponent>
+            </ClientOnly>
+          </p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.autonomia_combinada || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">
+            Consumo Eléctrico
+            <ClientOnly>
+              <TooltipComponent
+                class="h-3"
+                text="Consumo Eléctrico, indicador de la eficiencia del motor eléctrico en el uso de energía principalmente en ciudad."
+              >
+                <Icon name="ph:info-bold" size="14" />
+              </TooltipComponent>
+            </ClientOnly>
+          </p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.consumo_electrico || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">
+            Consumo Combustible
+            <ClientOnly>
+              <TooltipComponent
+                class="h-3"
+                text="Consumo del Motor de Combustión Interna (MCI), indicador de la eficiencia en el uso de combustible en condiciones mixtas."
+              >
+                <Icon name="ph:info-bold" size="14" />
+              </TooltipComponent>
+            </ClientOnly>
+          </p>
+          <p v-for="car in 4" class="body text-center font-semibold">
+            {{ cars[car - 1]?.consumo || "-" }}
+          </p>
+          <div class="divider col-span-5 m-0"></div>
+          <p class="h6">Cotizar</p>
+          <button
+            v-for="car in 4"
+            class="btn btn-primary mx-auto w-fit"
+            @click="appraise(cars[car - 1]?.id ?? 0)"
+            :disabled="!cars[car - 1]"
+          >
+            Cotizar
+          </button>
+        </div>
+      </CardComponent>
+    </div>
+    <div>
+      <CardComponent
+        class="mobile-scroll ml-4 flex w-[988px] gap-2 p-4 lg:mx-auto lg:w-fit"
+      >
         <input
           type="radio"
           name="compare-tabs"
@@ -254,19 +287,19 @@
           v-model="tab"
         />
         <!-- <input
-          type="radio"
-          name="compare-tabs"
-          aria-label="Ahorro en combustible"
-          value="Ahorro en combustible"
-          class="btn btn-neutral checked:btn-primary"
-          v-model="tab"
-        /> -->
+            type="radio"
+            name="compare-tabs"
+            aria-label="Ahorro en combustible"
+            value="Ahorro en combustible"
+            class="btn btn-neutral checked:btn-primary"
+            v-model="tab"
+          /> -->
       </CardComponent>
     </div>
-    <div class="px-6">
+    <div class="mobile-scroll py-6 lg:mx-6">
       <CardComponent
         v-if="tab === 'Motor & Desempeño'"
-        class="flex flex-col gap-4 p-6"
+        class="flex w-[1280px] flex-col gap-4 p-6 lg:w-full"
       >
         <div class="grid grid-cols-5 text-xl">
           <p class="h6">Marca y modelo</p>

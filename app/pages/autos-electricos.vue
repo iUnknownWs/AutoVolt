@@ -30,10 +30,10 @@
             />
           </div>
           <button
-            class="btn btn-secondary btn-square h-[44px] lg:hidden"
+            class="btn btn-secondary h-[44px] lg:hidden"
             @click="drawer = !drawer"
           >
-            <Icon name="ph:funnel-duotone" size="24" />
+            <Icon name="ph:funnel-duotone" size="24" /> Filtros
           </button>
         </div>
         <div class="flex w-full gap-6 px-6 pb-6">
