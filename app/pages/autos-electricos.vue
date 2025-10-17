@@ -238,7 +238,7 @@
             <input
               class="radio radio-neutral"
               type="radio"
-              name="ev_type"
+              name="ev_type_mobile"
               :value="option.id"
               v-model="filters.tipo_ev"
             />
@@ -253,7 +253,7 @@
           <RadioComponent
             v-for="option in masterData.priceRanges"
             class="radio-neutral"
-            name="price"
+            name="price_range_mobile"
             :placeholder="option.name"
             :value="option.id"
             v-model="price"
@@ -264,7 +264,7 @@
           <RadioComponent
             v-for="option in masterData.bodies"
             class="radio-neutral"
-            name="body"
+            name="body_mobile"
             :placeholder="option.name"
             :value="option.id"
             v-model="filters.carroceria"
