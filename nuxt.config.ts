@@ -16,8 +16,8 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
       ],
       link: [
-        { rel: 'canonical', href: 'https://auto-volt.cl/' },
-        { rel: 'icon', type: 'image/png', href: 'https://storage.googleapis.com/mediamvp/AUTOVOLT%20FAVICON.png' },
+        { rel: 'canonical', href: process.env.NUXT_PUBLIC_BASE_URL || 'https://auto-volt.cl/' },
+        { rel: 'icon', type: 'image/png', href: 'https://storage.googleapis.com/mediamvp/AutoVolt%20Favicon.png' },
       ],
     }
   },
